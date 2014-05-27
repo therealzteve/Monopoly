@@ -1,23 +1,27 @@
 package actions;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import misc.TextKeys;
+
 /**
- * Servlet implementation class GameAction
+ * Servlet implementation class JoinGameAction
  */
-@WebServlet("/GameAction")
-public class GameAction extends HttpServlet {
+@WebServlet("/JoinGameAction")
+public class JoinGameAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GameAction() {
+    public JoinGameAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,33 +30,35 @@ public class GameAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request,response);
 		// TODO Auto-generated method stub
+		ArrayList<Integer> gameList;
+		
+		//Liste aus Application Scope holen
+		Object obj = request.getServletContext().getAttribute(TextKeys.gameList);
+		
+		//Pruefen ob obj vom Typ ArrayList ist
+		if(obj instanceof ArrayList<?>){
+			
+			//obj zu ArrayList casten
+			gameList = (ArrayList<Integer>)obj;
+			
+			//Pruefen ob Spiel mit ID existiert
+			if(gameList.contains(request.getParameter(TextKeys.gameId))){
+				
+				//Game ID in die Session des Users speichern
+				request.getSession().setAttribute(TextKeys.userGameId, 1);
+				
+				//TODO Weiterleitung zur Spiel Logik
+			}
+		}
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Spiel Objekt finden
-		System.out.println(getServletContext().getAttribute("GameID"));
-		//User state abfragen
-		int userState = 0;
-		//Parameter parsen
-		
-		//Unteraktion ausfuehren
-		GameBaseAction action = getGameAction(userState);
-		action.performAction(request);
-		
-		//Ergebnis zurueckgeben
-		request.getRequestDispatcher("/json/wuerfel.jsp").forward(request, response);
-	}
-	
-	protected GameBaseAction getGameAction(int userState){
-		if(userState == 0){
-			return new WuerfelAction();
-		}
-		return null;
+		// TODO Auto-generated method stub
 	}
 
 }

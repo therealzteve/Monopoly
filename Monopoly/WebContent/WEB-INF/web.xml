@@ -17,4 +17,23 @@
     <servlet-name>GameAction</servlet-name>
     <url-pattern>/gameAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>InitGameAction</servlet-name>
+    <servlet-class>actions.InitGameAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InitGameAction</servlet-name>
+    <url-pattern>/initGameAction</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>GetUpdateAction</servlet-name>
+    <servlet-class>actions.GetUpdateAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetUpdateAction</servlet-name>
+    <url-pattern>/getUpdateAction</url-pattern>
+  </servlet-mapping>
+  <listener>
+    <listener-class>misc.ApplicationInitializer</listener-class>
+  </listener>
 </web-app>
