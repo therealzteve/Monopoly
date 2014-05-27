@@ -9,13 +9,12 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-    <servlet>
-        <servlet-name>WuerfelAction</servlet-name>
-        <servlet-class>actions.WuerfelAction</servlet-class>
-    </servlet>
- 
-    <servlet-mapping>
-        <servlet-name>WuerfelAction</servlet-name>
-        <url-pattern>/wuerfeln</url-pattern>
-    </servlet-mapping>
+  <servlet>
+    <servlet-name>GameAction</servlet-name>
+    <servlet-class>actions.GameAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GameAction</servlet-name>
+    <url-pattern>/gameAction</url-pattern>
+  </servlet-mapping>
 </web-app>
