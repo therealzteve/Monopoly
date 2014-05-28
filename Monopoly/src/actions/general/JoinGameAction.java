@@ -1,7 +1,8 @@
-package actions;
+package actions.general;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,19 +32,20 @@ public class JoinGameAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ArrayList<Integer> gameList;
+		HashMap<Integer,Integer> gameList;
 		
 		//Liste aus Application Scope holen
 		Object obj = request.getServletContext().getAttribute(TextKeys.gameList);
 		
 		//Pruefen ob obj vom Typ ArrayList ist
-		if(obj instanceof ArrayList<?>){
+		if(obj instanceof HashMap<?,?>){
 			
 			//obj zu ArrayList casten
-			gameList = (ArrayList<Integer>)obj;
+			gameList = (HashMap<Integer,Integer>)obj;
 			
+			int game = gameList.get(request.getParameter(TextKeys.gameId));
 			//Pruefen ob Spiel mit ID existiert
-			if(gameList.contains(request.getParameter(TextKeys.gameId))){
+			if(game != 0){
 				
 				//Game ID in die Session des Users speichern
 				request.getSession().setAttribute(TextKeys.userGameId, 1);

@@ -34,6 +34,6 @@
     <url-pattern>/getUpdateAction</url-pattern>
   </servlet-mapping>
   <listener>
-    <listener-class>misc.ApplicationInitializer</listener-class>
+    <listener-class>init.ApplicationInitializer</listener-class>
   </listener>
 </web-app>

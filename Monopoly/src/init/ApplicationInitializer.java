@@ -18,7 +18,7 @@ public class ApplicationInitializer implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
-		ArrayList<Integer> gameIdList = new ArrayList<Integer>();
+		HashMap<Integer,Integer> gameIdList = new HashMap<Integer,Integer>();
 		arg0.getServletContext().setAttribute(TextKeys.gameList, gameIdList);
 		
 	}

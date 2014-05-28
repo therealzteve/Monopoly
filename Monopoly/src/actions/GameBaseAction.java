@@ -4,5 +4,5 @@ import javax.servlet.http.HttpServletRequest;
 
 public abstract class GameBaseAction {
 
-	abstract void performAction(HttpServletRequest request);
+	public abstract void performAction(HttpServletRequest request);
 }
