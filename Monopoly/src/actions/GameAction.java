@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import actions.ingame.WuerfelAction;
+import actions.ingame.*;
 
 /**
  * Servlet implementation class GameAction
@@ -44,16 +44,40 @@ public class GameAction extends HttpServlet {
 		//Parameter parsen
 		
 		//Unteraktion ausfuehren
-		GameBaseAction action = getGameAction(userState);
-		action.performAction(request);
+		GameBaseAction action = getGameAction(userState,request.getParameter("action"));
+		String result = action.performAction(request);
 		
 		//Ergebnis zurueckgeben
-		request.getRequestDispatcher("/json/wuerfel.jsp").forward(request, response);
+		request.getRequestDispatcher(result).forward(request, response);
 	}
 	
-	protected GameBaseAction getGameAction(int userState){
+	protected GameBaseAction getGameAction(int userState, String actionName){
 		if(userState == 0){
-			return new WuerfelAction();
+			if(actionName == null || actionName == ""){
+				return new WuerfelAction();
+			}
+			if(actionName == "build"){
+				return new BuildAction();
+			}
+		}
+		if(userState == 1){
+			if(actionName == null || actionName == ""){
+				return new EndTurnAction();
+			}
+			if(actionName == "buy"){
+				return new BuyAction();
+			}
+			if(actionName == "build"){
+				return new BuildAction();
+			}
+		}
+		if(userState == 2){
+			if(actionName == null || actionName == ""){
+				return new EndTurnAction();
+			}
+			if(actionName == "build"){
+				return new BuildAction();
+			}
 		}
 		return null;
 	}

@@ -4,11 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import actions.GameBaseAction;
 
-public class BuildAction extends GameBaseAction {
+public class EndTurnAction extends GameBaseAction {
 
 	@Override
 	public String performAction(HttpServletRequest request) {
-		return "/json/build.jsp";
+		return "/json/endTurn.jsp";
 	}
 
 }

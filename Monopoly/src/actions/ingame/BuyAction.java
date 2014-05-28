@@ -7,9 +7,8 @@ import actions.GameBaseAction;
 public class BuyAction extends GameBaseAction {
 
 	@Override
-	public void performAction(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-
+	public String performAction(HttpServletRequest request) {
+		return "/json/buy.jsp";
 	}
 
 }
