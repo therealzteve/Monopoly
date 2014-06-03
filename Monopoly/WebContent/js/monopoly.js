@@ -73,7 +73,8 @@ var Monopoly = function(cfg){
 			//Gehaltsfeld aktualisieren
 			$(that.guthabenSpan).html(that.myPlayer.guthaben);
 			//Position aktualisieren
-		
+			$(that.myPlayer.getIcon()).detach().appendTo("#field_"+that.myPlayer.getPosition());
+			
 			//Eigene Spielfelder aktualisieren
 				//Eigentum kennzeichnen
 		
@@ -245,7 +246,15 @@ var Player = function(name, guthaben){
 	that.streetOwnList;
 	that.position;
 	that.userState = -1;
-	that.icon;
+	that._icon;
+	
+	that.setIcon = functino(imgPath){
+		that._icon = $("<img src='"+imgPath+"' id='icon_"+that.name+"'/>");
+	};
+	
+	that.getIcon = function(){
+		return that._icon;
+	};
 };
 
 
