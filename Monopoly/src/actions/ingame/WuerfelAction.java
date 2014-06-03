@@ -23,6 +23,11 @@ public class WuerfelAction extends GameBaseAction {
 		
 			//get type of field
 		
+			//if Aktionsfeld
+			
+		
+			//aktion.kartentext
+		
 			//if street
 				//Check owner of street
 		
