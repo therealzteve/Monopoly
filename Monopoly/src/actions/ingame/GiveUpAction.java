@@ -11,6 +11,12 @@ public class GiveUpAction extends GameBaseAction {
 	@Override
 	public String performAction(HttpServletRequest request) {
 
+		//Get Player
+		
+		//Remove player from game
+		
+		//Release streets
+		
 		Result r = new Result();
 		r.setSuccess(true);
 		r.setMessage("Aufgegeben!");

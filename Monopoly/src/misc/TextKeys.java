@@ -13,4 +13,6 @@ public class TextKeys {
 	public static String myTurn = "myTurn";
 	public static String result = "result";
 	public static String userState = "userState";
+	public static String streetId = "streetId";
+	public static String buildAmount = "buildAmount";
 }

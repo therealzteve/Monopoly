@@ -11,6 +11,10 @@ public class EndTurnAction extends GameBaseAction {
 	@Override
 	public String performAction(HttpServletRequest request) {
 		
+		//get Player
+		
+		//Change userstate
+		
 		Result r = new Result();
 		r.setSuccess(true);
 		r.setMessage("Runde beendet");

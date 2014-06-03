@@ -11,6 +11,14 @@ public class BuyAction extends GameBaseAction {
 	@Override
 	public String performAction(HttpServletRequest request) {
 
+		//get user
+		
+		//get his position
+		
+		//check guthaben
+		
+		//change owner, add to streetOwnList
+		
 		Result r = new Result();
 		r.setSuccess(true);
 		r.setMessage("Kauf erfolgreich abgeschlossen");
