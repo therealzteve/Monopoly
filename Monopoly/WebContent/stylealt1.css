@@ -29,7 +29,7 @@ img#diabox{position:absolute; left:0; top:0;z-index:-100;}
 div#dialog div#message{text-align:center;margin-top:300px;z-index:100}
 div#submit{width:100px; heigth:50px;position:relative;margin-left:150px}
 div#submit img{position:absolute;z-index:-100;margin-left:18px}
-div#submit div{z-index:100;line-height:50px; vertical-align:middle;margin-left:80%}
+div#submit div{z-index:100;line-height:50px; vertical-align:middle;margin-left:80%} 
 
 
 
