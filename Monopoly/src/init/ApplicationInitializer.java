@@ -7,6 +7,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import misc.TextKeys;
+import monopoly.Monopoly;
 
 public class ApplicationInitializer implements ServletContextListener {
 
@@ -18,8 +19,8 @@ public class ApplicationInitializer implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
-		HashMap<Integer,Integer> gameIdList = new HashMap<Integer,Integer>();
-		arg0.getServletContext().setAttribute(TextKeys.gameList, gameIdList);
+		HashMap<Integer,Monopoly> gameList = new HashMap<Integer,Monopoly>();
+		arg0.getServletContext().setAttribute(TextKeys.gameList, gameList);
 		
 	}
 

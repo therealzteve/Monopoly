@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import misc.TextKeys;
+import monopoly.Monopoly;
 
 /**
  * Servlet implementation class JoinGameAction
@@ -31,28 +32,7 @@ public class JoinGameAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HashMap<Integer,Integer> gameList;
-		
-		//Liste aus Application Scope holen
-		Object obj = request.getServletContext().getAttribute(TextKeys.gameList);
-		
-		//Pruefen ob obj vom Typ ArrayList ist
-		if(obj instanceof HashMap<?,?>){
-			
-			//obj zu ArrayList casten
-			gameList = (HashMap<Integer,Integer>)obj;
-			
-			int game = gameList.get(request.getParameter(TextKeys.gameId));
-			//Pruefen ob Spiel mit ID existiert
-			if(game != 0){
-				
-				//Game ID in die Session des Users speichern
-				request.getSession().setAttribute(TextKeys.userGameId, 1);
-				
-				//TODO Weiterleitung zur Spiel Logik
-			}
-		}
+
 		
 	}
 
@@ -60,7 +40,18 @@ public class JoinGameAction extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		HashMap<Integer,Monopoly> gameList = (HashMap<Integer, Monopoly>) request.getServletContext().getAttribute(TextKeys.gameList);;
+		
+		Monopoly monopoly = gameList.get(0);
+		
+		//Spieler hinzufuegen
+		
+		//In User Session speichern
+		request.getSession().setAttribute(TextKeys.userGameId, 0);
+		request.getSession().setAttribute(TextKeys.playerId, 0 );
+		
+	
 	}
 
 }
