@@ -4,9 +4,15 @@ import javax.servlet.http.HttpServletRequest;
 
 import beans.Result;
 import misc.TextKeys;
+import monopoly.Monopoly;
 import actions.GameBaseAction;
 
 public class GiveUpAction extends GameBaseAction {
+
+	public GiveUpAction(Monopoly monopoly) {
+		super(monopoly);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public String performAction(HttpServletRequest request) {
