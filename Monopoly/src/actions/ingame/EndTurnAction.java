@@ -4,15 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import beans.Result;
 import misc.TextKeys;
-import monopoly.Monopoly;
 import actions.GameBaseAction;
 
 public class EndTurnAction extends GameBaseAction {
-
-	public EndTurnAction(Monopoly monopoly) {
-		super(monopoly);
-		// TODO Auto-generated constructor stub
-	}
 
 	@Override
 	public String performAction(HttpServletRequest request) {

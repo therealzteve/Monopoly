@@ -1,7 +1,6 @@
 package actions;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import misc.TextKeys;
-import monopoly.Monopoly;
 import beans.Result;
 import actions.ingame.*;
 
@@ -42,20 +40,13 @@ public class GameAction extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Spiel Objekt finden
-		int gameId = (int) request.getSession().getAttribute(TextKeys.userGameId);
-		int playerId = (int) request.getSession().getAttribute(TextKeys.playerId);
-		
-		HashMap<Integer,Monopoly> gameList = (HashMap<Integer, Monopoly>) request.getServletContext().getAttribute(TextKeys.gameList);;
-		Monopoly monopoly = gameList.get(gameId);
-		
-		
+		System.out.println(getServletContext().getAttribute("GameID"));
 		//User state abfragen
 		int userState = 0;
-		
 		//Parameter parsen
 		
 		//Unteraktion ausfuehren
-		GameBaseAction action = getGameAction(userState,request.getParameter("action"),monopoly);
+		GameBaseAction action = getGameAction(userState,request.getParameter("action"));
 		String result;
 		if(action != null) {
 			 result = action.performAction(request);
@@ -73,36 +64,34 @@ public class GameAction extends HttpServlet {
 		request.getRequestDispatcher(result).forward(request, response);
 	}
 	
-	
-	
-	protected GameBaseAction getGameAction(int userState, String actionName, Monopoly monopoly){
+	protected GameBaseAction getGameAction(int userState, String actionName){
 		System.out.println("ActionName: "+actionName);
 		System.out.println("userState: " + userState);
 		if(userState == 0){
 			if(actionName == null || actionName == ""){
-				return new WuerfelAction(monopoly);
+				return new WuerfelAction();
 			}
 			if("build".equals(actionName)){
-				return new BuildAction(monopoly);
+				return new BuildAction();
 			}
 		}
 		if(userState == 1){
 			if(actionName == null || actionName == ""){
-				return new EndTurnAction(monopoly);
+				return new EndTurnAction();
 			}
 			if(actionName == "buy"){
-				return new BuyAction(monopoly);
+				return new BuyAction();
 			}
 			if(actionName == "build"){
-				return new BuildAction(monopoly);
+				return new BuildAction();
 			}
 		}
 		if(userState == 2){
 			if(actionName == null || actionName == ""){
-				return new EndTurnAction(monopoly);
+				return new EndTurnAction();
 			}
 			if(actionName == "build"){
-				return new BuildAction(monopoly);
+				return new BuildAction();
 			}
 		}
 		return null;
