@@ -1,4 +1,4 @@
-var monopoly = function(config){
+var Monopoly = function(cfg){
 	var that = this;
 	that.playerList = []; //Beinhaltet die anderen Spieler
 	that.myTurn = false; //Gibt an, ob ich am Zug bin
@@ -6,7 +6,10 @@ var monopoly = function(config){
 	that.gameId; //Id des Spiels
 	that.optionsMenu = new OptionsMenu(that); //Optionsmenue mit Aktionen des Spielers
 	
-	
+	//Selectors:
+	that.otherPlayerList = $("#otherPlayers");
+	that.guthabenSpan = $("#guthaben");
+	that.ownedStreetsList = $("#ownedStreets");
 	
 	/**
 	 *  Fuehrt den Ajax Befehl zum Updates holen aus
@@ -14,10 +17,10 @@ var monopoly = function(config){
 	 */
 	that.getUpdates = function(){
 		$.ajax({
-			url: "/GetUpdateAction",
+			url: "/Monopoly/GetUpdateAction",
 		}).done(function( data ) {
 			//Daten, die zurueck kommen mit handleUpdates verarbeiten
-			data = $.JSON(data);
+			data = $.parseJSON(data);
 			that.handleUpdates(data);
 		});
 	};
@@ -30,10 +33,11 @@ var monopoly = function(config){
 	that.handleUpdates = function(data){
 		
 		//Gegner Liste neu erstellen
-		for(var i = 0; i< data.playerList.length; i++){
+		for(var i = 0; i< data.otherPlayers.length; i++){
 			var pl = new Player(data.otherPlayers[i].name,data.otherPlayers[i].guthaben);
 			pl.streetOwnList = data.otherPlayers[i].streetOwnList;
 			pl.position = data.otherPlayers[i].position;
+			pl.icon = data.otherPlayers[i].icon;
 			that.playerList.push(pl);
 		}
 		
@@ -43,6 +47,7 @@ var monopoly = function(config){
 		that.myPlayer.streetOwnList = data.player.streetOwnList;
 		that.myPlayer.position = data.player.position;
 		that.myPlayer.userState = data.player.userState;
+		that.myPlayer.icon = data.player.icon;
 		
 		that.myTurn = data.myTurn;
 		
@@ -66,16 +71,24 @@ var monopoly = function(config){
 		//Eigenen Spieler aktualisieren:
 		
 			//Gehaltsfeld aktualisieren
-		
+			$(that.guthabenSpan).html(that.myPlayer.guthaben);
 			//Position aktualisieren
-		
+			$(that.myPlayer.getIcon()).detach().appendTo("#field_"+that.myPlayer.getPosition());
+			
 			//Eigene Spielfelder aktualisieren
 				//Eigentum kennzeichnen
 		
 				//Haeuser kennzeichnen
 		
 			//Eigene Kartenliste aktualisieren
-		
+			$(that.ownedStreetsList).empty();
+			for(var i = 0; i< that.myPlayer.streetOwnList.length; i++){
+				$(that.ownedStreetsList).append(
+						"<li>"
+						+that.myPlayer.streetOwnList[i]
+						+"</li>"
+				);
+			}
 		//Liste mit anderen Spielern aktualisieren:
 			//Gehaltsfeld aktualisieren
 			
@@ -92,7 +105,7 @@ var monopoly = function(config){
 	
 	
 	that.startGame = function(){
-		that.player.userState = 0;
+		that.myPlayer.userState = 0;
 	};
 	
 	that.addPlayer = function(name, guthaben){
@@ -100,12 +113,12 @@ var monopoly = function(config){
 	};
 	
 	that.init = function(){
-		
+		that.getUpdates();
 		//config verarbeiten
 		
 		
 		//Updater starten
-		window.setInterval(that.getUpdates,5000);
+		//window.setInterval(that.getUpdates,5000);
 	};
 	
 	that.init();
@@ -124,36 +137,40 @@ var OptionsMenu = function(monopoly){
 	that.buildButton = $("#buildButton");
 	that.giveUpButton = $("#giveUpButton");
 	that.endTurnButton = $("#endTurnButton");
+	that.messageField = $("#message");
 	
 	
 	that.handleOptions = function(){
-		if(monopoly.gameState == 0){
-			$(that.wuerfelButton).enable();
-			$(that.buyButton).disable();
-			$(that.buildButton).enable();
-			$(that.endTurnButton).disable();
+		console.log(monopoly.myPlayer.userState);
+		if(monopoly.myPlayer.userState == 0){
+			$(that.wuerfelButton).removeAttr("disabled");
+			$(that.buyButton).attr("disabled","disabled");
+			$(that.buildButton).removeAttr("disabled");
+			$(that.endTurnButton).attr("disabled","disabled");
 		}
-		if(monopoly.gameState == 1){
-			$(that.wuerfelButton).disable();
-			$(that.buyButton).enable();
-			$(that.buildButton).enable();
-			$(that.endTurnButton).enable();
+		if(monopoly.myPlayer.userState == 1){
+			$(that.wuerfelButton).attr("disabled","disabled");
+			$(that.buyButton).removeAttr("disabled");
+			$(that.buildButton).removeAttr("disabled");
+			$(that.endTurnButton).removeAttr("disabled");
 		}
-		if(monopoly.gameState == 2){
-			$(that.wuerfelButton).disable();
-			$(that.buyButton).disable();
-			$(that.buildButton).enable();
-			$(that.endTurnButton).enable();
+		if(monopoly.myPlayer.userState == 2){
+			$(that.wuerfelButton).attr("disabled","disabled");
+			$(that.buyButton).attr("disabled","disabled");
+			$(that.buildButton).removeAttr("disabled");
+			$(that.endTurnButton).removeAttr("disabled");
 		}
 	};
 	
 	that.show = function(){
-		$(menu).show();
 		that.handleOptions();
 	};
 	
 	that.hide = function(){
-		$(menu).hide();
+		$(that.wuerfelButton).attr("disabled","disabled");
+		$(that.buyButton).attr("disabled","disabled");
+		$(that.buildButton).attr("disabled","disabled");
+		$(that.endTurnButton).attr("disabled","disabled");
 	};
 	
 	that.wuerfeln = function(){
@@ -186,22 +203,26 @@ var OptionsMenu = function(monopoly){
 		that.request(data);
 	};
 	
-	that.request(config){
+	that.request = function(config){
 		$.ajax({
-			url: "/GameAction",
+			url: "/Monopoly/GameAction",
 			data: config
 		}).done(function( data ) {
+			
+			//Antwort String in JSON Objekt umwandeln
+			data = $.parseJSON(data);
 			//Daten, die zurueck kommen mit handleUpdates verarbeiten
 			that.handleRequest(data);
 		});
 	}
 	
 	//Ergebnis der Aktion auswerten 
-	that.handleRequest(data){
-		
+	that.handleRequest = function(data){
+		console.log("handlingRequest");
+		$(that.messageField).html(data.message);
 		//Erneuter AJAX Befehl zum Daten aktualisieren
 		monopoly.getUpdates();
-	}
+	};
 	
 	that.init = function(){
 		$(that.wuerfelButton).click(that.wuerfeln);
@@ -218,13 +239,23 @@ var OptionsMenu = function(monopoly){
  *  Player Objekt in Javascript
  * 
  */
-var player = function(name, guthaben){
+var Player = function(name, guthaben){
 	var that = this;
 	that.name = name;
 	that.guthaben = guthaben;
 	that.streetOwnList;
 	that.position;
-	that.userState;
+	that.userState = -1;
+	that._icon;
+	
+	that.setIcon = functino(imgPath){
+		that._icon = $("<img src='"+imgPath+"' id='icon_"+that.name+"'/>");
+	};
+	
+	that.getIcon = function(){
+		return that._icon;
+	};
 };
 
 
+var monopoly = new Monopoly();

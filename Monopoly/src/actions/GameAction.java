@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import misc.TextKeys;
+import beans.Result;
 import actions.ingame.*;
 
 /**
@@ -45,18 +47,31 @@ public class GameAction extends HttpServlet {
 		
 		//Unteraktion ausfuehren
 		GameBaseAction action = getGameAction(userState,request.getParameter("action"));
-		String result = action.performAction(request);
+		String result;
+		if(action != null) {
+			 result = action.performAction(request);
+		}
+		else{
+			Result r = new Result();
+			r.setSuccess(false);
+			r.setMessage("Aktion nicht erlaubt");
+			r.setEvent("illegalCommand");
+			request.setAttribute(TextKeys.result,r );
+			result = "/json/standard.jsp";
+		}
 		
 		//Ergebnis zurueckgeben
 		request.getRequestDispatcher(result).forward(request, response);
 	}
 	
 	protected GameBaseAction getGameAction(int userState, String actionName){
+		System.out.println("ActionName: "+actionName);
+		System.out.println("userState: " + userState);
 		if(userState == 0){
 			if(actionName == null || actionName == ""){
 				return new WuerfelAction();
 			}
-			if(actionName == "build"){
+			if("build".equals(actionName)){
 				return new BuildAction();
 			}
 		}

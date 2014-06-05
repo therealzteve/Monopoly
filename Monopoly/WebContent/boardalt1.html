@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" /> 
+		<title> Monopoly </title>
+		<link rel="stylesheet" type="text/css" href="stylealt1.css" >
+		
+	</head>
+	<body id="board">
+		<div id="menu">
+			<div id="konto"> 
+			<img src="img/menubutton.png">
+			<div>Kontostand: <span id="guthaben"></span> </div></div>
+			<div id="strassen"> 
+			<img src="img/menubutton.png">
+			<div>Gekaufte Straßen: </div>
+			<ul id="ownedStreets"></ul>
+			</div>
+			<div id="actionMenu">
+				<div id="wuerfeln">
+					<img src="img/wuerfelbutton.png">
+					<div>Bitte würfeln Sie!</div>
+					<input type="button"  id="wuerfelButton"  value="Würfeln"/>
+				</div>
+				<div id=build>
+					<img src="img/menubutton.png">
+					<input id="buildButton" type="button" value="Bauen" />
+				</div>
+				<div id=buy>
+					<img src="img/menubutton.png">
+					<input id="buyButton" type="button" value="Kaufen" />
+				</div>
+				<div id=endTurn>
+					<img src="img/menubutton.png">
+					<input id="endTurnButton" type="button" value="Zug beenden" />
+				</div>
+				<div id=giveUp>
+					<img src="img/menubutton.png">
+					<input id="giveUpButton" type="button" value="Aufgeben" />
+				</div>
+			</div>
+			
+	</div>
+		<div id="mainbrett">
+		<div id="bretto">
+			<div id="start"> <img src="img/felder/los.png">
+			<img id="car" src="img/figuren/autogelb.png"></div>
+			<div id="bad">  <img src="img/felder/sfbraun.png"></div>
+			<div id="gem1"> <img src="img/felder/gemeinoben.png"> </div>
+			<div id="turm"> <img src="img/felder/sfbraun.png" ></div>
+			<div id="steu1"> <img src="img/felder/steueroben.png" ></div>
+			<div id="bahns"> <img src="img/felder/bahnsued.png" ></div>
+			<div id="chau">  <img src="img/felder/sftuerkis.png"></div>
+			<div id="erg1">  <img src="img/felder/ereignisoben.png"></div>
+			<div id="elis">  <img src="img/felder/sftuerkis.png"></div>
+			<div id="post">  <img src="img/felder/sftuerkis.png"></div>
+			<div id="prison"> <img src="img/felder/gefaengnis.png"> </div>
+		</div>
+		<div id="brettl">
+			<div id="schloss"> <img src="img/felder/sfblau.png"> </div>
+			<div id="steu2"> <img src="img/felder/steuerlinks.png"> </div>
+			<div id="park"> <img src="img/felder/sfblau.png"> </div>
+			<div id="erg3"> <img src="img/felder/ereignislinks.png"></div>
+			<div id="bahnh"> <img src="img/felder/bahnhaupt.png"></div>
+			<div id="bahnstr"> <img src="img/felder/sfgruen.png"></div>
+			<div id="gem2"> <img src="img/felder/gemeinlinks.png"></div>
+			<div id="haupt"> <img src="img/felder/sfgruen.png"></div>
+			<div id="rat"> <img src="img/felder/sfgruen.png"></div>
+		</div>
+		<div id="dialog">
+		<img id="diabox" src="img/dialogbg.png">
+		<div id="message">Spieler X ist dran!</div>
+		</div>
+		<div id="brettr">
+			<div id="see"> <img src="img/felder/sfpink.png"></div>
+			<div id="ele"><img src="img/felder/elektro.png"> </div>
+			<div id="hafen"><img src="img/felder/sfpink.png"> </div>
+			<div id="neue"><img src="img/felder/sfpink.png"> </div>
+			<div id="bahnw"> <img src="img/felder/bahnwest.png"></div>
+			<div id="munch"> <img src="img/felder/sforange.png"></div>
+			<div id="gem3"><img src="img/felder/sforange.png"> </div>
+			<div id="wien"><img src="img/felder/gemeinrechts.png"> </div>
+			<div id="berlin"><img src="img/felder/sforange.png"> </div>
+		</div>
+		<div id="brettu">
+			<div id="freepark"><img src="img/felder/freipark.png"> </div>
+			<div id="theater"> <img src="img/felder/sfrot.png"></div>
+			<div id="erg2"> <img src="img/felder/ereignisunten.png"></div>
+			<div id="museum"><img src="img/felder/sfrot.png"> </div>
+			<div id="oper"> <img src="img/felder/sfrot.png"></div>
+			<div id="bahnn"> <img src="img/felder/bahnnord.png"></div>
+			<div id="lessing"> <img src="img/felder/sfgelb.png"></div>
+			<div id="schiller"> <img src="img/felder/sfgelb.png"></div>
+			<div id="wasser"> <img src="img/felder/wasser.png"></div>
+			<div id="goethe"> <img src="img/felder/sfgelb.png"></div>
+			<div id="goprison"><img src="img/felder/polizist.png"> </div>
+		</div>
+		</div>
+		<div id="menuright">
+			<img src="img/menurechts.png">
+			<div> Spieler:</div>
+			<ul id="otherPlayers"></ul>
+		</div>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/monopoly.js"></script>
+	</body>
+
+</html>

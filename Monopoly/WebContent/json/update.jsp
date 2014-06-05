@@ -8,6 +8,7 @@
   		"name": "${name}",
   		"guthaben": "${guthaben}",
   		"position": "${position}",
+  		"userState": "${userState}",
   		"streetOwnList": [ 
   			<c:forEach var="street" varStatus="status" items="${streetOwnList}" >
 				${not status.first ? ',' : ''} "${street}"

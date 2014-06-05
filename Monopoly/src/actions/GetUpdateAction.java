@@ -31,6 +31,8 @@ public class GetUpdateAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setAttribute(TextKeys.myTurn, true);
+		
 		//Daten bereitstellen (durch player objekt ersetzen)
 		String[] streets = {"test1","test2","test3"}; //Test, kommt noch raus
 		
@@ -38,7 +40,7 @@ public class GetUpdateAction extends HttpServlet {
 		request.setAttribute(TextKeys.guthaben, 2000);
 		request.setAttribute(TextKeys.position, 1);
 		request.setAttribute(TextKeys.streetOwnList,streets );
-		
+		request.setAttribute(TextKeys.userState,0 );
 		//Andere Spieler Objekte in Request einbinden:
 		
 		//Auf JSP weiterleiten
