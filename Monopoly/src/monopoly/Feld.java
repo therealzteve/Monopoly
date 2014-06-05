@@ -10,6 +10,9 @@ public Feld (int id, String name, String typ){
 	this.name = name;
 	this.typ = typ;
 }
+public Feld (){
+	
+}
 
 
 }

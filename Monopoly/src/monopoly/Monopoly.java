@@ -6,11 +6,16 @@ import java.util.List;
 public class Monopoly {
 	int id;
 	static List players = new ArrayList<Spieler>();
+	Spieler spieler = new Spieler (id, null, false);
+	
+	public void spielerHinzufuegen(){
+		players.add(spieler);
+	}
 	
 	static Feld Los = new Feld(0, "Los", "aktion");
 	static Feld Bad = new Feld(1, "Badstrasse", "street");
 	static Feld Ereignisfeld1 =new Feld(2, "Ereignisfeld", "aktion");
-	static Feld Turm = new Feld(3, "Turmstrasse", "street");
+	static Feld Turm = new Street(3, "Turmstrasse", 1,2,3,4,5, 6, 7, 8);
 	static Feld Einkommenssteuer = new Feld(4, "Einkommenssteuer", "aktion");
 	static Feld Suedbahnhof = new Feld (5, "Suedbahnhof", "street");
 	static Feld Chausse = new Feld(6,"Chaussestrasse", "street");
