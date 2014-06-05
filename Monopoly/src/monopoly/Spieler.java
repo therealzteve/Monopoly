@@ -18,4 +18,52 @@ public Spieler (int id, String name, boolean isAdmin){
 	this.isAdmin = isAdmin;
 	this.id = id;
 }
+
+public int getId() {
+	return id;
+}
+
+public void setId(int id) {
+	this.id = id;
+}
+
+public String getName() {
+	return name;
+}
+
+public void setName(String name) {
+	this.name = name;
+}
+
+public int getGuthaben() {
+	return Guthaben;
+}
+
+public void setGuthaben(int guthaben) {
+	Guthaben = guthaben;
+}
+
+public boolean isAdmin() {
+	return isAdmin;
+}
+
+public void setAdmin(boolean isAdmin) {
+	this.isAdmin = isAdmin;
+}
+
+public int getPosition() {
+	return position;
+}
+
+public void setPosition(int position) {
+	this.position = position;
+}
+
+public List getOwnedStreets() {
+	return ownedStreets;
+}
+
+public void setOwnedStreets(List ownedStreets) {
+	this.ownedStreets = ownedStreets;
+}
 }

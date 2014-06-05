@@ -2,7 +2,7 @@ package monopoly;
 
 public interface Aktion {
 	
-	public String kartentext = "";
+	
 	
 	public void fuehreAktionAus (int id);
 	
