@@ -4,32 +4,26 @@ div#login img{position:absolute;z-index:-100;left:30%;top:0}
 div#mask{text-align:center;margin-top:280px;}
 
 body{background-image:url(img/background.png);width:100%;height:100%;background-size:cover;color:#ffeb80;font-size:18pt;font-family:"Helvetica"}
-div#menu {float:left;width: 400px; height:750px;margin-top:10px}
+div#menu, div#menuright {float:left;width: 400px; height:750px;margin-top:10px}
 div#mainbrett{float:left;width:750px;margin-top:10px;}
 div#bretto{clear:left; float:left}
 div#brettl{clear:left;float:left}
 div#dialog{float:left;width:504px; heigth:450px;text-align:center;position:relative;}
 div#brettr{float:left}
 div#brettu{clear:both; float:left}
-div#menu div{float:none; position:relative;}
 div#menu div#konto~div{margin-top:40px;}
-div#menu div img, div#menuright img{z-index:-100;position:absolute;}
-div#menu div div{z-index:100;position:relative;line-height:50px; vertical-align:middle;margin-left:10px}
-div#menu div#wuerfeln img#wuerfel1{margin-left:20px;}
-div#menu div#wuerfeln img#wuerfel2{margin-left:170px;}
-div#menuright div {z-index:100; padding-top:10px; padding-left:20px;}
+div#menu img, div#menuright img{z-index:-100;position:absolute;}
+div#menu div, div#menuright div {float:none; position:relative;z-index:100; padding-top:10px; padding-left:10px;}
 div[id^=brett] div{ border-width:1; border-style:solid; border-color:black;}
 div[id^=brett] div img{ position:absolute;z-index:-100}
 div[id^=brett] div img#car{z-index:100}
-div[id^=brett] div#freepark, div[id^=brett] div#goprison, div[id^=brett] div#start, div[id^=brett] div#prison{width:70px;!important; height:70px;!important}
+div[id^=brett] div#field_0, div[id^=brett] div#field_10, div[id^=brett] div#field_29, div[id^=brett] div#field_39{width:70px;!important; height:70px;!important}
 div#bretto div, div#brettu div{float:left; width:50px; height:70px}
 div#brettl div, div#brettr div{float:none; width:70px; height:50px}
 
 img#diabox{position:absolute; left:0; top:0;z-index:-100;}
 div#dialog div#message{text-align:center;margin-top:300px;z-index:100}
-div#submit{width:100px; heigth:50px;position:relative;margin-left:150px}
-div#submit img{position:absolute;z-index:-100;margin-left:18px}
-div#submit div{z-index:100;line-height:50px; vertical-align:middle;margin-left:80%} 
+
 
 
 
