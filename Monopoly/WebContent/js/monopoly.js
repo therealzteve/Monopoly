@@ -7,7 +7,7 @@ var Monopoly = function(cfg){
 	that.optionsMenu = new OptionsMenu(that); //Optionsmenue mit Aktionen des Spielers
 	
 	//Selectors:
-	that.otherPlayers = $("#otherPlayers");
+	that.otherPlayerList = $("#otherPlayers");
 	that.guthabenSpan = $("#guthaben");
 	that.ownedStreetsList = $("#ownedStreets");
 	
@@ -32,14 +32,12 @@ var Monopoly = function(cfg){
 	 */
 	that.handleUpdates = function(data){
 		
-		
-		that.playerList = [];
 		//Gegner Liste neu erstellen
 		for(var i = 0; i< data.otherPlayers.length; i++){
 			var pl = new Player(data.otherPlayers[i].name,data.otherPlayers[i].guthaben);
 			pl.streetOwnList = data.otherPlayers[i].streetOwnList;
 			pl.position = data.otherPlayers[i].position;
-			pl.setIcon(data.otherPlayers[i].icon);
+			pl.icon = data.otherPlayers[i].icon;
 			that.playerList.push(pl);
 		}
 		
@@ -90,38 +88,17 @@ var Monopoly = function(cfg){
 						+"</li>"
 				);
 			}
+		//Liste mit anderen Spielern aktualisieren:
+			//Gehaltsfeld aktualisieren
 			
-			
-			//Liste mit anderen Spielern aktualisieren:
-			
-			//Aktuelle Liste leeren
-			$(that.otherPlayers).empty();
-			
-			//Durch player array iterieren
-			for(var i = 0; i < that.playerList.length; i++){
-				 var li = $("<li></li>");
-				 
-				 //Name eintragen
-				 $(li).append("<span><label>Name: </label>"+that.playerList[i].name+"</span>");
-				 
-				 //Guthaben eintragen
-				 $(li).append("<span><label>Guthaben: </label>"+that.playerList[i].guthaben+"</span>");
-				 
-				 //Listeneintrag hinzufuegen
-				 $(that.otherPlayers).append(li);
-
-				//Position aktualisieren
-				 console.log(that.playerList[i]);
-				$(that.playerList[i].getIcon()).detach().appendTo("#field_"+that.playerList[i].position);
-			}
-			
-			
+			//Position aktualisieren
 		
 			//Eigene Spielfelder aktualisieren
 				//Eigentum kennzeichnen
 				
 				//Haeuser kennzeichnen
 		
+			//Eigene Kartenliste aktualisieren
 		
 	};
 	
@@ -140,7 +117,7 @@ var Monopoly = function(cfg){
 		
 		
 		//Updater starten
-		window.setInterval(that.getUpdates,5000);
+		//window.setInterval(that.getUpdates,5000);
 	};
 	
 	that.init();
@@ -165,7 +142,7 @@ var OptionsMenu = function(monopoly){
 	
 	that.handleOptions = function(){
 		if(monopoly.myPlayer.isAdmin == false){
-			$(that.startGameContainer).remove();
+			$(startGameContainer).remove();
 		}
 		
 		//Spieler ist zurzeit nicht an der Reihe
@@ -233,7 +210,6 @@ var OptionsMenu = function(monopoly){
 	that.startGame = function(){
 		var data = {"action":"startGame"};
 		that.request(data);
-		$(that.startGameContainer).remove();
 	};
 	
 	that.request = function(config){

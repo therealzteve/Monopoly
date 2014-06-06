@@ -20,7 +20,6 @@ public class WuerfelAction extends GameBaseAction {
 
 	@Override
 	public String performAction(HttpServletRequest request) {
-		String resultText = "";
 		int result = (int)(Math.random()*12)+1;
 		request.setAttribute("wuerfelzahl", result);
 		
@@ -38,24 +37,24 @@ public class WuerfelAction extends GameBaseAction {
 			
 			//if Aktionsfeld
 			if("aktion".equals(f.getTyp()) ){
-				resultText =  handleAktion(p);
+				handleAktion(p);
 			}
 			
 			//if street
 			if("street".equals(f.getTyp()) ){
-				resultText = handleStreet(p, (Street) f);
+				handleStreet(p, (Street) f);
 			}
 			
 			//Wenn unbekannt
 			if(f.getTyp() == null){
 				System.out.println( "Type is null");
-				resultText =  handleMisc(p);
+				handleMisc(p);
 			}
 		
 
 		Result r = new Result();
 		r.setSuccess(true);
-		r.setMessage( "Wuerfelzahl: " + result + "<br>" + resultText);
+		r.setMessage( "Wuerfelzahl: " + result);
 		r.setEvent("wuerfel");
 		request.setAttribute(TextKeys.result,r );
 		
@@ -63,19 +62,15 @@ public class WuerfelAction extends GameBaseAction {
 	}
 	
 
-	private String handleAktion(Spieler p ){
+	private void handleAktion(Spieler p ){
 		p.setUserState(2);
-		return "Aktion bla blub";
 	}
 	
-	private String handleMisc(Spieler p){
+	private void handleMisc(Spieler p){
 		p.setUserState(2);
-		return "Noch zu bearbeiten";
 	}
 	
-	private String handleStreet(Spieler p, Street str){
-		String resultText = "";
-		
+	private void handleStreet(Spieler p, Street str){
 		//if street
 		//Check owner of street
 		Spieler owner = str.getOwner();
@@ -83,15 +78,10 @@ public class WuerfelAction extends GameBaseAction {
 		if(owner == null){
 			p.setUserState(1);
 			//if null change userState to enable buy
-			resultText = "Strasse ist noch frei!";
 		}else{
 			if(owner.equals(p)){
-				
-				//Change user state to end turn state
 				p.setUserState(2);
-				
-				
-				resultText = "Diese Strasse gehoert dir bereits!";
+				//Change user state to end turn state
 			}else{
 				p.setGuthaben(p.getGuthaben() - str.getCurrentMiete());
 				owner.setGuthaben(owner.getGuthaben() + str.getCurrentMiete());
@@ -103,10 +93,7 @@ public class WuerfelAction extends GameBaseAction {
 				
 				//Set user state
 				p.setUserState(2);
-				
-				resultText = "Diese Strasse gehoert "+ owner.getName() + "<br> Miete: "+ str.getCurrentMiete();
 			}
 		}
-		return resultText;
 	}
 }
