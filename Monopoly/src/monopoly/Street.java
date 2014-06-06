@@ -4,19 +4,34 @@ public class Street extends Feld {
  Spieler owner;
  int id;
  int [] miete = new int [5];
- int price;
+ int preis;
  int stufe;
  String name;
  int preisHaus;
  int preisHotel;
  String typ;
+ int mieteBahnhof;
+ int mieteWerk;
  
-//Baupreis!, Konstruktor mit strasse übergeben
+public Street (int id, String name, String typ){
+	this.id = id;
+	this.name = name;
+	this.typ = typ;
+	if (typ == "bahnhof"){
+		this.preis = 150;
+		this.mieteBahnhof = 50;
+	}
+	else if (typ == "werk"){
+		this.preis = 100;
+		//this.mieteWerk = 8*wuerfelZahl
+	}
+}
 public Street (int id, String name, int kaufPreis, int miete, int mieteHaus, int mieteHaus2, int mieteHaus3, int mieteHaus4, int mieteHotel){
 	 super();
+	 this.id = id;
 	 this.typ = "street";
 	 this.name = name;
-	 this.price = kaufPreis;
+	 this.preis = kaufPreis;
 	 this.miete[0] = miete;
 	 this.miete[1] = mieteHaus;
 	 this.miete[2] = mieteHaus2;
@@ -25,20 +40,20 @@ public Street (int id, String name, int kaufPreis, int miete, int mieteHaus, int
 	 this.miete[5] = mieteHotel;
 	 this.stufe = 0;	
 	 if (id > 0 & id < 10){
-		 this.preisHaus = 200;
-		 this.preisHotel = 300;
+		 this.preisHaus = 50;
+		 this.preisHotel = 75;
 	 }
 	 else if(id > 10 & id < 20){
-		 this.preisHaus = 300;
-		 this.preisHotel = 400;
+		 this.preisHaus = 100;
+		 this.preisHotel = 150;
 	 }
 	 else if (id > 20 & id < 30){
-		 this.preisHaus = 400;
-		 this.preisHotel = 500;
+		 this.preisHaus = 150;
+		 this.preisHotel = 200;
 	 }
 	 else {
-		 this.preisHaus = 500;
-		 this.preisHotel = 600;
+		 this.preisHaus = 200;
+		 this.preisHotel = 300;
 	 }
 	 
 	 
@@ -68,11 +83,11 @@ public void setMiete(int[] miete) {
 }
 
 public int getPrice() {
-	return price;
+	return preis;
 }
 
-public void setPrice(int price) {
-	this.price = price;
+public void setPrice(int preis) {
+	this.preis = preis;
 }
 
 public int getStufe() {
