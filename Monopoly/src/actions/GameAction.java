@@ -85,6 +85,10 @@ public class GameAction extends HttpServlet {
 		System.out.println("ActionName: "+actionName);
 		System.out.println("userState: " + userState);
 		
+		if(userState == -1 && monopoly.players.get(playerId).isAdmin()){
+			return new StartGameAction(monopoly, playerId);
+		}
+		
 		//Bereit zum wuerfeln oder bauen
 		if(userState == 0){
 			if(actionName == null || actionName == ""){
@@ -99,10 +103,10 @@ public class GameAction extends HttpServlet {
 			if(actionName == null || actionName == ""){
 				return new EndTurnAction(monopoly, playerId);
 			}
-			if(actionName == "buy"){
+			if("buy".equals(actionName)){
 				return new BuyAction(monopoly, playerId);
 			}
-			if(actionName == "build"){
+			if("build".equals(actionName)){
 				return new BuildAction(monopoly, playerId);
 			}
 		}
@@ -111,7 +115,7 @@ public class GameAction extends HttpServlet {
 			if(actionName == null || actionName == ""){
 				return new EndTurnAction(monopoly , playerId);
 			}
-			if(actionName == "build"){
+			if("build".equals(actionName)){
 				return new BuildAction(monopoly , playerId);
 			}
 		}

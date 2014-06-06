@@ -3,15 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
     
-{ "myTurn": ${myTurn},
-  "player": {
+{ 	"player": {
   		"name": "${name}",
   		"guthaben": "${guthaben}",
   		"position": "${position}",
+  		"icon" : "${icon}",
   		"userState": "${userState}",
+  		"isAdmin" : ${isAdmin},
   		"streetOwnList": [ 
   			<c:forEach var="street" varStatus="status" items="${streetOwnList}" >
-				${not status.first ? ',' : ''} "${street}"
+				${not status.first ? ',' : ''} "${street.name}"
 			</c:forEach>
 						]
 			},

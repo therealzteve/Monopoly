@@ -1,30 +1,41 @@
 <html>
-	<head>
-		<title> Monopoly </title>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="stylealt1.css" title="Standart">
-	</head>
-	<body>
-		<div id="login">
+<head>
+<title>Monopoly</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="stylealt1.css"
+	title="Standart">
+</head>
+<body>
+	<div id="login">
 		<img src="img/dialogbg.png">
 		<div id="mask">
-		Herzlich Willkommen!<br>
-		<form method="post" id="form"> <!--action???-->
-		<input name="usr" placeholder="Benutzername"/>
-		</form>
-		<div> Bitte wählen Sie eine Farbe: 
-		<div id="cars">
-		<img src="img/figuren/autorot.png"> 
-		<img src="img/figuren/autogelb.png"> 
-		<img src="img/figuren/autoblau.png"> 
-		<img src="img/figuren/autogruen.png"> 
+			Herzlich Willkommen!<br>
+			<form method="post" id="form" action="initGameAction">
+				<!--action???-->
+				<input name="usr" placeholder="Benutzername" /> 
+				<div>
+					Bitte wählen Sie eine Farbe:
+					<div id="cars">
+						<span> <input type="radio" name="icon" value="rot"> <img
+							src="img/figuren/autorot.png">
+						</span> <span> <input type="radio" name="icon" value="gelb"><img
+							src="img/figuren/autogelb.png">
+						</span> <span><input type="radio" name="icon" value="blau"><img
+							src="img/figuren/autoblau.png"> </span> <span><input
+							type="radio" name="icon" value="gruen"><img
+							src="img/figuren/autogruen.png"></span>
+					</div>
+					<input
+					name="newgame" id="newgame" type="submit"
+					value="Neues Spiel eröffnen">
+				</div>
+			</form>
+
+			<div id="submit">
+				<input name="joingame" id="joingame" type="button"
+					value="Spiel beitreten">
+			</div>
 		</div>
-		</div>
-		<div id="submit">
-		<input name="joingame" type="button" value="Spiel beitreten">
-		<input name="newgame" type="button" value="Neues Spiel eröffnen">
-		</div>
-		</div>
-		</div>
-	</body>
+	</div>
+</body>
 </html>

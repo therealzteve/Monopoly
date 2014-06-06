@@ -8,6 +8,7 @@ public class Spieler {
 	String name;
 	int guthaben;
 	boolean isAdmin;
+	String icon;
 	int position;
 	int userState = -1; //Gibt an, ob Spieler am Zug ist, wuerfeln muss, oder Zug beenden muss
 	ArrayList<Street> ownedStreets = new ArrayList<Street>();
@@ -61,12 +62,16 @@ public void setSimplePosition (int position) {
 }
 public void setPosition(int position) {
 	
-	this.position = this.position + position;
+	this.position = position;
 	
 	if(this.position >= 44){
 		this.position = this.position - 44;
 		this.guthaben = this.guthaben +  200;
 	}
+}
+
+public void addPosition(int position){
+	this.setPosition(this.getPosition()+position);
 }
 
 public ArrayList<Street> getOwnedStreets() {
@@ -83,5 +88,13 @@ public int getUserState() {
 
 public void setUserState(int userState) {
 	this.userState = userState;
+}
+
+public String getIcon() {
+	return icon;
+}
+
+public void setIcon(String icon) {
+	this.icon = icon;
 }
 }
