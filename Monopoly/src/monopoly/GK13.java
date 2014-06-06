@@ -10,7 +10,7 @@ public class GK13 implements Aktion{
 		// TODO Auto-generated method stub
 		String kartentext = "RÜCKE VOR BIS AUF LOS.";
 		
-		monopoly.players.get(id).setPosition(0, id);;
+		monopoly.players.get(id).setPosition(0);
 
 	}
 

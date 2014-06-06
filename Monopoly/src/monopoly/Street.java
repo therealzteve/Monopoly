@@ -79,6 +79,10 @@ public void setMiete(int[] miete) {
 	this.miete = miete;
 }
 
+public int getCurrentMiete(){
+	return this.miete[this.stufe];
+}
+
 public int getPrice() {
 	return preis;
 }

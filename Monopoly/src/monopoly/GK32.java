@@ -10,7 +10,7 @@ public class GK32 implements Aktion{
 		// TODO Auto-generated method stub
 		String kartentext = "GEHE 3 FELDER ZURÜCK.";
 		
-		monopoly.players.get(id).setPosition(monopoly.players.get(id).getPosition()-3, id);;
+		monopoly.players.get(id).setPosition(monopoly.players.get(id).getPosition()-3);
 
 	}
 

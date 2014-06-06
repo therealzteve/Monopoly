@@ -55,11 +55,11 @@ public class GameAction extends HttpServlet {
 		
 		
 		//User state abfragen
-		int userState = 0;
+		int userState = monopoly.players.get(playerId).getUserState();
 		//Parameter parsen
 		
 		//Unteraktion finden
-		GameBaseAction action = getGameAction(userState,request.getParameter("action"),monopoly);
+		GameBaseAction action = getGameAction(userState,request.getParameter("action"),monopoly, playerId);
 		
 		
 		String result;
@@ -81,34 +81,38 @@ public class GameAction extends HttpServlet {
 		request.getRequestDispatcher(result).forward(request, response);
 	}
 	
-	protected GameBaseAction getGameAction(int userState, String actionName, Monopoly monopoly){
+	protected GameBaseAction getGameAction(int userState, String actionName, Monopoly monopoly,int playerId){
 		System.out.println("ActionName: "+actionName);
 		System.out.println("userState: " + userState);
+		
+		//Bereit zum wuerfeln oder bauen
 		if(userState == 0){
 			if(actionName == null || actionName == ""){
-				return new WuerfelAction(monopoly);
+				return new WuerfelAction(monopoly , playerId);
 			}
 			if("build".equals(actionName)){
-				return new BuildAction(monopoly);
+				return new BuildAction(monopoly, playerId);
 			}
 		}
+		//Zug beenden oder kaufen oder bauen
 		if(userState == 1){
 			if(actionName == null || actionName == ""){
-				return new EndTurnAction(monopoly);
+				return new EndTurnAction(monopoly, playerId);
 			}
 			if(actionName == "buy"){
-				return new BuyAction(monopoly);
+				return new BuyAction(monopoly, playerId);
 			}
 			if(actionName == "build"){
-				return new BuildAction(monopoly);
+				return new BuildAction(monopoly, playerId);
 			}
 		}
+		//Zug beenden oder bauen
 		if(userState == 2){
 			if(actionName == null || actionName == ""){
-				return new EndTurnAction(monopoly);
+				return new EndTurnAction(monopoly , playerId);
 			}
 			if(actionName == "build"){
-				return new BuildAction(monopoly);
+				return new BuildAction(monopoly , playerId);
 			}
 		}
 		return null;

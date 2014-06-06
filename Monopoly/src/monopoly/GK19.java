@@ -10,7 +10,7 @@ public class GK19 implements Aktion{
 		// TODO Auto-generated method stub
 		String kartentext = "RÜCKE VOR BIS ZUM OPERNPLATZ. WENN DU ÜBER LOS KOMMST ZIEHE € 200 EIN.";
 		
-		monopoly.players.get(id).setPosition(24, id);;
+		monopoly.players.get(id).setPosition(24);
 
 	}
 

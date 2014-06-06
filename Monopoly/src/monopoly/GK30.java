@@ -10,7 +10,7 @@ public class GK30 implements Aktion{
 		// TODO Auto-generated method stub
 		String kartentext = "MACHE EINEN AUSFLUG ZUM SÜDBAHNHOF. WENN DU ÜBER LOS KOMMST ZIEHE € 200 EIN.";
 		
-		monopoly.players.get(id).setPosition(5, id);;
+		monopoly.players.get(id).setPosition(5);
 
 	}
 

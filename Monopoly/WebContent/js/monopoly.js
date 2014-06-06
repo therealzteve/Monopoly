@@ -63,10 +63,8 @@ var Monopoly = function(cfg){
 	that.updateGUI = function(){
 		
 		
-		//Sofern Spieler am Zug ist, Menue zeigen
-		if(that.myTurn){
-			that.optionsMenu.show();
-		}
+		//Menue verarbeiten
+		that.optionsMenu.handleOptions();
 		
 		//Eigenen Spieler aktualisieren:
 		
@@ -142,18 +140,32 @@ var OptionsMenu = function(monopoly){
 	
 	that.handleOptions = function(){
 		console.log(monopoly.myPlayer.userState);
+		
+		//Spieler ist zurzeit nicht an der Reihe
+		if(monopoly.myPlayer.userState == -1){
+			$(that.wuerfelButton).attr("disabled","disabled");
+			$(that.buyButton).attr("disabled","disabled");
+			$(that.buildButton).attr("disabled","disabled");
+			$(that.endTurnButton).attr("disabled","disabled");
+		}
+		
+		//Spieler bereit zum wuerfeln oder bauen
 		if(monopoly.myPlayer.userState == 0){
 			$(that.wuerfelButton).removeAttr("disabled");
 			$(that.buyButton).attr("disabled","disabled");
 			$(that.buildButton).removeAttr("disabled");
 			$(that.endTurnButton).attr("disabled","disabled");
 		}
+		
+		//Spieler steht auf einer freien Strasse
 		if(monopoly.myPlayer.userState == 1){
 			$(that.wuerfelButton).attr("disabled","disabled");
 			$(that.buyButton).removeAttr("disabled");
 			$(that.buildButton).removeAttr("disabled");
 			$(that.endTurnButton).removeAttr("disabled");
 		}
+		
+		//Spieler kann nicht kaufen, muss Zug beenden oder bauen
 		if(monopoly.myPlayer.userState == 2){
 			$(that.wuerfelButton).attr("disabled","disabled");
 			$(that.buyButton).attr("disabled","disabled");
@@ -162,16 +174,6 @@ var OptionsMenu = function(monopoly){
 		}
 	};
 	
-	that.show = function(){
-		that.handleOptions();
-	};
-	
-	that.hide = function(){
-		$(that.wuerfelButton).attr("disabled","disabled");
-		$(that.buyButton).attr("disabled","disabled");
-		$(that.buildButton).attr("disabled","disabled");
-		$(that.endTurnButton).attr("disabled","disabled");
-	};
 	
 	that.wuerfeln = function(){
 		var data = {};
