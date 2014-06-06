@@ -22,9 +22,10 @@
 				{ 
 					"name": "${player.name}",
 			  		"guthaben": "${player.guthaben}",
+			  		"icon" : "${player.icon}",
 			  		"position": "${player.position}",
 			  		"streetOwnList": [ 
-			  			<c:forEach var="street" varStatus="status" items="${player.streetOwnList}" >
+			  			<c:forEach var="street" varStatus="status" items="${player.ownedStreets}" >
 							${not status.first ? ',' : ''} "${street}"
 						</c:forEach>
 									]
