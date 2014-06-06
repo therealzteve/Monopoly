@@ -6,7 +6,7 @@ import java.util.List;
 public class Monopoly {
 	int id;
 	public ArrayList<Spieler> players = new ArrayList<Spieler>();
-	Spieler spieler;
+	public ArrayList<Feld> fields = new ArrayList<Feld>();
 	
 	public void spielerHinzufuegen(Spieler spieler){
 		players.add(spieler);
@@ -58,6 +58,11 @@ public class Monopoly {
 					Berliner,FreiParken,Theater,Ereignisfeld3,Museum,Opernplatz,Nordbahnhof,Lessing,Schiller,Wasserwerk,
 					Goethe,GeheInsGefaengnis,Rathausplatz,Haupt,Gemeinschaftsfeld2,Bahnhof,Hauptbahnhof,Ereignisfeld4,
 					Park,Zusatzsteuer, Schlossallee};
+		 
+		 //Felder in ArrayList einfuegen
+		 for(Feld f : fields){
+			 this.fields.add(f);
+		 }
 	}
 	
 	

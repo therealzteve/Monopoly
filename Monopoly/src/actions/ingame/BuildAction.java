@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import beans.Result;
 import misc.TextKeys;
+import monopoly.Feld;
 import monopoly.Monopoly;
 import actions.GameBaseAction;
 
@@ -21,7 +22,10 @@ public class BuildAction extends GameBaseAction {
 		int buildAmount = Integer.parseInt(request.getParameter(TextKeys.buildAmount));
 		
 		//Find street
+		Feld f = monopoly.fields.get(streetId);
 		
+		f.erstelleStrassen();
+		//if(f.erstelleStrassen();)
 		//(Check owner)
 		
 		//increase Build amount

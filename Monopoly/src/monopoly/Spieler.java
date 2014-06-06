@@ -11,6 +11,7 @@ public class Spieler {
 	int position;
 	List ownedStreets = new ArrayList<Street>();
 	Monopoly monopoly;
+	
 public Spieler (int id, String name, boolean isAdmin){
 	this.Guthaben = 2000;
 	this.position = 0;

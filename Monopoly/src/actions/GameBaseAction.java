@@ -6,7 +6,7 @@ import monopoly.Monopoly;
 
 public abstract class GameBaseAction {
 
-	Monopoly monopoly;
+	protected Monopoly monopoly;
 	
 	public GameBaseAction(Monopoly monopoly) {
 		this.monopoly = monopoly;

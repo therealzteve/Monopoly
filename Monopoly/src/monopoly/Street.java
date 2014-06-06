@@ -2,14 +2,11 @@ package monopoly;
 
 public class Street extends Feld {
  Spieler owner;
- int id;
  int [] miete = new int [5];
  int preis;
  int stufe;
- String name;
  int preisHaus;
  int preisHotel;
- String typ;
  int mieteBahnhof;
  int mieteWerk;
  

@@ -16,7 +16,6 @@ import monopoly.Spieler;
 /**
  * Servlet implementation class InitGameAction
  */
-@WebServlet("/InitGameAction")
 public class InitGameAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -47,11 +46,14 @@ public class InitGameAction extends HttpServlet {
 		//Spieler anhand Formulardaten erstellen
 		Spieler player = new Spieler(0, "test", true);
 		
+		//Spieler zu monopoly Spieler Liste hinzufuegen
+		monopoly.players.add(player);
+		
 		//Spiel in HashMap einfuegen
 		HashMap<Integer,Monopoly> gameList = (HashMap<Integer, Monopoly>) getServletContext().getAttribute(TextKeys.gameList);
 		gameList.put(0, monopoly);
 		
-		
+		//Information in Session speichern
 		request.getSession().setAttribute(TextKeys.userGameId, 1);
 		request.getSession().setAttribute(TextKeys.playerId, 1);
 	}
