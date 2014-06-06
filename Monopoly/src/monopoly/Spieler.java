@@ -10,7 +10,7 @@ public class Spieler {
 	boolean isAdmin;
 	int position;
 	List ownedStreets = new ArrayList<Street>();
-	
+	Monopoly monopoly;
 public Spieler (int id, String name, boolean isAdmin){
 	this.Guthaben = 2000;
 	this.position = 0;
@@ -54,8 +54,13 @@ public void setAdmin(boolean isAdmin) {
 public int getPosition() {
 	return position;
 }
-
-public void setPosition(int position) {
+public void setSimplePosition (int position) {
+	this.position = position;
+}
+public void setPosition(int position, int i) {
+	if (monopoly.players.get(i).getPosition() > position){
+		monopoly.players.get(i).setGuthaben(monopoly.players.get(i).getGuthaben() + 200);
+	}
 	this.position = position;
 }
 

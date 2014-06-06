@@ -14,6 +14,9 @@ public class Monopoly {
 	public void erstelleStrassen(){
 		
 	}
+	public void ladeAktionsFeld (){
+		Aktion [] GK = {GK1};
+	}
 	
 	static Feld Los = new Feld(0, "Los", "aktion");
 	static Feld Bad = new Street(1, "Badstrasse", 60,2,10,30,90,160,250);
@@ -58,7 +61,7 @@ public class Monopoly {
 	
 	static Feld[] fields = {Los, Bad, Ereignisfeld1, Turm, Einkommenssteuer, Suedbahnhof, Chausse, Ereignisfeld2, Elisen, 
 		Post, Gefaengnis, See,Elektrizitaetswerk,Hafen,Neue,Westbahnhof,Muenchener,Gemeinschaftsfeld1,Wiener,
-		Berliner,FreiParken,Theater,Ereignisfeld3,Museum,Opernplatz,Nordbahnhof,Lessing,Schiller,Wasserwerke,
+		Berliner,FreiParken,Theater,Ereignisfeld3,Museum,Opernplatz,Nordbahnhof,Lessing,Schiller,Wasserwerk,
 		Goethe,GeheInsGefaengnis,Rathausplatz,Haupt,Gemeinschaftsfeld2,Bahnhof,Hauptbahnhof,Ereignisfeld4,
 		Park,Zusatzsteuer, Schlossallee};
 	
