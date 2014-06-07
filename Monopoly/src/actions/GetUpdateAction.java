@@ -38,8 +38,8 @@ public class GetUpdateAction extends HttpServlet {
 		int playerId = (int) request.getSession().getAttribute(TextKeys.playerId);
 				
 		//Spiel in HashMap finden
-		HashMap<Integer,Monopoly> gameList = (HashMap<Integer, Monopoly>) request.getServletContext().getAttribute(TextKeys.gameList);;
-		Monopoly monopoly = gameList.get(gameId);
+		HashMap<Long,Monopoly> gameList = (HashMap<Long, Monopoly>) request.getServletContext().getAttribute(TextKeys.gameList);;
+		Monopoly monopoly = gameList.get((long)gameId);
 		
 		Spieler p = monopoly.players.get(playerId);
 		

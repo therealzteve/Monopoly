@@ -19,7 +19,7 @@ public class ApplicationInitializer implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
-		HashMap<Integer,Monopoly> gameList = new HashMap<Integer,Monopoly>();
+		HashMap<Long,Monopoly> gameList = new HashMap<Long,Monopoly>();
 		arg0.getServletContext().setAttribute(TextKeys.gameList, gameList);
 		
 	}

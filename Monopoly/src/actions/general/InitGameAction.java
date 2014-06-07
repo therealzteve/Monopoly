@@ -48,10 +48,11 @@ public class InitGameAction extends HttpServlet {
 		player.setIcon(request.getParameter("icon"));
 		//Spieler zu monopoly Spieler Liste hinzufuegen
 		monopoly.players.add(player);
+		monopoly.setId(0);
 		
 		//Spiel in HashMap einfuegen
-		HashMap<Integer,Monopoly> gameList = (HashMap<Integer, Monopoly>) getServletContext().getAttribute(TextKeys.gameList);
-		gameList.put(0, monopoly);
+		HashMap<Long,Monopoly> gameList = (HashMap<Long, Monopoly>) getServletContext().getAttribute(TextKeys.gameList);
+		gameList.put((long) 0, monopoly);
 		
 		//Information in Session speichern
 		request.getSession().setAttribute(TextKeys.userGameId, 0);

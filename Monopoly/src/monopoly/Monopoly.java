@@ -109,4 +109,34 @@ public class Monopoly {
 		
 		
 	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getCurrentPlayerId() {
+		return currentPlayerId;
+	}
+	public void setCurrentPlayerId(int currentPlayerId) {
+		this.currentPlayerId = currentPlayerId;
+	}
+	public ArrayList<Spieler> getPlayers() {
+		return players;
+	}
+	public void setPlayers(ArrayList<Spieler> players) {
+		this.players = players;
+	}
+	public ArrayList<Feld> getFields() {
+		return fields;
+	}
+	public void setFields(ArrayList<Feld> fields) {
+		this.fields = fields;
+	}
+	public boolean isRunning() {
+		return isRunning;
+	}
+	public void setRunning(boolean isRunning) {
+		this.isRunning = isRunning;
+	}
 }

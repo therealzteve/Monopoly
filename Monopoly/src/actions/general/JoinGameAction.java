@@ -43,10 +43,10 @@ public class JoinGameAction extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//Hashmap laden
-		HashMap<Integer,Monopoly> gameList = (HashMap<Integer, Monopoly>) request.getServletContext().getAttribute(TextKeys.gameList);;
+		HashMap<Long,Monopoly> gameList = (HashMap<Long, Monopoly>) request.getServletContext().getAttribute(TextKeys.gameList);;
 		
 		//Entsprechendes Monopoly holen;
-		Monopoly monopoly = gameList.get(0);
+		Monopoly monopoly = gameList.get((long)0);
 		
 		//Spieler anhand Formulardaten erstellen
 		Spieler player = new Spieler(1, "test2", false);
