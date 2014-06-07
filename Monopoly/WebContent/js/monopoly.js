@@ -32,7 +32,8 @@ var Monopoly = function(cfg){
 	 */
 	that.handleUpdates = function(data){
 		if(data.player.hasWon == true){
-			location.href = "/Monopoly/win.html";
+			alert("Sie haben das Spiel gewonnen!");
+			location.href= "/monopoly";
 		}
 		
 		that.playerList = [];
@@ -277,6 +278,7 @@ var OptionsMenu = function(monopoly){
 		
 		//Wenn Aufgegeben, dann zur Startseite verweisen
 		if(data.event == "giveUp"){
+			alert("Sie haben das Spiel verloren!");
 			location.href = "/Monopoly";
 		}else{
 			//Erneuter AJAX Befehl zum Daten aktualisieren
