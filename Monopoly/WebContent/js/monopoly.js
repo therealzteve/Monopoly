@@ -334,17 +334,17 @@ var Street = function(id, name, owner, miete){
 	that.id = id;
 	that.owner = owner;
 	that.miete = miete;
-	int i = 0;
 	
 	
 	/**
 	 * Initializes street object
 	 */
 	that.init = function(){
-		$("field_"+that.id).data("streetid", that.id);
-		$("field_"+that.id).data("name", that.name);
-		$("field_"+that.id).data("owner", that.owner);
-		$("field_"+that.id).data("miete", that.miete);
+		console.log(that.id);
+		$("#field_"+that.id).data("streetid", that.id);
+		$("#field_"+that.id).data("name", that.name);
+		$("#field_"+that.id).data("owner", that.owner);
+		$("#field_"+that.id).data("miete", that.miete);
 	};
 	
 	
