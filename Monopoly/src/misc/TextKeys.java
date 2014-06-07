@@ -19,4 +19,5 @@ public class TextKeys {
 	public static String isAdmin = "isAdmin";
 	public static String icon = "icon";
 	public static String otherPlayers = "otherPlayers";
+	public static String hasLost = "hasLost";
 }

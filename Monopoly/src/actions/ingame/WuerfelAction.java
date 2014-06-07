@@ -97,14 +97,26 @@ public class WuerfelAction extends GameBaseAction {
 				owner.setGuthaben(owner.getGuthaben() + str.getCurrentMiete());
 				
 				//check guthaben of player
-				//if minus --> GiveUp
-				
-				//Remove player from game, release cards
+				if(p.getGuthaben() < 0 ){
+					//if minus --> GiveUp
+					
+					//Strassen freigeben
+					for(Street ownedStreets : p.getOwnedStreets()){
+						ownedStreets.setOwner(null);
+					}
+					//Guthaben auf 0 setzen
+					p.setGuthaben(0);
+					
+					//hasLost auf true setzen um Spieler als Verlierer zu kennzeichnen
+					p.setHasLost(true);
+				}
 				
 				//Set user state
 				p.setUserState(2);
 				
 				resultText = "Diese Strasse gehoert "+ owner.getName() + "<br> Miete: "+ str.getCurrentMiete();
+				
+				;
 			}
 		}
 		return resultText;

@@ -13,6 +13,7 @@ public class Spieler {
 	int userState = -1; //Gibt an, ob Spieler am Zug ist, wuerfeln muss, oder Zug beenden muss
 	ArrayList<Street> ownedStreets = new ArrayList<Street>();
 	Monopoly monopoly;
+	boolean hasLost; //True, wenn der Spieler verloren oder aufgegeben hat
 	
 public Spieler (int id, String name, boolean isAdmin){
 	this.guthaben = 2000;
@@ -96,5 +97,13 @@ public String getIcon() {
 
 public void setIcon(String icon) {
 	this.icon = icon;
+}
+
+public boolean getHasLost() {
+	return hasLost;
+}
+
+public void setHasLost(boolean hasLost) {
+	this.hasLost = hasLost;
 }
 }

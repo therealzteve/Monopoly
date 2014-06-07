@@ -9,6 +9,7 @@
   		"position": "${position}",
   		"icon" : "${icon}",
   		"userState": "${userState}",
+  		"hasLost" : "${hasLost}",
   		"isAdmin" : ${isAdmin},
   		"streetOwnList": [ 
   			<c:forEach var="street" varStatus="status" items="${streetOwnList}" >
@@ -24,6 +25,7 @@
 			  		"guthaben": "${player.guthaben}",
 			  		"icon" : "${player.icon}",
 			  		"position": "${player.position}",
+			  		"hasLost" : "${player.hasLost}",
 			  		"streetOwnList": [ 
 			  			<c:forEach var="street" varStatus="status" items="${player.ownedStreets}" >
 							${not status.first ? ',' : ''} "${street}"

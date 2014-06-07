@@ -40,6 +40,7 @@ var Monopoly = function(cfg){
 			pl.streetOwnList = data.otherPlayers[i].streetOwnList;
 			pl.position = data.otherPlayers[i].position;
 			pl.setIcon(data.otherPlayers[i].icon);
+			pl.hasLost = data.otherPlayers[i].hasLost;
 			that.playerList.push(pl);
 		}
 		
@@ -51,6 +52,7 @@ var Monopoly = function(cfg){
 		that.myPlayer.userState = data.player.userState;
 		that.myPlayer.setIcon(data.player.icon);
 		that.myPlayer.isAdmin = data.player.isAdmin;
+		that.myPlayer.hasLost = data.player.hasLost;
 		
 		that.myTurn = data.myTurn;
 		
@@ -100,7 +102,9 @@ var Monopoly = function(cfg){
 			//Durch player array iterieren
 			for(var i = 0; i < that.playerList.length; i++){
 				 var li = $("<li></li>");
-				 
+				 if(that.playerList[i].hasLost){
+					 $(li).addClass("hasLost");
+				 }
 				 //Name eintragen
 				 $(li).append("<span><label>Name: </label>"+that.playerList[i].name+"</span>");
 				 
@@ -281,6 +285,7 @@ var Player = function(name, guthaben){
 	that.position;
 	that.userState = -1;
 	that.isAdmin = false;
+	that.hasLost;
 	that._icon;
 	
 	that.setIcon = function(imgPath){
