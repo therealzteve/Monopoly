@@ -54,7 +54,7 @@ public class InitGameAction extends HttpServlet {
 		gameList.put((long) 0, monopoly);
 		
 		//Information in Session speichern
-		request.getSession().setAttribute(TextKeys.userGameId, 0);
+		request.getSession().setAttribute(TextKeys.userGameId, (long)0);
 		request.getSession().setAttribute(TextKeys.playerId, 0);
 		
 		//Zum Spielbrett weiterleiten
