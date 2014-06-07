@@ -53,7 +53,7 @@ public class Monopoly {
 		 Feld Hauptbahnhof = new Street (35, "Hauptbahnhof", "bahnhof");
 		 Feld Ereignisfeld4 = new Aktionsfeld(36, "Ereignisfeld", "aktion", this);
 		 Feld Park = new Street (37, "Parkstrasse", 7,350,35,175,500,1100,1300,1500);
-		 Feld Zusatzsteuer = new Feld (38, "Zusatzsteuer", "aktion");
+		 Feld Zusatzsteuer = new Aktionsfeld (38, "Zusatzsteuer", "aktion", this);
 		 Feld Schlossallee = new Street (39, "Schlossallee", 7,400,50,200,600,1400,1700,2000);
 		 
 		 Feld[] fields = {Los, Bad, Ereignisfeld1, Turm, Einkommenssteuer, Suedbahnhof, Chausse, Ereignisfeld2, Elisen, 

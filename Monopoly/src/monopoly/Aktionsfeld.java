@@ -53,7 +53,7 @@ public class Aktionsfeld extends Feld {
 	public String fuehreKarteAus (int idSpieler){
 		if (this.getId() == 2 || this.getId() == 7 || this.getId() == 17 || 
 			this.getId() == 22 || this.getId() == 33 || this.getId() == 38){
-			int zufall = (int) Math.random()*32 +1 ;
+			int zufall = (int) (Math.random()*32 )+1 ;
 			aktionen.get(zufall).fuehreAktionAus(idSpieler);
 			return aktionen.get(zufall).getKartenText();
 		}
