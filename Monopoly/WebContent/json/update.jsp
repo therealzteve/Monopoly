@@ -13,7 +13,9 @@
   		"isAdmin" : ${isAdmin},
   		"streetOwnList": [ 
   			<c:forEach var="street" varStatus="status" items="${streetOwnList}" >
-				${not status.first ? ',' : ''} "${street.name}"
+				${not status.first ? ',' : ''} 
+				{ "id" :  "${street.id}", 
+				  "name" : "${street.name}"}
 			</c:forEach>
 						]
 			},
@@ -28,7 +30,9 @@
 			  		"hasLost" : "${player.hasLost}",
 			  		"streetOwnList": [ 
 			  			<c:forEach var="street" varStatus="status" items="${player.ownedStreets}" >
-							${not status.first ? ',' : ''} "${street}"
+							${not status.first ? ',' : ''} 
+							{ "id" :  "${street.id}", 
+				  			"name" : "${street.name}"}
 						</c:forEach>
 									]
 				}

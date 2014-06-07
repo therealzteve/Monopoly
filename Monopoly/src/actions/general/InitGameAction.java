@@ -40,10 +40,10 @@ public class InitGameAction extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Monopoly erstellen
 		Monopoly monopoly = new Monopoly();
-		monopoly.setId(0);
+		monopoly.setId(Monopoly.getGameId());
 
 		//Spieler anhand Formulardaten erstellen
-		Spieler player = new Spieler(0, request.getParameter("usr"), true);
+		Spieler player = new Spieler(Spieler.getPlayerId(), request.getParameter("usr"), true);
 		player.setIcon(request.getParameter("icon"));
 		
 		//Spieler zu monopoly Spieler Liste hinzufuegen
@@ -51,11 +51,11 @@ public class InitGameAction extends HttpServlet {
 		
 		//Spiel in HashMap einfuegen
 		HashMap<Long,Monopoly> gameList = (HashMap<Long, Monopoly>) getServletContext().getAttribute(TextKeys.gameList);
-		gameList.put((long) 0, monopoly);
+		gameList.put((long) monopoly.getId(), monopoly);
 		
 		//Information in Session speichern
-		request.getSession().setAttribute(TextKeys.userGameId, (long)0);
-		request.getSession().setAttribute(TextKeys.playerId, 0);
+		request.getSession().setAttribute(TextKeys.userGameId, (long)monopoly.getId());
+		request.getSession().setAttribute(TextKeys.playerId, player.getId());
 		
 		//Zum Spielbrett weiterleiten
 		request.getRequestDispatcher("/boardalt1.html").forward(request, response);

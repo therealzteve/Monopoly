@@ -22,6 +22,10 @@ public class WuerfelAction extends GameBaseAction {
 	public String performAction(HttpServletRequest request) {
 		String resultText = "";
 		int result = (int) (Math.random() * 12) + 1;
+		
+		//debug:
+		result = 1;
+		
 		request.setAttribute("wuerfelzahl", result);
 
 		// get Player
@@ -55,10 +59,31 @@ public class WuerfelAction extends GameBaseAction {
 
 			resultText = handleBahnhof(p, (Street) f);
 		}
+		
+		//Feld "Los"
+		if("los".equals(f.getTyp())){
+			resultText = handleMisc(p);
+		}
+
+		//Wenn nur zu Besuch Gefaengnis
+		if ("gefaengnis".equals(f.getTyp())) {
+			resultText = handleMisc(p);
+		}
+		
+		//Wenn frei parken
+		if ("freiParken".equals(f.getTyp())) {
+			resultText = handleMisc(p);
+		}
+		
+		//Wenn gehe in das Gefaengnis
+		if("geheGefaengnis".equals(f.getTyp())){
+			resultText = handleMisc(p);
+		}
+		
 
 		// Wenn unbekannt
-		if (f.getTyp() == null) {
-			System.out.println("Type is null");
+		if (f.getTyp() == null || f.getTyp() == "" ) {
+			System.out.println("Type is null or empty");
 			resultText = handleMisc(p);
 		}
 
@@ -175,14 +200,14 @@ public class WuerfelAction extends GameBaseAction {
 		if (owner == null) {
 			p.setUserState(1);
 			// if null change userState to enable buy
-			resultText = "Strasse ist noch frei!";
+			resultText = str.getName() + "<br>Strasse ist noch frei!";
 		} else {
 			if (owner.equals(p)) {
 
 				// Change user state to end turn state
 				p.setUserState(2);
 
-				resultText = "Diese Strasse gehoert dir bereits!";
+				resultText = str.getName() + "<br> Diese Strasse gehoert dir bereits!";
 			} else {
 				p.setGuthaben(p.getGuthaben() - str.getCurrentMiete());
 				owner.setGuthaben(owner.getGuthaben() + str.getCurrentMiete());
@@ -193,7 +218,7 @@ public class WuerfelAction extends GameBaseAction {
 				// Set user state
 				p.setUserState(2);
 
-				resultText = "Diese Strasse gehoert " + owner.getName()
+				resultText = str.getName() + "<br> Diese Strasse gehoert " + owner.getName()
 						+ "<br> Miete: " + str.getCurrentMiete();
 
 				;
