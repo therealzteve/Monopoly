@@ -63,9 +63,7 @@ var Monopoly = function(cfg){
 		that.myPlayer = new Player(data.player.name, data.player.guthaben);
 		that.myPlayer.streetOwnList = [];
 		
-		console.log(data.player.streetOwnList.length);
 		for(var i = 0; i < data.player.streetOwnList.length; i++){
-			console.log(data.player.streetOwnList[i]);
 			that.myPlayer.streetOwnList.push(
 					new Street(
 							data.player.streetOwnList[i].id,
@@ -144,7 +142,6 @@ var Monopoly = function(cfg){
 				 $(that.otherPlayers).append(li);
 
 				//Position aktualisieren
-				 console.log(that.playerList[i]);
 				$(that.playerList[i].getIcon()).detach().appendTo("#field_"+that.playerList[i].position);
 			}
 			
@@ -342,7 +339,6 @@ var Street = function(id, name, owner, miete){
 	 * Initializes street object
 	 */
 	that.init = function(){
-		console.log(that.id);
 		$("#field_"+that.id).data("streetid", that.id);
 		$("#field_"+that.id).data("name", that.name);
 		$("#field_"+that.id).data("owner", that.owner);
