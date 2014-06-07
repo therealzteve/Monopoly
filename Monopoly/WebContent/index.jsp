@@ -13,10 +13,14 @@
 <body>
 	<div id="login">
 		<img src="img/dialogbg.png">
-		<div id="new">
+			<div id="new">
 			Herzlich Willkommen!<br>
 			<form method="post" id="form" action="initGameAction">
 				<input name="usr" placeholder="Benutzername" /> 
+					Rot: <input type="radio" name="icon" value="rot">
+					Gr&uuml;n: <input type="radio" name="icon" value="gruen">
+					Blau: <input type="radio" name="icon" value="blau">
+					Gelb: <input type="radio" name="icon" value="gelb">
 					<input
 					name="newgame" id="newgame" type="submit"
 					value="Neues Spiel er&ouml;ffnen"/>
@@ -30,7 +34,7 @@
 						<c:forEach items="${gameList}" var="game" varStatus="status">
 							<li>
 		  						<span>Spiel ID: <c:out value="${game.value.id}"/> </span>
-		  						<span>Anzahl Spieler:  ${fn:length(game.value.players)} </span>
+		  						<span>Anzahl Spieler:  ${fn:length(game.value.players)} / 4 </span>
 		  						<span><input name="whichgame" value="${game.value.id}" type="radio"/> </span>
 	  						</li>
 						</c:forEach>
@@ -40,6 +44,5 @@
 			</form>
 			</div>
 		</div>
-	</div>
 </body>
 </html>

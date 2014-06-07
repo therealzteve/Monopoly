@@ -144,7 +144,7 @@ var Monopoly = function(cfg){
 		
 		
 		//Updater starten
-		//window.setInterval(that.getUpdates,5000);
+		window.setInterval(that.getUpdates,5000);
 	};
 	
 	that.init();

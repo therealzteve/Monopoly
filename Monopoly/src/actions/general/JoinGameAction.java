@@ -41,25 +41,71 @@ public class JoinGameAction extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Parameter laden
+		long gameId = Long.parseLong(request.getParameter("whichgame"));
 		
 		//Hashmap laden
 		HashMap<Long,Monopoly> gameList = (HashMap<Long, Monopoly>) request.getServletContext().getAttribute(TextKeys.gameList);;
 		
 		//Entsprechendes Monopoly holen;
-		Monopoly monopoly = gameList.get((long)0);
+		Monopoly monopoly = gameList.get(gameId);
 		
 		//Spieler anhand Formulardaten erstellen
 		Spieler player = new Spieler(1, "test2", false);
-		player.setIcon("gruen");
 		
+		//icon setzen:
+		player.setIcon(retrieveColor(monopoly));
+	
 		//Spieler zu monopoly Spieler Liste hinzufuegen
 		monopoly.players.add(player);
 		
 		//In User Session speichern
-		request.getSession().setAttribute(TextKeys.userGameId, 0);
+		request.getSession().setAttribute(TextKeys.userGameId, gameId);
 		request.getSession().setAttribute(TextKeys.playerId, 1 );
 		
 		request.getRequestDispatcher("/boardalt1.html").forward(request, response);
 	}
 
+	
+	/**
+	 * Sucht eine freie Farbe
+	 * 
+	 * @param monopoly
+	 * @return icon Farbname
+	 */
+	public String retrieveColor(Monopoly monopoly){
+		Boolean colorTaken[] = {false,false,false,false};
+		
+		//Pruefen, welche Farben belegt sind
+		for(Spieler pl : monopoly.players){
+			if("rot".equals(pl.getIcon())){
+				colorTaken[0] = true;
+			}
+			if("gruen".equals(pl.getIcon())){
+				colorTaken[1] = true;
+			}
+			if("gelbt".equals(pl.getIcon())){
+				colorTaken[2] = true;
+			}
+			if("blau".equals(pl.getIcon())){
+				colorTaken[3] = true;
+			}
+		}
+		
+		//Freie Farbe ermitteln und zurueck geben
+		if(!colorTaken[0]){
+			return "rot";
+		}
+		if(!colorTaken[1]){
+			return "gruen";
+		}
+		if(!colorTaken[2]){
+			return "gelb";
+		}
+		if(!colorTaken[3]){
+			return "blau";
+		}
+		
+		return "";
+	}
 }
