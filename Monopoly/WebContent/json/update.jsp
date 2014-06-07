@@ -9,7 +9,8 @@
   		"position": "${position}",
   		"icon" : "${icon}",
   		"userState": "${userState}",
-  		"hasLost" : "${hasLost}",
+  		"hasLost" : ${hasLost},
+  		"hasWon" : ${hasWon},
   		"isAdmin" : ${isAdmin},
   		"streetOwnList": [ 
   			<c:forEach var="street" varStatus="status" items="${streetOwnList}" >

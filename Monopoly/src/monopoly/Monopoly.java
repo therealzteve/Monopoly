@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Monopoly {
 	int id;
+	int playerId = 0;
 	int currentPlayerId = 0;
 	public ArrayList<Spieler> players = new ArrayList<Spieler>();
 	public ArrayList<Feld> fields = new ArrayList<Feld>();
@@ -107,7 +108,9 @@ public class Monopoly {
 	}
 	
 	
-	 
+	public int getNewPlayerId(){
+		return playerId++;
+	}
 	
 	public Monopoly(){
 		this.erstelleStrassen();

@@ -20,4 +20,5 @@ public class TextKeys {
 	public static String icon = "icon";
 	public static String otherPlayers = "otherPlayers";
 	public static String hasLost = "hasLost";
+	public static String hasWon ="hasWon";
 }

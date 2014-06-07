@@ -14,7 +14,6 @@ public class Spieler {
 	ArrayList<Street> ownedStreets = new ArrayList<Street>();
 	Monopoly monopoly;
 	boolean hasLost; //True, wenn der Spieler verloren oder aufgegeben hat
-	private static int playerId = 0;
 	boolean hasWon = false;
 	
 public Spieler (int id, String name, boolean isAdmin){
@@ -25,9 +24,6 @@ public Spieler (int id, String name, boolean isAdmin){
 	this.id = id;
 }
 
-public static int getPlayerId (){
-	return playerId++;
-}
 
 public int getId() {
 	return id;

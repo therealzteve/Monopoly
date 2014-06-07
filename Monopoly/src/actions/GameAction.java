@@ -133,13 +133,24 @@ public class GameAction extends HttpServlet {
 	
 	private void checkGameEnded(HashMap<Long,Monopoly> map, Monopoly monopoly, long gameId){
 		boolean destroyGame = true;
+		int stillPlayingPlayers = 0;
 		for(Spieler p : monopoly.players){
 			if(!p.getHasLost()){
 				destroyGame = false;
+				stillPlayingPlayers++;
 			}
 		}
 		if(destroyGame){
 			map.remove(gameId);
+		}
+		
+		if(stillPlayingPlayers == 1 && monopoly.isRunning){
+			for(Spieler p : monopoly.players){
+				if(!p.getHasLost()){
+					//Spieler hat gewonnen, weiterleiten auf Gewinnerseite
+					p.setHasWon(true);
+				}
+			}
 		}
 	}
 	

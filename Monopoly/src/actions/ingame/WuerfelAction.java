@@ -21,12 +21,10 @@ public class WuerfelAction extends GameBaseAction {
 	@Override
 	public String performAction(HttpServletRequest request) {
 		String resultText = "";
+		
+		//Wuerfeln
 		int result = (int) (Math.random() * 12) + 1;
 
-		// debug:
-		result = 1;
-
-		request.setAttribute("wuerfelzahl", result);
 
 		// get Player
 		Spieler p = monopoly.players.get(playerId);
@@ -42,6 +40,7 @@ public class WuerfelAction extends GameBaseAction {
 		r.setMessage("Wuerfelzahl: " + result + "<br>" + resultText);
 		r.setEvent("wuerfel");
 		request.setAttribute(TextKeys.result, r);
+		request.setAttribute("wuerfelzahl", result);
 
 		return "/json/wuerfel.jsp";
 	}

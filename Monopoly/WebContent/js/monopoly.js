@@ -31,7 +31,9 @@ var Monopoly = function(cfg){
 	 * 
 	 */
 	that.handleUpdates = function(data){
-		
+		if(data.player.hasWon == true){
+			location.href = "/Monopoly/win.html";
+		}
 		
 		that.playerList = [];
 		//Gegner Liste neu erstellen
@@ -41,7 +43,7 @@ var Monopoly = function(cfg){
 			pl.position = data.otherPlayers[i].position;
 			pl.setIcon(data.otherPlayers[i].icon);
 			pl.hasLost = data.otherPlayers[i].hasLost;
-			
+			pl.streetOwnList = [];
 			for(var j = 0; j < data.otherPlayers[i].streetOwnList.length; j++){
 				pl.streetOwnList.push(
 						new Street(

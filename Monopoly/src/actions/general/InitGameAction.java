@@ -43,7 +43,7 @@ public class InitGameAction extends HttpServlet {
 		monopoly.setId(Monopoly.getGameId());
 
 		//Spieler anhand Formulardaten erstellen
-		Spieler player = new Spieler(Spieler.getPlayerId(), request.getParameter("usr"), true);
+		Spieler player = new Spieler(monopoly.getNewPlayerId(), request.getParameter("usr"), true);
 		player.setIcon(request.getParameter("icon"));
 		
 		//Spieler zu monopoly Spieler Liste hinzufuegen

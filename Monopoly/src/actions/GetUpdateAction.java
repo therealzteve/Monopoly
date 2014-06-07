@@ -54,6 +54,7 @@ public class GetUpdateAction extends HttpServlet {
 		request.setAttribute(TextKeys.userState, p.getUserState() );
 		request.setAttribute(TextKeys.isAdmin, p.isAdmin() );
 		request.setAttribute(TextKeys.hasLost, p.getHasLost() );
+		request.setAttribute(TextKeys.hasWon, p.isHasWon());
 		
 		//Andere Spieler Objekte in Request einbinden:
 		ArrayList<Spieler> otherPlayers = new ArrayList<Spieler>();

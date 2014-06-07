@@ -51,7 +51,7 @@ public class JoinGameAction extends HttpServlet {
 		Monopoly monopoly = gameList.get(gameId);
 		
 		//Spieler anhand Formulardaten erstellen
-		Spieler player = new Spieler(Spieler.getPlayerId(), "test2", false);
+		Spieler player = new Spieler(monopoly.getNewPlayerId(), "test2", false);
 		
 		//icon setzen:
 		player.setIcon(retrieveColor(monopoly));

@@ -43,7 +43,9 @@
     <servlet-name>GetUpdateAction</servlet-name>
     <url-pattern>/getUpdateAction</url-pattern>
   </servlet-mapping>
+  
   <listener>
     <listener-class>init.ApplicationInitializer</listener-class>
   </listener>
+  
 </web-app>
