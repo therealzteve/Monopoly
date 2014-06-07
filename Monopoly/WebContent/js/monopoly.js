@@ -334,6 +334,7 @@ var Street = function(id, name, owner, miete){
 	that.id = id;
 	that.owner = owner;
 	that.miete = miete;
+	int i = 0;
 	
 	
 	/**
