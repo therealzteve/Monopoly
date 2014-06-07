@@ -203,7 +203,7 @@ var OptionsMenu = function(monopoly){
 		if(monopoly.myPlayer.userState == 0){
 			$(that.wuerfelButton).removeAttr("disabled");
 			$(that.buyButton).attr("disabled","disabled");
-			$(that.buildButton).removeAttr("disabled");
+			//$(that.buildButton).removeAttr("disabled");
 			$(that.endTurnButton).attr("disabled","disabled");
 		}
 		
@@ -211,7 +211,7 @@ var OptionsMenu = function(monopoly){
 		if(monopoly.myPlayer.userState == 1){
 			$(that.wuerfelButton).attr("disabled","disabled");
 			$(that.buyButton).removeAttr("disabled");
-			$(that.buildButton).removeAttr("disabled");
+			//$(that.buildButton).removeAttr("disabled");
 			$(that.endTurnButton).removeAttr("disabled");
 		}
 		
@@ -219,7 +219,7 @@ var OptionsMenu = function(monopoly){
 		if(monopoly.myPlayer.userState == 2){
 			$(that.wuerfelButton).attr("disabled","disabled");
 			$(that.buyButton).attr("disabled","disabled");
-			$(that.buildButton).removeAttr("disabled");
+			//$(that.buildButton).removeAttr("disabled");
 			$(that.endTurnButton).removeAttr("disabled");
 		}
 	};

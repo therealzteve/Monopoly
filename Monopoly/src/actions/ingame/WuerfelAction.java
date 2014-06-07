@@ -106,7 +106,7 @@ public class WuerfelAction extends GameBaseAction {
 			p.setUserState(1);
 			
 			// if null change userState to enable buy
-			resultText = "Bahnhof ist noch frei!";
+			resultText = "Bahnhof ist noch frei! <br> Kaufpreis: "+str.getPrice();
 		} else {
 			if (owner.equals(p)) {
 
@@ -151,7 +151,7 @@ public class WuerfelAction extends GameBaseAction {
 		if (owner == null) {
 			p.setUserState(1);
 			// if null change userState to enable buy
-			resultText = "Werk ist noch frei!";
+			resultText = "Werk ist noch frei!<br> Kaufpreis: "+str.getPrice();
 		} else {
 			if (owner.equals(p)) {
 
@@ -200,7 +200,7 @@ public class WuerfelAction extends GameBaseAction {
 		if (owner == null) {
 			p.setUserState(1);
 			// if null change userState to enable buy
-			resultText = str.getName() + "<br>Strasse ist noch frei!";
+			resultText = str.getName() + "<br>Strasse ist noch frei!<br> Kaufpreis: "+str.getPrice();
 		} else {
 			if (owner.equals(p)) {
 
