@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import misc.TextKeys;
 import monopoly.Monopoly;
+import monopoly.Spieler;
 import beans.Result;
 import actions.ingame.*;
 
@@ -77,6 +78,9 @@ public class GameAction extends HttpServlet {
 			result = "/json/standard.jsp";
 		}
 		
+		//Ueberprueft ob alle Spieler beendet haben und loescht das Spiel wahlweise
+		checkGameEnded(gameList, monopoly, gameId);
+		
 		//Ergebnis zurueckgeben
 		request.getRequestDispatcher(result).forward(request, response);
 	}
@@ -126,4 +130,17 @@ public class GameAction extends HttpServlet {
 		return null;
 	}
 
+	
+	private void checkGameEnded(HashMap<Long,Monopoly> map, Monopoly monopoly, long gameId){
+		boolean destroyGame = true;
+		for(Spieler p : monopoly.players){
+			if(!p.getHasLost()){
+				destroyGame = false;
+			}
+		}
+		if(destroyGame){
+			map.remove(gameId);
+		}
+	}
+	
 }

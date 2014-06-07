@@ -275,8 +275,14 @@ var OptionsMenu = function(monopoly){
 	//Ergebnis der Aktion auswerten 
 	that.handleRequest = function(data){
 		$(that.messageField).html(data.message);
-		//Erneuter AJAX Befehl zum Daten aktualisieren
-		monopoly.getUpdates();
+		
+		//Wenn Aufgegeben, dann zur Startseite verweisen
+		if(data.event == "giveUp"){
+			location.href = "/Monopoly";
+		}else{
+			//Erneuter AJAX Befehl zum Daten aktualisieren
+			monopoly.getUpdates();
+		}
 	};
 	
 	that.init = function(){
@@ -322,11 +328,12 @@ var Player = function(name, guthaben){
 	};
 };
 
-var Street = function(id, name, owner){
+var Street = function(id, name, owner, miete){
 	var that = this;
 	that.name = name;
 	that.id = id;
 	that.owner = owner;
+	that.miete = miete;
 	
 	
 	/**
@@ -336,6 +343,7 @@ var Street = function(id, name, owner){
 		$("field_"+that.id).data("streetid", that.id);
 		$("field_"+that.id).data("name", that.name);
 		$("field_"+that.id).data("owner", that.owner);
+		$("field_"+that.id).data("miete", that.miete);
 	};
 	
 	
