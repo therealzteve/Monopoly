@@ -1,9 +1,11 @@
 package monopoly;
 
 import java.util.ArrayList;
-import java.util.List;
+
+
 
 public class Spieler {
+	static int pl_id = 0;
 	int id;
 	String name;
 	int guthaben;
@@ -105,5 +107,10 @@ public boolean getHasLost() {
 
 public void setHasLost(boolean hasLost) {
 	this.hasLost = hasLost;
+}
+
+public static int getPlayerId(){
+	pl_id++;
+	return pl_id;
 }
 }

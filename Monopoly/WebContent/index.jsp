@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
@@ -26,6 +26,7 @@
 					value="Neues Spiel er&ouml;ffnen"/>
 			</form>
 			</div>
+			</div>
 			
 			<div id="submit">
 			<img src="img/menurechts.png">
@@ -37,12 +38,12 @@
 		  						<span>Anzahl Spieler:  ${fn:length(game.value.players)} / 4 </span>
 		  						<span><input name="whichgame" value="${game.value.id}" type="radio"/> </span>
 	  						</li>
-						</c:forEach>
+						</c:forEach> 
 					</ul>
 				<input name="joingame" id="joingame" type="submit"
 					value="Spiel beitreten"/>
 			</form>
 			</div>
 		</div>
-</body>
+		</body>
 </html>
