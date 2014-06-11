@@ -1,12 +1,9 @@
 div#login{font-size:14pt;width:504px; heigth:450px;margin-left:30%}
 div#login img{position:absolute;z-index:-100;left:30%;top:0}
 div#mask{text-align:center;margin-top:280px;}
-div#cars img{position:static; z-index:100}
-div#submit{clear:left;margin-top:5px}
-input, div#cars{margin-bottom:10px;margin-bottom:10px}
 
 body{background-image:url(img/background.png);width:100%;height:100%;background-size:cover;color:#ffeb80;font-size:18pt;font-family:"Helvetica"}
-div#menu, div#menuright {float:left;width: 400px; height:750px;margin-top:10px}
+div#menu, div#menuright, div#submit {float:left;width: 400px; height:750px;margin-top:10px; position:relative}
 div#mainbrett{float:left;width:750px;margin-top:10px;}
 div#bretto{clear:left; float:left}
 div#brettl{clear:left;float:left}
@@ -14,14 +11,12 @@ div#dialog{float:left;width:504px; heigth:450px;text-align:center;position:relat
 div#brettr{float:left}
 div#brettu{clear:both; float:left}
 div#menu div#konto~div{margin-top:40px;}
-div#menu img, div#menuright img{z-index:-100;position:absolute;}
+div#menu img, div#menuright img, div#submit img{z-index:-100;position:absolute;}
 div#menu div, div#menuright div {float:none; position:relative;z-index:100; padding-top:10px; padding-left:10px;}
 div[id^=brett] div{ border-width:1; border-style:solid; border-color:black;}
-div[id^=brett] div img{ position:absolute;z-index:-100}
-div[id^=brett] div img#car{z-index:100}
-div[id^=brett] div#field_0, div[id^=brett] div#field_10, div[id^=brett] div#field_29, div[id^=brett] div#field_39{width:70px;!important; height:70px;!important}
-div#bretto div, div#brettu div{float:left; width:50px; height:70px}
-div#brettl div, div#brettr div{float:none; width:70px; height:50px}
+.aussen{width:70px; height:70px;float:left}
+.vert{float:left; width:50px; height:70px}
+.hor{float:none; width:70px; height:50px}
 
 img#diabox{position:absolute; left:0; top:0;z-index:-100;}
 div#dialog div#message{text-align:center;margin-top:300px;z-index:100}
