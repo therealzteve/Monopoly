@@ -6,13 +6,15 @@ import java.util.List;
 public class Spieler {
 	int id;
 	String name;
-	int Guthaben;
+	int guthaben;
 	boolean isAdmin;
 	int position;
-	List ownedStreets = new ArrayList<Street>();
+	int userState = -1; //Gibt an, ob Spieler am Zug ist, wuerfeln muss, oder Zug beenden muss
+	ArrayList<Street> ownedStreets = new ArrayList<Street>();
+	Monopoly monopoly;
 	
 public Spieler (int id, String name, boolean isAdmin){
-	this.Guthaben = 2000;
+	this.guthaben = 2000;
 	this.position = 0;
 	this.name = name;
 	this.isAdmin = isAdmin;
@@ -36,11 +38,11 @@ public void setName(String name) {
 }
 
 public int getGuthaben() {
-	return Guthaben;
+	return guthaben;
 }
 
 public void setGuthaben(int guthaben) {
-	Guthaben = guthaben;
+	this.guthaben = guthaben;
 }
 
 public boolean isAdmin() {
@@ -54,16 +56,32 @@ public void setAdmin(boolean isAdmin) {
 public int getPosition() {
 	return position;
 }
-
-public void setPosition(int position) {
+public void setSimplePosition (int position) {
 	this.position = position;
 }
+public void setPosition(int position) {
+	
+	this.position = this.position + position;
+	
+	if(this.position >= 44){
+		this.position = this.position - 44;
+		this.guthaben = this.guthaben +  200;
+	}
+}
 
-public List getOwnedStreets() {
+public ArrayList<Street> getOwnedStreets() {
 	return ownedStreets;
 }
 
-public void setOwnedStreets(List ownedStreets) {
+public void setOwnedStreets(ArrayList<Street> ownedStreets) {
 	this.ownedStreets = ownedStreets;
+}
+
+public int getUserState() {
+	return userState;
+}
+
+public void setUserState(int userState) {
+	this.userState = userState;
 }
 }

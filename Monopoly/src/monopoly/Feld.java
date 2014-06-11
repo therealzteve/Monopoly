@@ -1,6 +1,6 @@
 package monopoly;
 
-public class Feld extends Monopoly{
+public class Feld {
 	int id;
 	String name;
 	String typ;
@@ -12,6 +12,24 @@ public Feld (int id, String name, String typ){
 }
 public Feld (){
 	
+}
+public int getId() {
+	return id;
+}
+public void setId(int id) {
+	this.id = id;
+}
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
+public String getTyp() {
+	return typ;
+}
+public void setTyp(String typ) {
+	this.typ = typ;
 }
 
 

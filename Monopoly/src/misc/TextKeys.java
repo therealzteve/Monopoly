@@ -15,4 +15,5 @@ public class TextKeys {
 	public static String userState = "userState";
 	public static String streetId = "streetId";
 	public static String buildAmount = "buildAmount";
+	public static String playerId = "playerId";
 }

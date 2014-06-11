@@ -1,6 +1,7 @@
 package actions;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import misc.TextKeys;
+import monopoly.Monopoly;
 import beans.Result;
 import actions.ingame.*;
 
@@ -39,19 +41,34 @@ public class GameAction extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Spiel Objekt finden
-		System.out.println(getServletContext().getAttribute("GameID"));
+		
+		//Session Daten abfragen
+		int gameId = (int) request.getSession().getAttribute(TextKeys.userGameId);
+		int playerId = (int) request.getSession().getAttribute(TextKeys.playerId);
+		
+		//Spiel in HashMap finden
+		HashMap<Integer,Monopoly> gameList = (HashMap<Integer, Monopoly>) request.getServletContext().getAttribute(TextKeys.gameList);;
+		Monopoly monopoly = gameList.get(gameId);
+		
+		
+		
+		
+		
 		//User state abfragen
-		int userState = 0;
+		int userState = monopoly.players.get(playerId).getUserState();
 		//Parameter parsen
 		
-		//Unteraktion ausfuehren
-		GameBaseAction action = getGameAction(userState,request.getParameter("action"));
+		//Unteraktion finden
+		GameBaseAction action = getGameAction(userState,request.getParameter("action"),monopoly, playerId);
+		
+		
 		String result;
+		//Wenn action gefunden, action ausfuehren
 		if(action != null) {
 			 result = action.performAction(request);
 		}
 		else{
+			//Wenn keine action gefunden wurde, fehlerergebnis zurueckgeben
 			Result r = new Result();
 			r.setSuccess(false);
 			r.setMessage("Aktion nicht erlaubt");
@@ -64,34 +81,38 @@ public class GameAction extends HttpServlet {
 		request.getRequestDispatcher(result).forward(request, response);
 	}
 	
-	protected GameBaseAction getGameAction(int userState, String actionName){
+	protected GameBaseAction getGameAction(int userState, String actionName, Monopoly monopoly,int playerId){
 		System.out.println("ActionName: "+actionName);
 		System.out.println("userState: " + userState);
+		
+		//Bereit zum wuerfeln oder bauen
 		if(userState == 0){
 			if(actionName == null || actionName == ""){
-				return new WuerfelAction();
+				return new WuerfelAction(monopoly , playerId);
 			}
 			if("build".equals(actionName)){
-				return new BuildAction();
+				return new BuildAction(monopoly, playerId);
 			}
 		}
+		//Zug beenden oder kaufen oder bauen
 		if(userState == 1){
 			if(actionName == null || actionName == ""){
-				return new EndTurnAction();
+				return new EndTurnAction(monopoly, playerId);
 			}
 			if(actionName == "buy"){
-				return new BuyAction();
+				return new BuyAction(monopoly, playerId);
 			}
 			if(actionName == "build"){
-				return new BuildAction();
+				return new BuildAction(monopoly, playerId);
 			}
 		}
+		//Zug beenden oder bauen
 		if(userState == 2){
 			if(actionName == null || actionName == ""){
-				return new EndTurnAction();
+				return new EndTurnAction(monopoly , playerId);
 			}
 			if(actionName == "build"){
-				return new BuildAction();
+				return new BuildAction(monopoly , playerId);
 			}
 		}
 		return null;
