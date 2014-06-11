@@ -19,7 +19,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>InitGameAction</servlet-name>
-    <servlet-class>actions.InitGameAction</servlet-class>
+    <servlet-class>actions.general.InitGameAction</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>InitGameAction</servlet-name>

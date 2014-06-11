@@ -49,8 +49,10 @@ public class GetUpdateAction extends HttpServlet {
 		request.setAttribute(TextKeys.name, p.getName());
 		request.setAttribute(TextKeys.guthaben, p.getGuthaben());
 		request.setAttribute(TextKeys.position, p.getPosition());
+		request.setAttribute(TextKeys.icon, p.getIcon());
 		request.setAttribute(TextKeys.streetOwnList,p.getOwnedStreets().toArray() );
 		request.setAttribute(TextKeys.userState, p.getUserState() );
+		request.setAttribute(TextKeys.isAdmin, p.isAdmin() );
 		
 		//Andere Spieler Objekte in Request einbinden:
 		

@@ -26,7 +26,6 @@ public class BuyAction extends GameBaseAction {
 		//get his position
 		int position = p.getPosition();
 		
-		//check guthaben
 		
 		//Strasse ermitteln
 		Street str = (Street)monopoly.fields.get(position);
@@ -42,7 +41,7 @@ public class BuyAction extends GameBaseAction {
 		//strasse zur Liste des Spielers hinzufuegen
 		p.getOwnedStreets().add(str);
 		
-		
+		p.setUserState(2);
 		
 		Result r = new Result();
 		r.setSuccess(true);

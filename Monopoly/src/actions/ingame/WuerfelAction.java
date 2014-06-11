@@ -28,17 +28,27 @@ public class WuerfelAction extends GameBaseAction {
 		Spieler p = monopoly.players.get(playerId);
 		
 		//change position
-		p.setPosition(result);
+		p.addPosition(result);
 		//handle position:
 		
 			//get type of field
 			Feld f = monopoly.fields.get(p.getPosition());
 		
+			
 			//if Aktionsfeld
 			if("aktion".equals(f.getTyp()) ){
 				handleAktion(p);
-			}else{
+			}
+			
+			//if street
+			if("street".equals(f.getTyp()) ){
 				handleStreet(p, (Street) f);
+			}
+			
+			//Wenn unbekannt
+			if(f.getTyp() == null){
+				System.out.println( "Type is null");
+				handleMisc(p);
 			}
 		
 
@@ -53,7 +63,11 @@ public class WuerfelAction extends GameBaseAction {
 	
 
 	private void handleAktion(Spieler p ){
-		
+		p.setUserState(2);
+	}
+	
+	private void handleMisc(Spieler p){
+		p.setUserState(2);
 	}
 	
 	private void handleStreet(Spieler p, Street str){

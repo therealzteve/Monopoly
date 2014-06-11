@@ -5,8 +5,11 @@ import java.util.List;
 
 public class Monopoly {
 	int id;
+	int currentPlayerId = 0;
 	public ArrayList<Spieler> players = new ArrayList<Spieler>();
 	public ArrayList<Feld> fields = new ArrayList<Feld>();
+	public boolean isRunning = false; // gibt an ob das Spiel gerade laeuft oder nicht
+	
 	
 	public void spielerHinzufuegen(Spieler spieler){
 		players.add(spieler);
@@ -65,7 +68,13 @@ public class Monopoly {
 		 }
 	}
 	
-	
+	public void nextPlayer(){
+		currentPlayerId++;
+		if(currentPlayerId == players.size()){
+			currentPlayerId = 0;
+		}
+		players.get(currentPlayerId).setUserState(0);
+	}
 	
 	
 	 

@@ -24,7 +24,10 @@ public class EndTurnAction extends GameBaseAction {
 		//get Player
 		Spieler p = monopoly.players.get(playerId);
 		//Change userstate
-		p.setUserState(-1);
+		p.setUserState(-1); 
+		
+		//Zug des naechsten Spielers starten
+		monopoly.nextPlayer();
 		
 		Result r = new Result();
 		r.setSuccess(true);

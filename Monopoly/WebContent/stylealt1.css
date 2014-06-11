@@ -1,7 +1,7 @@
 div#login{font-size:14pt;width:504px; heigth:450px;margin-left:30%}
 div#login img{position:absolute;z-index:-100;left:30%;top:0}
 div#mask{text-align:center;margin-top:280px;}
-div#cars img{float:left; position:relative; z-index:100}
+div#cars img{position:static; z-index:100}
 div#submit{clear:left;margin-top:5px}
 input, div#cars{margin-bottom:10px;margin-bottom:10px}
 
