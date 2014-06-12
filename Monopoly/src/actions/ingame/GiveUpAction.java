@@ -25,10 +25,9 @@ public class GiveUpAction extends GameBaseAction {
 		for(Street str : p.getOwnedStreets()){
 			str.setOwner(null);
 		}
+		p.setGuthaben(0);
 		
-		//Spieler auf inaktiv setzen
-		 monopoly.players.remove(p);
-		 
+		p.setHasLost(true);
 		
 		//Release streets
 		

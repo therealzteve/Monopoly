@@ -53,8 +53,17 @@ public class GetUpdateAction extends HttpServlet {
 		request.setAttribute(TextKeys.streetOwnList,p.getOwnedStreets().toArray() );
 		request.setAttribute(TextKeys.userState, p.getUserState() );
 		request.setAttribute(TextKeys.isAdmin, p.isAdmin() );
+		request.setAttribute(TextKeys.hasLost, p.getHasLost() );
 		
 		//Andere Spieler Objekte in Request einbinden:
+		ArrayList<Spieler> otherPlayers = new ArrayList<Spieler>();
+		for(Spieler pl : monopoly.players){
+			if(pl.getId() != p.getId()){
+				otherPlayers.add(pl);
+			}
+		}
+		request.setAttribute(TextKeys.otherPlayers, otherPlayers );
+		
 		
 		//Auf JSP weiterleiten
 		response.setContentType("application/json");

@@ -1,7 +1,6 @@
 package monopoly;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Monopoly {
 	int id;
@@ -68,12 +67,38 @@ public class Monopoly {
 		 }
 	}
 	
+	/**
+	 *  Startet die Runde des naechsten Spielers
+	 * 
+	 */
 	public void nextPlayer(){
+		//current Player ID hochsetzen
 		currentPlayerId++;
+		
+		//Wenn groesser als Laenge des Liste, wieder auf 0 (1. Spieler) setzen
 		if(currentPlayerId == players.size()){
 			currentPlayerId = 0;
 		}
+		//Userstate des Spielers aendern
 		players.get(currentPlayerId).setUserState(0);
+		
+		//Falls Spieler schon verloren hat, diesen ueberspringen
+		if(players.get(currentPlayerId).getHasLost()){
+			players.get(currentPlayerId).setUserState(-1);
+			
+			//Pruefen ob mindesten 1 Spieler noch nicht verloren hat
+			boolean playingPlayers = false;
+			for(Spieler p : players){
+				if(p.hasLost == false){
+					playingPlayers = true;
+				}
+			}
+			
+			//Wenn noch spielende Spieler da sind, naechster Spieler auswaehlen
+			if(playingPlayers){
+				nextPlayer();
+			}
+		}
 	}
 	
 	

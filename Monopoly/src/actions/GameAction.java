@@ -82,11 +82,15 @@ public class GameAction extends HttpServlet {
 	}
 	
 	protected GameBaseAction getGameAction(int userState, String actionName, Monopoly monopoly,int playerId){
-		System.out.println("ActionName: "+actionName);
-		System.out.println("userState: " + userState);
 		
+		//Spiel starten
 		if(userState == -1 && monopoly.players.get(playerId).isAdmin()){
 			return new StartGameAction(monopoly, playerId);
+		}
+		
+		//Aufgeben
+		if("giveUp".equals(actionName) ){
+			return new GiveUpAction(monopoly, playerId);
 		}
 		
 		//Bereit zum wuerfeln oder bauen

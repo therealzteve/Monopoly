@@ -20,6 +20,7 @@ public class WuerfelAction extends GameBaseAction {
 
 	@Override
 	public String performAction(HttpServletRequest request) {
+		String resultText = "";
 		int result = (int)(Math.random()*12)+1;
 		request.setAttribute("wuerfelzahl", result);
 		
@@ -37,24 +38,24 @@ public class WuerfelAction extends GameBaseAction {
 			
 			//if Aktionsfeld
 			if("aktion".equals(f.getTyp()) ){
-				handleAktion(p);
+				resultText =  handleAktion(p);
 			}
 			
 			//if street
 			if("street".equals(f.getTyp()) ){
-				handleStreet(p, (Street) f);
+				resultText = handleStreet(p, (Street) f);
 			}
 			
 			//Wenn unbekannt
 			if(f.getTyp() == null){
 				System.out.println( "Type is null");
-				handleMisc(p);
+				resultText =  handleMisc(p);
 			}
 		
 
 		Result r = new Result();
 		r.setSuccess(true);
-		r.setMessage( "Wuerfelzahl: " + result);
+		r.setMessage( "Wuerfelzahl: " + result + "<br>" + resultText);
 		r.setEvent("wuerfel");
 		request.setAttribute(TextKeys.result,r );
 		
@@ -62,15 +63,19 @@ public class WuerfelAction extends GameBaseAction {
 	}
 	
 
-	private void handleAktion(Spieler p ){
+	private String handleAktion(Spieler p ){
 		p.setUserState(2);
+		return "Aktion bla blub";
 	}
 	
-	private void handleMisc(Spieler p){
+	private String handleMisc(Spieler p){
 		p.setUserState(2);
+		return "Noch zu bearbeiten";
 	}
 	
-	private void handleStreet(Spieler p, Street str){
+	private String handleStreet(Spieler p, Street str){
+		String resultText = "";
+		
 		//if street
 		//Check owner of street
 		Spieler owner = str.getOwner();
@@ -78,22 +83,42 @@ public class WuerfelAction extends GameBaseAction {
 		if(owner == null){
 			p.setUserState(1);
 			//if null change userState to enable buy
+			resultText = "Strasse ist noch frei!";
 		}else{
 			if(owner.equals(p)){
-				p.setUserState(2);
+				
 				//Change user state to end turn state
+				p.setUserState(2);
+				
+				
+				resultText = "Diese Strasse gehoert dir bereits!";
 			}else{
 				p.setGuthaben(p.getGuthaben() - str.getCurrentMiete());
 				owner.setGuthaben(owner.getGuthaben() + str.getCurrentMiete());
 				
 				//check guthaben of player
-				//if minus --> GiveUp
-				
-				//Remove player from game, release cards
+				if(p.getGuthaben() < 0 ){
+					//if minus --> GiveUp
+					
+					//Strassen freigeben
+					for(Street ownedStreets : p.getOwnedStreets()){
+						ownedStreets.setOwner(null);
+					}
+					//Guthaben auf 0 setzen
+					p.setGuthaben(0);
+					
+					//hasLost auf true setzen um Spieler als Verlierer zu kennzeichnen
+					p.setHasLost(true);
+				}
 				
 				//Set user state
 				p.setUserState(2);
+				
+				resultText = "Diese Strasse gehoert "+ owner.getName() + "<br> Miete: "+ str.getCurrentMiete();
+				
+				;
 			}
 		}
+		return resultText;
 	}
 }

@@ -25,6 +25,16 @@
     <servlet-name>InitGameAction</servlet-name>
     <url-pattern>/initGameAction</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>JoinGameAction</servlet-name>
+    <servlet-class>actions.general.JoinGameAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JoinGameAction</servlet-name>
+    <url-pattern>/joinGameAction</url-pattern>
+  </servlet-mapping>
+  
     <servlet>
     <servlet-name>GetUpdateAction</servlet-name>
     <servlet-class>actions.GetUpdateAction</servlet-class>
