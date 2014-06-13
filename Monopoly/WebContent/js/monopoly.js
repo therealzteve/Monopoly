@@ -251,7 +251,7 @@ var OptionsMenu = function(monopoly){
 			//Daten, die zurueck kommen mit handleUpdates verarbeiten
 			that.handleRequest(data);
 		});
-	}
+	};
 	
 	//Ergebnis der Aktion auswerten 
 	that.handleRequest = function(data){
@@ -290,7 +290,7 @@ var Player = function(name, guthaben){
 	
 	that.setIcon = function(imgPath){
 		if(!$("#icon_"+that.name).length > 0){
-			that._icon = $("<img class='car_icon' src='/Monopoly/img/figuren/auto"+imgPath+".png' id='icon_"+that.name+"'/>");
+			that._icon = $("<img class='car_icon' src='/Monopoly/img/figuren/auto"+imgPath+".png' id='icon_"+that.name+"' style='z-index:100; position:relative; padding-top:15px'/>");
 		}else{
 			that._icon = $("#icon_"+that.name);
 		}

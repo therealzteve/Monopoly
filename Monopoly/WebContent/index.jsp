@@ -12,15 +12,15 @@
 </head>
 <body>
 	<div id="login">
-		<img src="img/dialogbg.png">
+		<img src="img/dialogbg.png" id="maskbg" class="diabg">
 			<div id="new">
-			Herzlich Willkommen!<br>
+			Herzlich Willkommen!<br><br>
 			<form method="post" id="form" action="initGameAction">
-				<input name="usr" placeholder="Benutzername" /> 
-					Rot: <input type="radio" name="icon" value="rot">
-					Gr&uuml;n: <input type="radio" name="icon" value="gruen">
-					Blau: <input type="radio" name="icon" value="blau">
-					Gelb: <input type="radio" name="icon" value="gelb">
+				<input name="usr" placeholder="Benutzername" /> <br><br>
+					Rot: <input type="radio" name="icon" value="rot"/>
+					Gr&uuml;n: <input type="radio" name="icon" value="gruen"/>
+					Blau: <input type="radio" name="icon" value="blau"/>
+					Gelb: <input type="radio" name="icon" value="gelb"/><br><br>
 					<input
 					name="newgame" id="newgame" type="submit"
 					value="Neues Spiel er&ouml;ffnen"/>
@@ -29,7 +29,6 @@
 			</div>
 			
 			<div id="submit">
-			<img src="img/menurechts.png">
 				<form id="join" method="post" action="joinGameAction">
 					<ul>
 						<c:forEach items="${gameList}" var="game" varStatus="status">
@@ -40,10 +39,9 @@
 	  						</li>
 						</c:forEach> 
 					</ul>
-				<input name="joingame" id="joingame" type="submit"
+				<input name="joingame" type="submit"
 					value="Spiel beitreten"/>
 			</form>
 			</div>
-		</div>
 		</body>
 </html>
