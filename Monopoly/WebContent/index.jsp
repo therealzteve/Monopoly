@@ -22,6 +22,7 @@
 					value="Neues Spiel er&ouml;ffnen"/>
 			</form>
 			</div>
+			</div>
 			
 			<div id="submit">
 			<img src="img/menurechts.png">
@@ -39,7 +40,5 @@
 					value="Spiel beitreten"/>
 			</form>
 			</div>
-		</div>
-	</div>
 </body>
 </html>
