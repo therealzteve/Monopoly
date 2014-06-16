@@ -1,8 +1,11 @@
-div#new{float:left;width:504px; heigth:450px;position:relative;margin-left:350px;text-align:center;margin-top:270px}
+div#new{float:left;width:504px; background:rgba(226,0,0,0.55);border-radius:15px;height:270px;position:relative;margin-left:350px;text-align:center;margin-top:255px}
 img#maskbg{margin-left:350px}
-div#submit{margin-left:50px;background:rgba(226,0,0,0.55);width:350px; height:500px;float:left;margin-top:10px; position:relative; border-radius:15px}
+div#submit{margin-left:50px;background:rgba(226,0,0,0.55);width:350px; height:514px;float:left;margin-top:10px; position:relative; border-radius:15px}
+.textfeld{width:900px; margin-left:50px;margin-top:25px;background:rgba(226,0,0,0.55);border-radius:15px;}
+.textfeldcontent{padding-left:20px;padding-top:10px;padding-bottom:10px;padding-right:10px}
+a{color:#ffeb80;font-size:8pt;}
 
-body{background-image:url(img/background.png);width:100%;height:100%;background-size:cover;color:#ffeb80;font-size:14pt;font-family:"Helvetica"}
+body{background-image:url(img/background.png);position:absolute;width:100%;height:100%;background-size:cover;color:#ffeb80;font-size:14pt;font-family:"Helvetica"}
 div#menu, div#menuright{float:left;width: 400px; height:750px;margin-top:10px; position:relative}
 div#mainbrett{float:left;width:750px;margin-top:10px;}
 div#bretto{clear:left; float:left} 

@@ -12,9 +12,9 @@
 </head>
 <body>
 	<div id="login">
-		<img src="img/dialogbg.png" id="maskbg" class="diabg">
+		<img src="img/logo.png" id="maskbg" class="diabg">
 			<div id="new">
-			Herzlich Willkommen!<br><br>
+			<h1>Herzlich Willkommen!</h1>
 			<form method="post" id="form" action="initGameAction">
 				<input name="usr" placeholder="Benutzername" /> <br><br>
 					Rot: <input type="radio" name="icon" value="rot"/>
@@ -25,6 +25,8 @@
 					name="newgame" id="newgame" type="submit"
 					value="Neues Spiel er&ouml;ffnen"/>
 			</form>
+			<a href="impressum.html" target="_blank">Impressum</a><br>
+			<a href="hilfe.html" target="_blank">Hilfe</a>
 			</div>
 			</div>
 			
