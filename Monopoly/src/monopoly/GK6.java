@@ -8,7 +8,6 @@ public class GK6 implements Aktion{
 	@Override
 	public void fuehreAktionAus(int id) {
 		// TODO Auto-generated method stub
-		String kartentext = "ES IST DEIN GEBURTSTAG. ZIEHE VON JEDEM SPIELER € 10 EIN.";
 		monopoly.players.get(id).setGuthaben(monopoly.players.get(id).getGuthaben() + (monopoly.players.size()-1)*10);
 		
 		for (int i = 0; monopoly.players.size() < i; i++){
@@ -17,6 +16,11 @@ public class GK6 implements Aktion{
 	
 			}
 		}
+	}
+	@Override
+	public String getKartenText() {
+		// TODO Auto-generated method stub
+		return "ES IST DEIN GEBURTSTAG. ZIEHE VON JEDEM SPIELER € 10 EIN.";
 	}
 
 }

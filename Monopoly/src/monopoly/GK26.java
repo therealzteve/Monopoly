@@ -8,7 +8,6 @@ public class GK26 implements Aktion{
 	@Override
 	public void fuehreAktionAus(int id) {
 		// TODO Auto-generated method stub
-		String kartentext = "DU BIST ZUM VORSTAND GEWÄHLT WORDEN. ZAHLE JEDEM SPIELER € 50";
 		
 		monopoly.players.get(id).setGuthaben(monopoly.players.get(id).getGuthaben() -monopoly.players.size()*50);
 		
@@ -18,6 +17,11 @@ public class GK26 implements Aktion{
 	
 			}
 		}
+	}
+	@Override
+	public String getKartenText() {
+		// TODO Auto-generated method stub
+		return "DU BIST ZUM VORSTAND GEWÄHLT WORDEN. ZAHLE JEDEM SPIELER € 50";
 	}
 
 }

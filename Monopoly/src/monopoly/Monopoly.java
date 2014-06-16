@@ -8,11 +8,12 @@ public class Monopoly {
 	public ArrayList<Spieler> players = new ArrayList<Spieler>();
 	public ArrayList<Feld> fields = new ArrayList<Feld>();
 	public boolean isRunning = false; // gibt an ob das Spiel gerade laeuft oder nicht
-	
+	private static int gameId = 0;
 	
 	public void spielerHinzufuegen(Spieler spieler){
 		players.add(spieler);
 	}
+	
 	public void erstelleStrassen(){
 		 Feld Los = new Feld(0, "Los", "aktion");
 		 Feld Bad = new Street(1, "Badstrasse", 60,2,10,30,90,160,250);
@@ -65,6 +66,10 @@ public class Monopoly {
 		 for(Feld f : fields){
 			 this.fields.add(f);
 		 }
+	}
+	
+	public static int getGameId (){
+		return gameId++;
 	}
 	
 	/**

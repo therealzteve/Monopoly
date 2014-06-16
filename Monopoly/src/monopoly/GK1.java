@@ -8,10 +8,15 @@ public class GK1 implements Aktion{
 	@Override
 	public void fuehreAktionAus(int id) {
 		// TODO Auto-generated method stub
-		String kartentext = "ZAHLE EINE STRAFE VON € 10.";// ODER NIMM EINE EREIGNISKARTE.";
+		
 		
 		monopoly.players.get(id).setGuthaben(monopoly.players.get(id).getGuthaben() -10);
 
+	}
+	@Override
+	public String getKartenText() {
+		// TODO Auto-generated method stub
+		return "ZAHLE EINE STRAFE VON € 10.";
 	}
 
 }

@@ -7,20 +7,20 @@ public class Street extends Feld {
  int stufe;
  int preisHaus;
  int preisHotel;
- int mieteBahnhof;
- int mieteWerk;
+ Monopoly monopoly;
  
 public Street (int id, String name, String typ){
+	
 	this.id = id;
 	this.name = name;
 	this.typ = typ;
 	if (typ == "bahnhof"){
 		this.preis = 150;
-		this.mieteBahnhof = 50;
+		
 	}
 	else if (typ == "werk"){
 		this.preis = 100;
-		//this.mieteWerk = 8*wuerfelZahl
+		
 	}
 }
 public Street (int id, String name, int kaufPreis, int miete, int mieteHaus, int mieteHaus2, int mieteHaus3, int mieteHaus4, int mieteHotel){

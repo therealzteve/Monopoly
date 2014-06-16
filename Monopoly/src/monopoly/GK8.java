@@ -8,9 +8,13 @@ public class GK8 implements Aktion {
 	@Override
 	public void fuehreAktionAus(int id) {
 		// TODO Auto-generated method stub
-		String kartentext = "EINKOMMENSTEUER-RÜCKZAHLUNG. ZIEHE € 20 EIN.";
 		monopoly.players.get(id).setGuthaben(monopoly.players.get(id).getGuthaben() -20);
 		//monopoly.freiParken.addBetrag(20)
 
+	}
+	@Override
+	public String getKartenText() {
+		// TODO Auto-generated method stub
+		return "EINKOMMENSTEUER-RÜCKZAHLUNG. ZIEHE € 20 EIN.";
 	}
 }

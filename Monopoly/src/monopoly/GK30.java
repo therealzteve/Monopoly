@@ -8,10 +8,14 @@ public class GK30 implements Aktion{
 	@Override
 	public void fuehreAktionAus(int id) {
 		// TODO Auto-generated method stub
-		String kartentext = "MACHE EINEN AUSFLUG ZUM SÜDBAHNHOF. WENN DU ÜBER LOS KOMMST ZIEHE € 200 EIN.";
 		
 		monopoly.players.get(id).setPosition(5);
 
+	}
+	@Override
+	public String getKartenText() {
+		// TODO Auto-generated method stub
+		return "MACHE EINEN AUSFLUG ZUM SÜDBAHNHOF. WENN DU ÜBER LOS KOMMST ZIEHE € 200 EIN.";
 	}
 
 }

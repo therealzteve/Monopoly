@@ -8,10 +8,14 @@ public class GK16 implements Aktion{
 	@Override
 	public void fuehreAktionAus(int id) {
 		// TODO Auto-generated method stub
-		String kartentext = "ZAHLE AN DAS KRANKENHAUS: € 100";
 		
 		monopoly.players.get(id).setGuthaben(monopoly.players.get(id).getGuthaben() -100);
 
+	}
+	@Override
+	public String getKartenText() {
+		// TODO Auto-generated method stub
+		return "ZAHLE AN DAS KRANKENHAUS: € 100";
 	}
 
 }

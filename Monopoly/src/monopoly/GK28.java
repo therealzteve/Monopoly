@@ -8,10 +8,14 @@ public class GK28 implements Aktion{
 	@Override
 	public void fuehreAktionAus(int id) {
 		// TODO Auto-generated method stub
-		String kartentext = "DIE BANK ZAHLT DIR EINE DIVIDENDE: € 50";
 		
 		monopoly.players.get(id).setGuthaben(monopoly.players.get(id).getGuthaben() +50);
 
+	}
+	@Override
+	public String getKartenText() {
+		// TODO Auto-generated method stub
+		return "DIE BANK ZAHLT DIR EINE DIVIDENDE: € 50";
 	}
 
 }

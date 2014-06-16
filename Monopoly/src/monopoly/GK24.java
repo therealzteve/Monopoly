@@ -8,10 +8,14 @@ public class GK24 implements Aktion{
 	@Override
 	public void fuehreAktionAus(int id) {
 		// TODO Auto-generated method stub
-		String kartentext = "MIETE UND ANLEIHEZINSEN WERDEN FÄLLIG. DIE BANK ZAHLT DIR € 150";
 		
 		monopoly.players.get(id).setGuthaben(monopoly.players.get(id).getGuthaben() +150);
 
+	}
+	@Override
+	public String getKartenText() {
+		// TODO Auto-generated method stub
+		return "MIETE UND ANLEIHEZINSEN WERDEN FÄLLIG. DIE BANK ZAHLT DIR € 150";
 	}
 
 }

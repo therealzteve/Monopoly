@@ -1,11 +1,9 @@
 package monopoly;
 
 import java.util.ArrayList;
-
-
+import java.util.List;
 
 public class Spieler {
-	static int pl_id = 0;
 	int id;
 	String name;
 	int guthaben;
@@ -16,6 +14,7 @@ public class Spieler {
 	ArrayList<Street> ownedStreets = new ArrayList<Street>();
 	Monopoly monopoly;
 	boolean hasLost; //True, wenn der Spieler verloren oder aufgegeben hat
+	private static int playerId = 0;
 	
 public Spieler (int id, String name, boolean isAdmin){
 	this.guthaben = 2000;
@@ -23,6 +22,10 @@ public Spieler (int id, String name, boolean isAdmin){
 	this.name = name;
 	this.isAdmin = isAdmin;
 	this.id = id;
+}
+
+public static int getPlayerId (){
+	return playerId++;
 }
 
 public int getId() {
@@ -107,10 +110,5 @@ public boolean getHasLost() {
 
 public void setHasLost(boolean hasLost) {
 	this.hasLost = hasLost;
-}
-
-public static int getPlayerId(){
-	pl_id++;
-	return pl_id;
 }
 }
