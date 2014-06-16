@@ -10,10 +10,11 @@ public class Aktionsfeld extends Feld {
 	ArrayList<Aktion> aktionen = new ArrayList<Aktion>();
 	
 	
-	public Aktionsfeld (int id, String name, String typ){
+	public Aktionsfeld (int id, String name, String typ, Monopoly monopoly){
 		this.id = id;
 		this.name = name;
 		this.typ = typ;
+		this.monopoly = monopoly;
 		
 		
 		aktionen.add(new GK1(monopoly));
