@@ -4,6 +4,7 @@ public class Street extends Feld {
  Spieler owner;
  int [] miete = new int [6];
  int preis;
+ int gruppenId;
  int stufe;
  int preisHaus;
  int preisHotel;
@@ -23,11 +24,12 @@ public Street (int id, String name, String typ){
 		
 	}
 }
-public Street (int id, String name, int kaufPreis, int miete, int mieteHaus, int mieteHaus2, int mieteHaus3, int mieteHaus4, int mieteHotel){
+public Street (int id, String name, int gruppenId, int kaufPreis, int miete, int mieteHaus, int mieteHaus2, int mieteHaus3, int mieteHaus4, int mieteHotel){
 	 super();
 	 this.id = id;
 	 this.typ = "street";
 	 this.name = name;
+	 this.gruppenId = gruppenId;
 	 this.preis = kaufPreis;
 	 this.miete[0] = miete;
 	 this.miete[1] = mieteHaus;
