@@ -11,6 +11,11 @@ public class Aktionsfeld extends Feld {
 	
 	
 	public Aktionsfeld (int id, String name, String typ){
+		this.id = id;
+		this.name = name;
+		this.typ = typ;
+		
+		
 		aktionen.add(new GK1(monopoly));
 		aktionen.add(new GK2(monopoly));
 		aktionen.add(new GK3(monopoly));
