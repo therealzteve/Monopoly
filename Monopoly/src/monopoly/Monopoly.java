@@ -15,7 +15,7 @@ public class Monopoly {
 	}
 	
 	public void erstelleStrassen(){
-		 Feld Los = new Feld(0, "Los", "aktion");
+		 Feld Los = new Feld(0, "Los", "los");
 		 Feld Bad = new Street(1, "Badstrasse", 0, 60,2,10,30,90,160,250);
 		 Feld Ereignisfeld1 =new Aktionsfeld(2, "Ereignisfeld", "aktion");
 		 Feld Turm = new Street(3, "Turmstrasse", 0, 60,4,20,60,180,320,450);
@@ -25,7 +25,7 @@ public class Monopoly {
 		 Feld Ereignisfeld2 = new Aktionsfeld(7, "Ereignisfeld", "aktion");
 		 Feld Elisen =new Street (8, "Elisenstrasse", 1,100,6,30,90,270,400,550);
 		 Feld Post = new Street(9, "Poststraße", 1,120,8,40,100,300,400,550);
-		 Feld Gefaengnis = new Feld (10, "Gefaengnis", "aktion");
+		 Feld Gefaengnis = new Feld (10, "Gefaengnis", "gefaengnis");
 		 Feld See = new Street (11, "Seestrasse",2,140,10,50,150,450,625,750);
 		 Feld Elektrizitaetswerk = new Street (12, "Elektrizitaetswerk", "werk");
 		 Feld Hafen = new Street (13, "Hafenstrasse",2,140,10,50,150,450,625,750);
@@ -35,7 +35,7 @@ public class Monopoly {
 		 Feld Gemeinschaftsfeld1 = new Aktionsfeld (17, "Gemeinschaftsfeld", "aktion");
 		 Feld Wiener = new Street (18, "Wiener Strasse", 3,180,14,70,200,550,750,950);
 		 Feld Berliner = new Street (19, "Berliner Strasse", 3,200,16,80,220,600,800,1000);
-		 Feld FreiParken = new Feld (20, "Frei Parken", "aktion");
+		 Feld FreiParken = new Feld (20, "Frei Parken", "freiParken");
 		 Feld Theater = new Street (21, "Theaterstrasse", 4,220,18,90,250,700,875,1050);
 		 Feld Ereignisfeld3 = new Aktionsfeld (22, "Ereignisfeld", "aktion");
 		 Feld Museum = new Street (23, "Museumsstrasse", 4,220,18,90,250,700,875,1050);
@@ -45,7 +45,7 @@ public class Monopoly {
 		 Feld Schiller = new Street (27, "Schillerstrasse", 5,260,22,110,330,800,975,1150);
 		 Feld Wasserwerk = new Street (28, "Wasserwerk", "werk");
 		 Feld Goethe = new Street (29, "Goethestrasse", 5,280,24,120,360,850,1025,1200);
-		 Feld GeheInsGefaengnis = new Feld (30, "Gehe ins Gefaengnis!", "aktion");
+		 Feld GeheInsGefaengnis = new Feld (30, "Gehe ins Gefaengnis!", "geheGefaengnis");
 		 Feld Rathausplatz = new Street (31, "Rathausplatz", 6,300,26,130,390,900,1100,1275);
 		 Feld Haupt = new Street (32, "Hauptstrasse", 6,300,26,130,390,900,1100,1275);
 		 Feld Gemeinschaftsfeld2 = new Aktionsfeld (33, "Gemeinschaftsfeld", "aktion");
