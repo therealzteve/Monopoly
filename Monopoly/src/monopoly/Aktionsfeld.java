@@ -1,6 +1,7 @@
 package monopoly;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 
@@ -48,14 +49,19 @@ public class Aktionsfeld extends Feld {
 		aktionen.add(new GK30(monopoly));
 		aktionen.add(new GK31(monopoly));
 		aktionen.add(new GK32(monopoly));
+		
+		Collections.shuffle(aktionen);
 	}
 	
 	public String fuehreKarteAus (int idSpieler){
 		if (this.getId() == 2 || this.getId() == 7 || this.getId() == 17 || 
 			this.getId() == 22 || this.getId() == 33 || this.getId() == 38){
-			int zufall = (int) (Math.random()*32 )+1 ;
-			aktionen.get(zufall).fuehreAktionAus(idSpieler);
-			return aktionen.get(zufall).getKartenText();
+			aktionen.get(0).fuehreAktionAus(idSpieler);
+			String text = aktionen.get(0).getKartenText();
+			Aktion hilf = aktionen.get(0);
+			aktionen.remove(0);
+			aktionen.add(hilf);
+			return text;
 		}
 		else if (this.getId() == 4){
 			monopoly.players.get(idSpieler).setGuthaben(monopoly.players.get(idSpieler).getGuthaben() -200);
