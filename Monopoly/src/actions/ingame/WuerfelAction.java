@@ -114,6 +114,15 @@ public class WuerfelAction extends GameBaseAction {
 		return "Noch zu bearbeiten";
 	}
 
+	
+	/**
+	 * Behandelt das Verhalten, wenn der Spieler auf einer Strasse steht
+	 * @param p
+	 * @param str
+	 * @param type
+	 * @param wuerfelzahl
+	 * @return
+	 */
 	private String handleStreet(Spieler p, Street str, String type,
 			int wuerfelzahl) {
 		String resultText = "";
@@ -138,7 +147,7 @@ public class WuerfelAction extends GameBaseAction {
 			} else {
 
 				// Zahlung durchfuehren
-				handlePayment(p, str, wuerfelzahl);
+				int miete = handlePayment(p, str, wuerfelzahl);
 
 				// Pruefen ob Spieler verloren hat
 				checklost(p);
@@ -148,7 +157,7 @@ public class WuerfelAction extends GameBaseAction {
 
 				resultText = str.getName() + " gehoert "
 						+ owner.getName() + "<br> Miete: "
-						+ str.getCurrentMiete();
+						+ miete;
 
 				;
 			}
@@ -156,26 +165,22 @@ public class WuerfelAction extends GameBaseAction {
 		return resultText;
 	}
 
-	private void handlePayment(Spieler p, Street str, int wuerfelzahl) {
-		int miete = 0;
-
-		if ("street".equals(str.getTyp())) {
-			miete = str.getCurrentMiete();
-		}
-		if ("werk".equals(str.getTyp())) {
-			miete = wuerfelzahl * 20;
-		}
-		if ("bahnhof".equals(str.getTyp())) {
-			// Pruefen ob Bestitzer noch mehr Bahnhoefe besitzt
-			for (Street street : str.getOwner().getOwnedStreets()) {
-				if ("bahnhof".equals(street.getTyp())) {
-					miete += 50;
-				}
-			}
-		}
+	
+	/**
+	 *  Fuehrt die Zahlung durch
+	 *  
+	 * @param p
+	 * @param str
+	 * @param wuerfelzahl
+	 * @return
+	 */
+	private int handlePayment(Spieler p, Street str, int wuerfelzahl) {
+		int miete = getMietpreis(str, wuerfelzahl);
 
 		p.setGuthaben(p.getGuthaben() - miete);
 		str.getOwner().setGuthaben(str.getOwner().getGuthaben() + miete);
+		
+		return miete;
 	}
 
 	private void checklost(Spieler p) {
@@ -193,5 +198,31 @@ public class WuerfelAction extends GameBaseAction {
 			// hasLost auf true setzen um Spieler als Verlierer zu kennzeichnen
 			p.setHasLost(true);
 		}
+	}
+	
+	
+	/**
+	 *  Ermittelt die Miete eines Spielers anhand der Strasse
+	 * @param str
+	 * @param wuerfelzahl
+	 * @return
+	 */
+	private int getMietpreis(Street str, int wuerfelzahl){
+		int miete = 0;
+		if ("street".equals(str.getTyp())) {
+			miete = str.getCurrentMiete();
+		}
+		if ("werk".equals(str.getTyp())) {
+			miete = wuerfelzahl * 20;
+		}
+		if ("bahnhof".equals(str.getTyp())) {
+			// Pruefen ob Bestitzer noch mehr Bahnhoefe besitzt
+			for (Street street : str.getOwner().getOwnedStreets()) {
+				if ("bahnhof".equals(street.getTyp())) {
+					miete += 50;
+				}
+			}
+		}
+		return miete;
 	}
 }

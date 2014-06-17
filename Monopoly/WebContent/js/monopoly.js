@@ -275,8 +275,14 @@ var OptionsMenu = function(monopoly){
 	//Ergebnis der Aktion auswerten 
 	that.handleRequest = function(data){
 		$(that.messageField).html(data.message);
-		//Erneuter AJAX Befehl zum Daten aktualisieren
-		monopoly.getUpdates();
+		
+		//Wenn Aufgegeben, dann zur Startseite verweisen
+		if(data.event == "giveUp"){
+			location.href = "/Monopoly";
+		}else{
+			//Erneuter AJAX Befehl zum Daten aktualisieren
+			monopoly.getUpdates();
+		}
 	};
 	
 	that.init = function(){
@@ -311,7 +317,7 @@ var Player = function(name, guthaben){
 	
 	that.setIcon = function(imgPath){
 		if(!$("#icon_"+that.name).length > 0){
-			that._icon = $("<img class='car_icon' src='/Monopoly/img/figuren/auto"+imgPath+".png' id='icon_"+that.name+"' style='z-index:100; position:relative; padding-top:15px'/>");
+			that._icon = $("<img class='car_icon' src='/Monopoly/img/figuren/auto"+imgPath+".png' id='icon_"+that.name+"' style='z-index:100; position:relative; padding-top:15px; width:45px; height:20px'/>");
 		}else{
 			that._icon = $("#icon_"+that.name);
 		}
@@ -322,20 +328,23 @@ var Player = function(name, guthaben){
 	};
 };
 
-var Street = function(id, name, owner){
+var Street = function(id, name, owner, miete){
 	var that = this;
 	that.name = name;
 	that.id = id;
 	that.owner = owner;
+	that.miete = miete;
 	
 	
 	/**
 	 * Initializes street object
 	 */
 	that.init = function(){
-		$("field_"+that.id).data("streetid", that.id);
-		$("field_"+that.id).data("name", that.name);
-		$("field_"+that.id).data("owner", that.owner);
+		console.log(that.id);
+		$("#field_"+that.id).data("streetid", that.id);
+		$("#field_"+that.id).data("name", that.name);
+		$("#field_"+that.id).data("owner", that.owner);
+		$("#field_"+that.id).data("miete", that.miete);
 	};
 	
 	

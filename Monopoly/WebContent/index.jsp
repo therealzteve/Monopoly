@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div id="login">
-		<img src="img/logo.png" id="maskbg" class="diabg">
+		<img src="img/logo.png" id="maskbg">
 			<div id="new">
 			<h1>Herzlich Willkommen!</h1>
 			<form method="post" id="form" action="initGameAction">
@@ -43,7 +43,7 @@
 					</ul>
 				<input name="joingame" type="submit"
 					value="Spiel beitreten"/>
-			</form>
+			</form> 
 			</div>
 		</body>
 </html>
