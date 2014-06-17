@@ -290,7 +290,7 @@ var Player = function(name, guthaben){
 	
 	that.setIcon = function(imgPath){
 		if(!$("#icon_"+that.name).length > 0){
-			that._icon = $("<img class='car_icon' src='/Monopoly/img/figuren/auto"+imgPath+".png' id='icon_"+that.name+"' style='z-index:100; position:relative; padding-top:15px'/>");
+			that._icon = $("<img class='car_icon' src='/Monopoly/img/figuren/auto"+imgPath+".png' id='icon_"+that.name+"' style='z-index:100; position:relative; padding-top:15px; width:45px; height:20px'/>");
 		}else{
 			that._icon = $("#icon_"+that.name);
 		}
