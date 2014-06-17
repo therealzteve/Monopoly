@@ -54,8 +54,8 @@ public class Aktionsfeld extends Feld {
 	}
 	
 	public String fuehreKarteAus (int idSpieler){
-		if (this.getId() == 2 || this.getId() == 7 || this.getId() == 17 || 
-			this.getId() == 22 || this.getId() == 33 || this.getId() == 38){
+		if (this.getId() == 2 || this.getId() == 7 || this.getId() == 18 || 
+			this.getId() == 22 || this.getId() == 33 || this.getId() == 36){
 			aktionen.get(0).fuehreAktionAus(idSpieler);
 			String text = aktionen.get(0).getKartenText();
 			Aktion hilf = aktionen.get(0);
