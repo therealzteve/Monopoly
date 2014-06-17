@@ -32,8 +32,8 @@ public class Monopoly {
 		 Feld Neue = new Street (14, "Neue Strasse", 2, 160,12,60,180,500,700,900);
 		 Feld Westbahnhof = new Street (15, "Westbahnhof", "bahnhof");
 		 Feld Muenchener = new Street(16, "Muenchener Strasse", 3, 180,14,70,200,550,750,950);
-		 Feld Gemeinschaftsfeld1 = new Aktionsfeld (17, "Gemeinschaftsfeld", "aktion", this);
-		 Feld Wiener = new Street (18, "Wiener Strasse", 3,180,14,70,200,550,750,950);
+		 Feld Wiener = new Street (17, "Wiener Strasse", 3,180,14,70,200,550,750,950);
+		 Feld Gemeinschaftsfeld1 = new Aktionsfeld (18, "Gemeinschaftsfeld", "aktion", this);		 
 		 Feld Berliner = new Street (19, "Berliner Strasse", 3,200,16,80,220,600,800,1000);
 		 Feld FreiParken = new Feld (20, "Frei Parken", "freiParken");
 		 Feld Theater = new Street (21, "Theaterstrasse", 4,220,18,90,250,700,875,1050);
@@ -57,7 +57,7 @@ public class Monopoly {
 		 Feld Schlossallee = new Street (39, "Schlossallee", 7,400,50,200,600,1400,1700,2000);
 		 
 		 Feld[] fields = {Los, Bad, Ereignisfeld1, Turm, Einkommenssteuer, Suedbahnhof, Chausse, Ereignisfeld2, Elisen, 
-					Post, Gefaengnis, See,Elektrizitaetswerk,Hafen,Neue,Westbahnhof,Muenchener,Gemeinschaftsfeld1,Wiener,
+					Post, Gefaengnis, See,Elektrizitaetswerk,Hafen,Neue,Westbahnhof,Muenchener,Wiener,Gemeinschaftsfeld1,
 					Berliner,FreiParken,Theater,Ereignisfeld3,Museum,Opernplatz,Nordbahnhof,Lessing,Schiller,Wasserwerk,
 					Goethe,GeheInsGefaengnis,Rathausplatz,Haupt,Gemeinschaftsfeld2,Bahnhof,Hauptbahnhof,Ereignisfeld4,
 					Park,Zusatzsteuer, Schlossallee};
