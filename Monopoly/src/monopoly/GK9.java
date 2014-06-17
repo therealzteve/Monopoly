@@ -9,7 +9,7 @@ public class GK9 implements Aktion{
 	public void fuehreAktionAus(int id) {
 		// TODO Auto-generated method stub
 		
-		monopoly.players.get(id).setGuthaben(monopoly.players.get(id).getGuthaben() +50);
+		monopoly.players.get(id).setGuthaben(monopoly.players.get(id).getGuthaben() -50);
 
 	}
 	@Override
