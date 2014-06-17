@@ -43,7 +43,7 @@
 					</ul>
 				<input name="joingame" type="submit"
 					value="Spiel beitreten"/>
-			</form>
+			</form> 
 			</div>
 		</body>
 </html>
