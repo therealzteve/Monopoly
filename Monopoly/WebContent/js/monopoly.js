@@ -37,17 +37,41 @@ var Monopoly = function(cfg){
 		//Gegner Liste neu erstellen
 		for(var i = 0; i< data.otherPlayers.length; i++){
 			var pl = new Player(data.otherPlayers[i].name,data.otherPlayers[i].guthaben);
-			pl.streetOwnList = data.otherPlayers[i].streetOwnList;
+			
 			pl.position = data.otherPlayers[i].position;
 			pl.setIcon(data.otherPlayers[i].icon);
 			pl.hasLost = data.otherPlayers[i].hasLost;
+			
+			for(var j = 0; j < data.otherPlayers[i].streetOwnList.length; j++){
+				pl.streetOwnList.push(
+						new Street(
+								data.otherPlayers[i].streetOwnList[j].id,
+								data.otherPlayers[i].streetOwnList[j].name,
+								data.otherPlayers[i]
+								)
+						);
+			}
+
+			
 			that.playerList.push(pl);
 		}
 		
 		
 		//eigene Player Daten verarbeiten
 		that.myPlayer = new Player(data.player.name, data.player.guthaben);
-		that.myPlayer.streetOwnList = data.player.streetOwnList;
+		that.myPlayer.streetOwnList = [];
+		
+		console.log(data.player.streetOwnList.length);
+		for(var i = 0; i < data.player.streetOwnList.length; i++){
+			console.log(data.player.streetOwnList[i]);
+			that.myPlayer.streetOwnList.push(
+					new Street(
+							data.player.streetOwnList[i].id,
+							data.player.streetOwnList[i].name,
+							that.myPlayer
+							)
+					);
+		}
 		that.myPlayer.position = data.player.position;
 		that.myPlayer.userState = data.player.userState;
 		that.myPlayer.setIcon(data.player.icon);
@@ -78,17 +102,20 @@ var Monopoly = function(cfg){
 			//Position aktualisieren
 			$(that.myPlayer.getIcon()).detach().appendTo("#field_"+that.myPlayer.position);
 			
+			
+			
 			//Eigene Spielfelder aktualisieren
 				//Eigentum kennzeichnen
 		
 				//Haeuser kennzeichnen
 		
+			
 			//Eigene Kartenliste aktualisieren
 			$(that.ownedStreetsList).empty();
 			for(var i = 0; i< that.myPlayer.streetOwnList.length; i++){
 				$(that.ownedStreetsList).append(
 						"<li>"
-						+that.myPlayer.streetOwnList[i]
+						+that.myPlayer.streetOwnList[i].name
 						+"</li>"
 				);
 			}
@@ -119,14 +146,6 @@ var Monopoly = function(cfg){
 				$(that.playerList[i].getIcon()).detach().appendTo("#field_"+that.playerList[i].position);
 			}
 			
-			
-		
-			//Eigene Spielfelder aktualisieren
-				//Eigentum kennzeichnen
-				
-				//Haeuser kennzeichnen
-		
-		
 	};
 	
 	
@@ -184,7 +203,7 @@ var OptionsMenu = function(monopoly){
 		if(monopoly.myPlayer.userState == 0){
 			$(that.wuerfelButton).removeAttr("disabled");
 			$(that.buyButton).attr("disabled","disabled");
-			$(that.buildButton).removeAttr("disabled");
+			//$(that.buildButton).removeAttr("disabled");
 			$(that.endTurnButton).attr("disabled","disabled");
 		}
 		
@@ -192,7 +211,7 @@ var OptionsMenu = function(monopoly){
 		if(monopoly.myPlayer.userState == 1){
 			$(that.wuerfelButton).attr("disabled","disabled");
 			$(that.buyButton).removeAttr("disabled");
-			$(that.buildButton).removeAttr("disabled");
+			//$(that.buildButton).removeAttr("disabled");
 			$(that.endTurnButton).removeAttr("disabled");
 		}
 		
@@ -200,7 +219,7 @@ var OptionsMenu = function(monopoly){
 		if(monopoly.myPlayer.userState == 2){
 			$(that.wuerfelButton).attr("disabled","disabled");
 			$(that.buyButton).attr("disabled","disabled");
-			$(that.buildButton).removeAttr("disabled");
+			//$(that.buildButton).removeAttr("disabled");
 			$(that.endTurnButton).removeAttr("disabled");
 		}
 	};
@@ -267,6 +286,8 @@ var OptionsMenu = function(monopoly){
 		$(that.giveUpButton).click(that.giveUp);
 		$(that.endTurnButton).click(that.endTurn);
 		$(that.startGameButton).click(that.startGame);
+		
+		
 	};
 	
 	that.init();
@@ -299,6 +320,26 @@ var Player = function(name, guthaben){
 	that.getIcon = function(){
 		return that._icon;
 	};
+};
+
+var Street = function(id, name, owner){
+	var that = this;
+	that.name = name;
+	that.id = id;
+	that.owner = owner;
+	
+	
+	/**
+	 * Initializes street object
+	 */
+	that.init = function(){
+		$("field_"+that.id).data("streetid", that.id);
+		$("field_"+that.id).data("name", that.name);
+		$("field_"+that.id).data("owner", that.owner);
+	};
+	
+	
+	that.init();
 };
 
 

@@ -22,6 +22,10 @@ public class WuerfelAction extends GameBaseAction {
 	public String performAction(HttpServletRequest request) {
 		String resultText = "";
 		int result = (int) (Math.random() * 12) + 1;
+
+		// debug:
+		result = 1;
+
 		request.setAttribute("wuerfelzahl", result);
 
 		// get Player
@@ -29,38 +33,9 @@ public class WuerfelAction extends GameBaseAction {
 
 		// change position
 		p.addPosition(result);
+
 		// handle position:
-
-		// get type of field
-		Feld f = monopoly.fields.get(p.getPosition());
-
-		// if Aktionsfeld
-		if ("aktion".equals(f.getTyp())) {
-			resultText = handleAktion(p, (Aktionsfeld)f) ;
-		}
-
-		// if street
-		if ("street".equals(f.getTyp())) {
-			resultText = handleStreet(p, (Street) f);
-		}
-
-		// if werk
-		if ("werk".equals(f.getTyp())) {
-
-			resultText = handleWerk(p, (Street) f, result);
-		}
-
-		// if bahnhof
-		if ("bahnhof".equals(f.getTyp())) {
-
-			resultText = handleBahnhof(p, (Street) f);
-		}
-
-		// Wenn unbekannt
-		if (f.getTyp() == null) {
-			System.out.println("Type is null");
-			resultText = handleMisc(p);
-		}
+		resultText = handlePosition(p, result);
 
 		Result r = new Result();
 		r.setSuccess(true);
@@ -71,101 +46,76 @@ public class WuerfelAction extends GameBaseAction {
 		return "/json/wuerfel.jsp";
 	}
 
-	private String handleBahnhof(Spieler p, Street str) {
-		String resultText = "";
+	private String handlePosition(Spieler p, int result) {
 
-		// Besitzer ermitteln
-		Spieler owner = str.getOwner();
+		// get type of field
+		Feld f = monopoly.fields.get(p.getPosition());
 
-		if (owner == null) {
-			p.setUserState(1);
-			
-			// if null change userState to enable buy
-			resultText = "Bahnhof ist noch frei!";
-		} else {
-			if (owner.equals(p)) {
-
-				// Change user state to end turn state
-				p.setUserState(2);
-
-				resultText = "Dieser Bahnhof gehoert dir bereits!";
-			} else {
-				int miete = 0;
-
-				// Pruefen ob Bestitzer noch mehr Bahnhoefe besitzt
-				for (Street street : owner.getOwnedStreets()) {
-					if ("bahnhof".equals(street.getTyp())) {
-						miete += 50;
-					}
-				}
-
-				// Geld transferieren
-				p.setGuthaben(p.getGuthaben() - miete);
-				owner.setGuthaben(owner.getGuthaben() + miete);
-
-				// Pruefen ob Spieler verloren hat
-				checklost(p);
-				// Set user state
-				p.setUserState(2);
-
-				resultText = "Dieser Bahnhof gehoert " + owner.getName()
-						+ "<br> Miete: " + miete;
-
-				;
-			}
+		// if Aktionsfeld
+		if ("aktion".equals(f.getTyp())) {
+			return handleAktion(p, (Aktionsfeld) f, result);
 		}
-		return resultText;
+
+		// if street, werk or bahnhof
+		if ("street".equals(f.getTyp()) || "werk".equals(f.getTyp())
+				|| "bahnhof".equals(f.getTyp())) {
+			return handleStreet(p, (Street) f, f.getTyp(), result);
+		}
+
+		// Feld "Los"
+		if ("los".equals(f.getTyp())) {
+			return handleMisc(p);
+		}
+
+		// Wenn nur zu Besuch Gefaengnis
+		if ("gefaengnis".equals(f.getTyp())) {
+			return handleMisc(p);
+		}
+
+		// Wenn frei parken
+		if ("freiParken".equals(f.getTyp())) {
+			return handleMisc(p);
+		}
+
+		// Wenn gehe in das Gefaengnis
+		if ("geheGefaengnis".equals(f.getTyp())) {
+			return handleMisc(p);
+		}
+
+		// Wenn unbekannt
+		if (f.getTyp() == null || f.getTyp() == "") {
+			System.out.println("Type is null or empty");
+			return handleMisc(p);
+		}
+
+		return "";
 	}
 
-	private String handleWerk(Spieler p, Street str, int wuerfelzahl) {
-		String resultText = "";
-
-		// Besitzer ermitteln
-		Spieler owner = str.getOwner();
-
-		if (owner == null) {
-			p.setUserState(1);
-			// if null change userState to enable buy
-			resultText = "Werk ist noch frei!";
-		} else {
-			if (owner.equals(p)) {
-
-				// Change user state to end turn state
-				p.setUserState(2);
-
-				resultText = "Dieses Werk gehoert dir bereits!";
-			} else {
-				int miete = wuerfelzahl * 20;
-				p.setGuthaben(p.getGuthaben() - miete);
-				owner.setGuthaben(owner.getGuthaben() + miete);
-
-				// Pruefen ob Spieler verloren hat
-				checklost(p);
-
-				// Set user state
-				p.setUserState(2);
-
-				resultText = "Dieses Werk gehoert " + owner.getName()
-						+ "<br> Miete: " + miete;
-
-				;
-			}
-		}
-		return resultText;
-	}
-
-	private String handleAktion(Spieler p, Aktionsfeld a) {
+	private String handleAktion(Spieler p, Aktionsfeld a, int wuerfelResult) {
+		int currentPosition = p.getPosition();
 		String result = a.fuehreKarteAus(p.getId());
 		p.setUserState(2);
+		// Wenn sich Position geaendert hat, nochmal die aktuelle Position
+		// ueberpruefen
+		if (currentPosition != p.getPosition()) {
+			return result + "<br>" + handlePosition(p, wuerfelResult);
+		}
 		return result;
 	}
 
+	/**
+	 * Behandelt noch nicht implementierte Positionsergebnisse
+	 * 
+	 * @param p
+	 * @return
+	 */
 	private String handleMisc(Spieler p) {
 		p.setUserState(2);
 		return "Noch zu bearbeiten";
 	}
 
-	private String handleStreet(Spieler p, Street str) {
+	private String handleStreet(Spieler p, Street str, String type,
+			int wuerfelzahl) {
 		String resultText = "";
 
 		// if street
@@ -175,17 +125,20 @@ public class WuerfelAction extends GameBaseAction {
 		if (owner == null) {
 			p.setUserState(1);
 			// if null change userState to enable buy
-			resultText = "Strasse ist noch frei!";
+			resultText = str.getName() 
+					+ " ist noch frei!<br> Kaufpreis: " + str.getPrice();
 		} else {
 			if (owner.equals(p)) {
 
 				// Change user state to end turn state
 				p.setUserState(2);
 
-				resultText = "Diese Strasse gehoert dir bereits!";
+				resultText = str.getName()
+						+ " gehoert dir bereits!";
 			} else {
-				p.setGuthaben(p.getGuthaben() - str.getCurrentMiete());
-				owner.setGuthaben(owner.getGuthaben() + str.getCurrentMiete());
+
+				// Zahlung durchfuehren
+				handlePayment(p, str, wuerfelzahl);
 
 				// Pruefen ob Spieler verloren hat
 				checklost(p);
@@ -193,13 +146,36 @@ public class WuerfelAction extends GameBaseAction {
 				// Set user state
 				p.setUserState(2);
 
-				resultText = "Diese Strasse gehoert " + owner.getName()
-						+ "<br> Miete: " + str.getCurrentMiete();
+				resultText = str.getName() + " gehoert "
+						+ owner.getName() + "<br> Miete: "
+						+ str.getCurrentMiete();
 
 				;
 			}
 		}
 		return resultText;
+	}
+
+	private void handlePayment(Spieler p, Street str, int wuerfelzahl) {
+		int miete = 0;
+
+		if ("street".equals(str.getTyp())) {
+			miete = str.getCurrentMiete();
+		}
+		if ("werk".equals(str.getTyp())) {
+			miete = wuerfelzahl * 20;
+		}
+		if ("bahnhof".equals(str.getTyp())) {
+			// Pruefen ob Bestitzer noch mehr Bahnhoefe besitzt
+			for (Street street : str.getOwner().getOwnedStreets()) {
+				if ("bahnhof".equals(street.getTyp())) {
+					miete += 50;
+				}
+			}
+		}
+
+		p.setGuthaben(p.getGuthaben() - miete);
+		str.getOwner().setGuthaben(str.getOwner().getGuthaben() + miete);
 	}
 
 	private void checklost(Spieler p) {

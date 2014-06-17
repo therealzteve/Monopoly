@@ -70,8 +70,8 @@ public void setPosition(int position) {
 	
 	this.position = position;
 	
-	if(this.position >= 44){
-		this.position = this.position - 44;
+	if(this.position >= 40){
+		this.position = this.position - 40;
 		this.guthaben = this.guthaben +  200;
 	}
 }
