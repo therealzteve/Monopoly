@@ -16,8 +16,8 @@
 			<div id="new">
 			<h1>Herzlich Willkommen!</h1>
 			<form method="post" id="form" action="initGameAction">
-				<input name="usr" placeholder="Benutzername" /> <br><br>
-					Rot: <input type="radio" name="icon" value="rot"/>
+				<input name="usr" placeholder="Benutzername" autofocus="autofocus"/> <br><br>
+					Rot: <input type="radio" name="icon" value="rot" checked="checked"/>
 					Gr&uuml;n: <input type="radio" name="icon" value="gruen"/>
 					Blau: <input type="radio" name="icon" value="blau"/>
 					Gelb: <input type="radio" name="icon" value="gelb"/><br><br>
