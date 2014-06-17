@@ -10,6 +10,9 @@ public class GK32 implements Aktion{
 		// TODO Auto-generated method stub
 		
 		monopoly.players.get(id).setPosition(monopoly.players.get(id).getPosition()-3);
+		if (monopoly.players.get(id).getPosition() < 0 )
+			monopoly.players.get(id).setPosition(monopoly.players.get(id).getPosition() + 40);
+
 
 	}
 	@Override
