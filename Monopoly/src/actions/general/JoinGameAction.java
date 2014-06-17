@@ -43,6 +43,7 @@ public class JoinGameAction extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Parameter laden
 		long gameId = Long.parseLong(request.getParameter("whichgame"));
+		String playerName = request.getParameter("playerName");
 		
 		//Hashmap laden
 		HashMap<Long,Monopoly> gameList = (HashMap<Long, Monopoly>) request.getServletContext().getAttribute(TextKeys.gameList);;
@@ -51,7 +52,7 @@ public class JoinGameAction extends HttpServlet {
 		Monopoly monopoly = gameList.get(gameId);
 		
 		//Spieler anhand Formulardaten erstellen
-		Spieler player = new Spieler(monopoly.getNewPlayerId(), "test2", false);
+		Spieler player = new Spieler(monopoly.getNewPlayerId(), playerName, false);
 		
 		//icon setzen:
 		player.setIcon(retrieveColor(monopoly));

@@ -31,7 +31,9 @@
 			</div>
 			
 			<div id="submit">
+				<h2>Spiel beitreten: </h2>
 				<form id="join" method="post" action="joinGameAction">
+					<input type="text" placeholder="Benutzername" name="playerName" >
 					<ul>
 						<c:forEach items="${gameList}" var="game" varStatus="status">
 							<li>

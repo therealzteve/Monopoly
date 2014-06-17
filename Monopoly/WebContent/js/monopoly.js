@@ -33,7 +33,7 @@ var Monopoly = function(cfg){
 	that.handleUpdates = function(data){
 		if(data.player.hasWon == true){
 			alert("Sie haben das Spiel gewonnen!");
-			location.href= "/monopoly";
+			location.href= "/Monopoly";
 		}
 		
 		that.playerList = [];

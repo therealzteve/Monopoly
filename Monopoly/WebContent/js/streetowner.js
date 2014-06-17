@@ -1,7 +1,14 @@
 $(".field").click(function(){
-	$(monopoly.optionsMenu.messageField).html(
-			$(this).data("name") +
-			" gehört bereits " +
-			$(this).data("owner").name
-		);
+	if($(this).data("owner") != undefined){
+		$(monopoly.optionsMenu.messageField).html(
+				$(this).data("name") +
+				" gehört bereits " +
+				$(this).data("owner").name
+			);
+	}else{
+		$(monopoly.optionsMenu.messageField).html(
+				$(this).data("name") +
+				" ist noch frei"
+			);
+	}
 });
