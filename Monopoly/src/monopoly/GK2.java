@@ -13,7 +13,8 @@ public class GK2 implements Aktion{
 	@Override
 	public String getKartenText() {
 		// TODO Auto-generated method stub
-		return "DU HAST DEN 2. PREIS IN EINER SCHÖNHEITSKONKURRENZ GEWONNEN. ZIEHE € 10 EIN.";
+		return "DU HAST DEN 2. PREIS IN EINER SCHÖNHEITSKONKURRENZ"
+				+ " GEWONNEN. ZIEHE € 10 EIN.";
 	}
 
 }

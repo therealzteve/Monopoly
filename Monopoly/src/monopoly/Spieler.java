@@ -15,6 +15,7 @@ public class Spieler {
 	Monopoly monopoly;
 	boolean hasLost; //True, wenn der Spieler verloren oder aufgegeben hat
 	private static int playerId = 0;
+	boolean hasWon = false;
 	
 public Spieler (int id, String name, boolean isAdmin){
 	this.guthaben = 2000;
@@ -114,5 +115,13 @@ public boolean getHasLost() {
 
 public void setHasLost(boolean hasLost) {
 	this.hasLost = hasLost;
+}
+
+public boolean isHasWon() {
+	return hasWon;
+}
+
+public void setHasWon(boolean hasWon) {
+	this.hasWon = hasWon;
 }
 }
