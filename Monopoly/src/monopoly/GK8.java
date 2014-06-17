@@ -8,7 +8,7 @@ public class GK8 implements Aktion {
 	@Override
 	public void fuehreAktionAus(int id) {
 		// TODO Auto-generated method stub
-		monopoly.players.get(id).setGuthaben(monopoly.players.get(id).getGuthaben() -20);
+		monopoly.players.get(id).setGuthaben(monopoly.players.get(id).getGuthaben() +20);
 		//monopoly.freiParken.addBetrag(20)
 
 	}
