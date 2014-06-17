@@ -51,7 +51,7 @@ public class JoinGameAction extends HttpServlet {
 		Monopoly monopoly = gameList.get(gameId);
 		
 		//Spieler anhand Formulardaten erstellen
-		Spieler player = new Spieler(1, "test2", false);
+		Spieler player = new Spieler(Spieler.getPlayerId(), "test2", false);
 		
 		//icon setzen:
 		player.setIcon(retrieveColor(monopoly));
@@ -61,7 +61,7 @@ public class JoinGameAction extends HttpServlet {
 		
 		//In User Session speichern
 		request.getSession().setAttribute(TextKeys.userGameId, gameId);
-		request.getSession().setAttribute(TextKeys.playerId, 1 );
+		request.getSession().setAttribute(TextKeys.playerId, player.getId() );
 		
 		request.getRequestDispatcher("/boardalt1.html").forward(request, response);
 	}
