@@ -6,11 +6,11 @@ div#submit{margin-left:50px;background:rgba(226,0,0,0.55);width:350px; height:51
 a{color:#ffeb80;font-size:8pt;}
 
 body{background-image:url(img/background.png);background-attachment:fixed;background-repeat:no-repeat;position:absolute;width:100%;height:100%;background-size:cover;color:#ffeb80;font-size:14pt;font-family:"Helvetica"}
-div#menu, div#menuright{float:left;width: 400px; height:750px;margin-top:10px; position:relative}
-div#mainbrett{float:left;width:750px;margin-top:10px;}
+div#menu, div#menuright{float:left;width: 400px; height:550px;margin-top:10px; position:relative}
+div#mainbrett{float:left;width:700px;margin-top:10px;}
 div#bretto{clear:left; float:left} 
 div#brettl{clear:left;float:left}
-div#dialog{float:left;width:504px; heigth:450px;text-align:center;position:relative;}
+div#dialog{float:left;width:459px; heigth:430px;text-align:center;position:relative;}
 div#brettr{float:left}
 div#brettu{clear:both; float:left}
 div#menu div#konto~div{margin-top:40px;}
@@ -18,12 +18,12 @@ div#menu img, div#menuright img, div#submit img{z-index:-100;position:absolute;}
 div#menu div, div#menuright div {float:none; position:relative;z-index:100; padding-top:10px; padding-left:10px;}
 div[id^=brett] div, .bsp{ border-width:1; border-style:solid; border-color:black;}
 div[id^=brett] div img{z-index:-100}
-.aussen{width:70px; height:70px;float:left}
-.vert{float:left; width:50px; height:70px}
-.hor{float:none; width:70px; height:50px}
+.aussen, .aussen *{width:65px; height:65px;float:left}
+.vert, .vert *{float:left; width:45px; height:65px}
+.hor, .hor *{float:none; width:65px; height:45px}
 .field img{position:absolute; z-index:-100}
 
-.diabg{position:absolute; left:0; top:0;z-index:-100;}
+.diabg{position:absolute; left:0; top:0;z-index:-100;width:459px; heigth:430px;}
 div#dialog div#message{text-align:center;margin-top:300px;z-index:100}
 
 
