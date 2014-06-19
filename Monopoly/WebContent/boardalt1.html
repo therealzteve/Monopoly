@@ -7,28 +7,27 @@
 		
 	</head>
 	<body id="board">
-		<div id="menu">
-		<img src="img/menurechts.png">
+		<div id="menu" class="textbg">
 			<div id="konto"> 
 			<div>Kontostand: <span id="guthaben"></span> </div></div>
 			<div id="actionMenu">
 				<div id="startGame">
-					<input type="button"  id="startGameButton"  value="Spiel starten"/>
+					<input type="button"  id="startGameButton"  class="button" value="Spiel starten"/>
 				</div>
 				<div id="wuerfeln">
-					<input type="button"  id="wuerfelButton"  value="Würfeln"/>
+					<input type="button"  id="wuerfelButton" class="button" value="Würfeln"/>
 				</div>
 				<div id=build>
-					<input id="buildButton" type="button" value="Bauen" />
+					<input id="buildButton" type="button" class="button" value="Bauen" />
 				</div>
 				<div id=buy>
-					<input id="buyButton" type="button" value="Kaufen" />
+					<input id="buyButton" type="button" class="button" value="Kaufen" />
 				</div>
 				<div id=endTurn>
-					<input id="endTurnButton" type="button" value="Zug beenden" />
+					<input id="endTurnButton" type="button" class="button" value="Zug beenden" />
 				</div>
 				<div id=giveUp>
-					<input id="giveUpButton" type="button" value="Aufgeben" />
+					<input id="giveUpButton" type="button" class="button" value="Aufgeben" />
 				</div>
 				<div><a href="hilfe.html" target="_blank">Hilfe</a></div>
 			</div>
@@ -36,62 +35,61 @@
 	</div>
 		<div id="mainbrett">
 		<div id="bretto">
-			<div id="field_0" class="aussen field"> <img src="img/felder/los.png"></div>
-			<div id="field_1" class="vert field">  <img src="img/felder/sfbraun.png"></div>
-			<div id="field_2" class="vert field"> <img src="img/felder/gemeinoben.png"> </div>
-			<div id="field_3" class="vert field"> <img src="img/felder/sfbraun.png" ></div>
-			<div id="field_4" class="vert field"> <img src="img/felder/steueroben.png" ></div>
-			<div id="field_5" class="vert field"> <img src="img/felder/bahnsued.png" ></div>
-			<div id="field_6" class="vert field">  <img src="img/felder/sftuerkis.png"></div>
-			<div id="field_7" class="vert field">  <img src="img/felder/ereignisoben.png"></div>
-			<div id="field_8" class="vert field">  <img src="img/felder/sftuerkis.png"></div>
-			<div id="field_9" class="vert field">  <img src="img/felder/sftuerkis.png"></div>
-			<div id="field_10" class="aussen field"> <img src="img/felder/gefaengnis.png"> </div>
+			<div id="field_0" class="aussen field"><div class="layer"></div></div>
+			<div id="field_1" class="vert field"><div class="layer"></div></div>
+			<div id="field_2" class="vert field"><div class="layer"></div></div>
+			<div id="field_3" class="vert field"><div class="layer"></div></div>
+			<div id="field_4" class="vert field"><div class="layer"></div></div>
+			<div id="field_5" class="vert field"><div class="layer"></div></div>
+			<div id="field_6" class="vert field"><div class="layer"></div></div>
+			<div id="field_7" class="vert field"><div class="layer"></div></div>
+			<div id="field_8" class="vert field"><div class="layer"></div></div>
+			<div id="field_9" class="vert field"><div class="layer"></div> </div>
+			<div id="field_10" class="aussen field"><div class="layer"></div></div>
 		</div>
 		<div id="brettl">
-			<div id="field_39" class="hor field"> <img src="img/felder/sfblau.png"> </div>
-			<div id="field_38" class="hor field"> <img src="img/felder/steuerlinks.png"> </div>
-			<div id="field_37" class="hor field"> <img src="img/felder/sfblau.png"> </div>
-			<div id="field_36" class="hor field"> <img src="img/felder/ereignislinks.png"></div>
-			<div id="field_35" class="hor field"> <img src="img/felder/bahnhaupt.png"></div>
-			<div id="field_34" class="hor field"> <img src="img/felder/sfgruen.png"></div>
-			<div id="field_33" class="hor field"> <img src="img/felder/gemeinlinks.png"></div>
-			<div id="field_32" class="hor field"> <img src="img/felder/sfgruen.png"></div>
-			<div id="field_31" class="hor field"> <img src="img/felder/sfgruen.png"></div>
+			<div id="field_39" class="hor field"><div class="layer"></div></div>
+			<div id="field_38" class="hor field"><div class="layer"></div></div>
+			<div id="field_37" class="hor field"><div class="layer"></div></div>
+			<div id="field_36" class="hor field"><div class="layer"></div></div>
+			<div id="field_35" class="hor field"><div class="layer"></div></div>
+			<div id="field_34" class="hor field"><div class="layer"></div></div>
+			<div id="field_33" class="hor field"><div class="layer"></div></div>
+			<div id="field_32" class="hor field"><div class="layer"></div></div>
+			<div id="field_31" class="hor field"><div class="layer"></div></div>
 		</div>
 		<div id="dialog">
-		<img class="diabg" src="img/dialogbg.png">
+		<img id="diabg" src="img/dialogbg.png">
 		<div id="message">Klicken Sie auf "Spiel starten"!</div>
 		</div>
 		<div id="brettr">
-			<div id="field_11" class="hor field"> <img src="img/felder/sfpink.png"></div>
-			<div id="field_12" class="hor field"><img src="img/felder/elektro.png"> </div>
-			<div id="field_13" class="hor field"><img src="img/felder/sfpink.png"> </div>
-			<div id="field_14" class="hor field"><img src="img/felder/sfpink.png"> </div>
-			<div id="field_15" class="hor field"> <img src="img/felder/bahnwest.png"></div>
-			<div id="field_16" class="hor field"> <img src="img/felder/sforange.png"></div>
-			<div id="field_17" class="hor field"><img src="img/felder/sforange.png"> </div>
-			<div id="field_18" class="hor field"><img src="img/felder/gemeinrechts.png"> </div>
-			<div id="field_19" class="hor field" ><img src="img/felder/sforange.png"> </div>
+			<div id="field_11" class="hor field"><div class="layer"></div></div>
+			<div id="field_12" class="hor field"><div class="layer"></div></div>
+			<div id="field_13" class="hor field"><div class="layer"></div></div>
+			<div id="field_14" class="hor field"><div class="layer"></div></div>
+			<div id="field_15" class="hor field"> <div class="layer"></div></div>
+			<div id="field_16" class="hor field"><div class="layer"></div></div>
+			<div id="field_17" class="hor field"><div class="layer"></div></div>
+			<div id="field_18" class="hor field"><div class="layer"></div></div>
+			<div id="field_19" class="hor field" ><div class="layer"></div></div>
 		</div>
 		<div id="brettu">
-			<div id="field_30" class="aussen field"><img src="img/felder/polizist.png"> </div>
-			<div id="field_29" class="vert field"> <img src="img/felder/sfgelb.png"></div>
-			<div id="field_28" class="vert field"> <img src="img/felder/wasser.png"></div>
-			<div id="field_27" class="vert field"> <img src="img/felder/sfgelb.png"></div>
-			<div id="field_26" class="vert field"> <img src="img/felder/sfgelb.png"></div>
-			<div id="field_25" class="vert field"> <img src="img/felder/bahnnord.png"></div>
-			<div id="field_24" class="vert field"><img src="img/felder/sfrot.png"> </div>
-			<div id="field_23" class="vert field"> <img src="img/felder/sfrot.png"></div>
-			<div id="field_22" class="vert field"> <img src="img/felder/ereignisunten.png"></div>
-			<div id="field_21" class="vert field"> <img src="img/felder/sfrot.png"></div>
-			<div id="field_20" class="aussen field"><img src="img/felder/freipark.png"> </div>
+			<div id="field_30" class="aussen field"><div class="layer"></div></div>
+			<div id="field_29" class="vert field"><div class="layer"></div></div>
+			<div id="field_28" class="vert field"><div class="layer"></div></div>
+			<div id="field_27" class="vert field"><div class="layer"></div></div>
+			<div id="field_26" class="vert field"><div class="layer"></div></div>
+			<div id="field_25" class="vert field"><div class="layer"></div></div>
+			<div id="field_24" class="vert field"><div class="layer"></div></div>
+			<div id="field_23" class="vert field"><div class="layer"></div></div>
+			<div id="field_22" class="vert field"><div class="layer"></div></div>
+			<div id="field_21" class="vert field"><div class="layer"></div></div>
+			<div id="field_20" class="aussen field"><div class="layer"></div></div>
 		</div>
 		</div>
-		<div id="menuright">
-			<img src="img/menurechts.png">
+		<div id="menuright" class="textbg">
 			<div> Spieler:</div>
-			<ul id="otherPlayers"></ul>
+			<ul id="otherPlayers" class="left"></ul>
 						<div id="strassen"> 
 			<div>Gekaufte Straßen: </div>
 			<ul id="ownedStreets"></ul>
