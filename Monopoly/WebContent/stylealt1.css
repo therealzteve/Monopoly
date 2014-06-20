@@ -7,8 +7,8 @@ a{color:#ffeb80;font-size:8pt;}
 div#login{float:left; width:850px}
 .textbg{background:rgba(226,0,0,0.55);border-radius:15px;}
 .button{background:rgba(226,50,10,1);border-width:1; border-style:solid; border-color:#ffeb80;color:#ffeb80;border-radius:5px;font-size:12pt;font-family:"Helvetica";min-width:120px;text-align:left}
-.button:hover{background:rgba(200,100,10,1)}
-.button:active{background:rgba(200,140,10,1)}
+.button:hover{background:rgba(200,120,10,1)}
+.button:active{background:rgba(200,160,10,1)}
 .left{margin-left:20px}
 
 body{background-image:url(img/background.png);background-attachment:fixed;background-repeat:no-repeat;position:absolute;width:100%;height:100%;background-size:cover;color:#ffeb80;font-size:14pt;font-family:"Helvetica"; min-width:1500px}
@@ -26,7 +26,10 @@ div#menu *, div#menuright * {float:none; position:relative;padding-top:10px; pad
 .aussen, .aussen *{width:65px; height:65px;float:left}
 .vert, .vert *{float:left; width:45px; height:65px}
 .hor, .hor *{float:none; width:65px; height:45px}
-.layer:hover{background:rgba(255,235,128,0.4)}
+.aussen:hover{background-size:75px 75px; background-position:center}
+.hor:hover{background-size:75px 55px; background-position:center}
+.vert:hover{background-size:55px 75px; background-position:center}
+.layer:active{background:rgba(255,235,128,0.4)}
 
 div#field_0{background-image:url(img/felder/los.png)}
 div#field_1, div#field_3{background-image:url(img/felder/sfbraun.png)}
