@@ -40,7 +40,7 @@ var Monopoly = function(cfg){
 		that.playerList = [];
 		//Gegner Liste neu erstellen
 		for(var i = 0; i< data.otherPlayers.length; i++){
-			var pl = new Player(data.otherPlayers[i].name,data.otherPlayers[i].guthaben);
+			var pl = new Player(data.otherPlayers[i].id, data.otherPlayers[i].name,data.otherPlayers[i].guthaben);
 			
 			pl.position = data.otherPlayers[i].position;
 			pl.setIcon(data.otherPlayers[i].icon);
@@ -58,7 +58,7 @@ var Monopoly = function(cfg){
 		
 		
 		//eigene Player Daten verarbeiten
-		that.myPlayer = new Player(data.player.name, data.player.guthaben);
+		that.myPlayer = new Player(data.player.id, data.player.name, data.player.guthaben);
 		that.myPlayer.streetOwnList = [];
 		
 		for(var i = 0; i < data.player.streetOwnList.length; i++){
@@ -81,6 +81,7 @@ var Monopoly = function(cfg){
 							data.fields[i].typ,
 							data.fields[i].name,
 							data.fields[i].owner,
+							data.fields[i].playerId,
 							data.fields[i].miete
 							)
 					);
@@ -156,8 +157,8 @@ var Monopoly = function(cfg){
 		that.myPlayer.userState = 0;
 	};
 	
-	that.addPlayer = function(name, guthaben){
-		that.playerList.push(new Player(name, guthaben));
+	that.addPlayer = function(id, name, guthaben){
+		that.playerList.push(new Player(id, name, guthaben));
 	};
 	
 	that.init = function(){
@@ -248,11 +249,11 @@ var OptionsMenu = function(monopoly){
 		that.request(data);
 	};
 	
-	that.build = function(){
+	that.build = function(streetId){
 		
 		//Bau Feld bestimmen (Neues Menue) und Daten per Request mitgeben
 		
-		var data = {"action":"build", "streetId": 0, "buildAmount": 1};
+		var data = {"action":"build", "streetId": streetId, "buildAmount": 1};
 		that.request(data);
 	};
 	
@@ -308,8 +309,9 @@ var OptionsMenu = function(monopoly){
  *  Player Objekt in Javascript
  * 
  */
-var Player = function(name, guthaben){
+var Player = function(id, name, guthaben){
 	var that = this;
+	that.id = id;
 	that.name = name;
 	that.guthaben = guthaben;
 	that.streetOwnList;
@@ -320,10 +322,10 @@ var Player = function(name, guthaben){
 	that._icon;
 	
 	that.setIcon = function(imgPath){
-		if(!$("#icon_"+that.name).length > 0){
-			that._icon = $("<img class='car_icon' src='/Monopoly/img/figuren/auto"+imgPath+".png' id='icon_"+that.name+"' style='z-index:100; position:relative; padding-top:15px; width:45px; height:20px'/>");
+		if(!$("#icon_"+that.id).length > 0){
+			that._icon = $("<img class='car_icon' src='/Monopoly/img/figuren/auto"+imgPath+".png' id='icon_"+that.id+"' style='z-index:100; position:relative; padding-top:15px; width:45px; height:20px'/>");
 		}else{
-			that._icon = $("#icon_"+that.name);
+			that._icon = $("#icon_"+that.id);
 		}
 	};
 	
@@ -332,13 +334,14 @@ var Player = function(name, guthaben){
 	};
 };
 
-var Field = function(id,typ, name, owner, miete){
+var Field = function(id,typ, name, owner,playerId, miete){
 	var that = this;
 	that.name = name;
 	that.id = id;
 	that.typ = typ;
 	that.owner = owner;
 	that.miete = miete;
+	that.playerId = playerId;
 	
 	
 	/**
@@ -346,6 +349,7 @@ var Field = function(id,typ, name, owner, miete){
 	 */
 	that.init = function(){
 		$("#field_"+that.id).data("streetid", that.id);
+		$("#field_"+that.id).data("playerId", that.playerId);
 		$("#field_"+that.id).data("name", that.name);
 		$("#field_"+that.id).data("owner", that.owner);
 		$("#field_"+that.id).data("miete", that.miete);

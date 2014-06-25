@@ -38,6 +38,8 @@ public class GetUpdateAction extends HttpServlet {
 		//Session Daten abfragen
 		long gameId = (long) request.getSession().getAttribute(TextKeys.userGameId);
 		int playerId = (int) request.getSession().getAttribute(TextKeys.playerId);
+		 
+		System.out.println("Update from playerId: " + playerId);
 				
 		//Spiel in HashMap finden
 		HashMap<Long,Monopoly> gameList = (HashMap<Long, Monopoly>) request.getServletContext().getAttribute(TextKeys.gameList);
@@ -48,6 +50,7 @@ public class GetUpdateAction extends HttpServlet {
 				
 		
 		//Daten bereitstellen 
+		request.setAttribute(TextKeys.id, p.getId());
 		request.setAttribute(TextKeys.name, p.getName());
 		request.setAttribute(TextKeys.guthaben, p.getGuthaben());
 		request.setAttribute(TextKeys.position, p.getPosition());

@@ -4,6 +4,7 @@
 
     
 { 	"player": {
+		"id" : "${id}",
   		"name": "${name}",
   		"guthaben": "${guthaben}",
   		"position": "${position}",
@@ -24,6 +25,7 @@
 			<c:forEach var="player" varStatus="status" items="${otherPlayers}" >
 				${not status.first ? ',' : ''} 
 				{ 
+					"id" : "${player.id}",
 					"name": "${player.name}",
 			  		"guthaben": "${player.guthaben}",
 			  		"icon" : "${player.icon}",
@@ -46,6 +48,7 @@
 				"name" : "${field.name}",
 				"typ" : "${field.typ}",
 				"id" : "${field.id}",
+				"playerId": "",
 				"owner" : "",
 				"miete" : ""
  			}
@@ -56,6 +59,7 @@
 				"name" : "${street.name}",
 				"typ" : "${street.typ}",
 				"id" : "${street.id}",
+				"playerId" : "${street.owner.id}",
 				"owner" : "${street.owner.name}",
 				"miete" : "${street.currentMiete}"
 			}

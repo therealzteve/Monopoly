@@ -109,6 +109,7 @@ public class Monopoly {
 	
 	
 	public int getNewPlayerId(){
+		System.out.println("PlayerId: " + playerId);
 		return playerId++;
 	}
 	

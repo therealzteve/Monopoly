@@ -31,7 +31,8 @@ body{background-image:url(img/background.png);background-attachment:fixed;backgr
 .aussen:hover{background-size:75px 75px; background-position:center}
 .hor:hover{background-size:75px 55px; background-position:center}
 .vert:hover{background-size:55px 75px; background-position:center}
-.layer:active{background:rgba(255,235,128,0.4); position:absolute}
+.layer:active{background:rgba(255,235,128,0.4)}
+.layer{ position:absolute;}
 
 #field_0{background-image:url(img/felder/los.png)}
 #field_1, #field_3{background-image:url(img/felder/sfbraun.png)}

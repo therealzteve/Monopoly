@@ -41,29 +41,43 @@ public class JoinGameAction extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Session Daten abfragen
+		long oldGameId = -1 ;
+				
+		try{
+			oldGameId = (long) request.getSession().getAttribute(TextKeys.userGameId);
+		}catch(Exception e){
+		}
+				
+		
 		//Parameter laden
 		long gameId = Long.parseLong(request.getParameter("whichgame"));
 		String playerName = request.getParameter("playerName");
+
+		//Wenn gameId uebereinstimmt, dann kein joinGame noetig --> Direkt zum Spielbrett
+		if(oldGameId != gameId){
+			//Hashmap laden
+			HashMap<Long,Monopoly> gameList = (HashMap<Long, Monopoly>) request.getServletContext().getAttribute(TextKeys.gameList);;
+			
+			//Entsprechendes Monopoly holen;
+			Monopoly monopoly = gameList.get(gameId);
+			
+			//Spieler anhand Formulardaten erstellen
+			Spieler player = new Spieler(monopoly.getNewPlayerId(), playerName, false);
+			
+			//icon setzen:
+			player.setIcon(retrieveColor(monopoly));
 		
-		//Hashmap laden
-		HashMap<Long,Monopoly> gameList = (HashMap<Long, Monopoly>) request.getServletContext().getAttribute(TextKeys.gameList);;
+			//Spieler zu monopoly Spieler Liste hinzufuegen
+			monopoly.players.add(player);
+			
+			//In User Session speichern
+			request.getSession().setAttribute(TextKeys.userGameId, gameId);
+			request.getSession().setAttribute(TextKeys.playerId, player.getId() );
+			
+		}
 		
-		//Entsprechendes Monopoly holen;
-		Monopoly monopoly = gameList.get(gameId);
-		
-		//Spieler anhand Formulardaten erstellen
-		Spieler player = new Spieler(monopoly.getNewPlayerId(), playerName, false);
-		
-		//icon setzen:
-		player.setIcon(retrieveColor(monopoly));
-	
-		//Spieler zu monopoly Spieler Liste hinzufuegen
-		monopoly.players.add(player);
-		
-		//In User Session speichern
-		request.getSession().setAttribute(TextKeys.userGameId, gameId);
-		request.getSession().setAttribute(TextKeys.playerId, player.getId() );
-		
+
 		request.getRequestDispatcher("/boardalt1.html").forward(request, response);
 	}
 
