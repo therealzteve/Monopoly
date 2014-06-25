@@ -38,6 +38,27 @@
 									]
 				}
 			</c:forEach>
-					]			
-			
+					],
+	"fields" : [
+		<c:forEach var="field" varStatus="status" items="${fields}" >
+			${not status.first ? ',' : ''} 
+			{
+				"name" : "${field.name}",
+				"typ" : "${field.typ}",
+				"id" : "${field.id}",
+				"owner" : "",
+				"miete" : ""
+ 			}
+		</c:forEach>	
+		<c:forEach var="street" varStatus="status" items="${streets}" >
+			,
+			{
+				"name" : "${street.name}",
+				"typ" : "${street.typ}",
+				"id" : "${street.id}",
+				"owner" : "${street.owner.name}",
+				"miete" : "${street.currentMiete}"
+			}
+		</c:forEach>								
+			]
 }

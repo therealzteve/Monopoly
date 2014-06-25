@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import misc.TextKeys;
+import monopoly.Feld;
 import monopoly.Monopoly;
 import monopoly.Spieler;
+import monopoly.Street;
 
 /**
  * Servlet implementation class GetUpdateAction
@@ -56,6 +58,22 @@ public class GetUpdateAction extends HttpServlet {
 		request.setAttribute(TextKeys.hasLost, p.getHasLost() );
 		request.setAttribute(TextKeys.hasWon, p.isHasWon());
 		
+		ArrayList<Street> streets = new ArrayList<Street>();
+		ArrayList<Feld> fields = new ArrayList<Feld>();
+		for(Feld f : monopoly.getFields()){
+			if("street".equals(f.getTyp()) 
+					|| "bahhof".equals(f.getTyp())  
+					|| "werk".equals(f.getTyp()) 
+			   ){
+				streets.add((Street) f);
+			}else{
+				fields.add(f);
+			}
+		}
+		request.setAttribute(TextKeys.streets, streets);
+		request.setAttribute(TextKeys.fields, fields);
+		
+		
 		//Andere Spieler Objekte in Request einbinden:
 		ArrayList<Spieler> otherPlayers = new ArrayList<Spieler>();
 		for(Spieler pl : monopoly.players){
@@ -64,6 +82,8 @@ public class GetUpdateAction extends HttpServlet {
 			}
 		}
 		request.setAttribute(TextKeys.otherPlayers, otherPlayers );
+		
+		
 		
 		
 		//Auf JSP weiterleiten

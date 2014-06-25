@@ -5,6 +5,7 @@ var Monopoly = function(cfg){
 	that.myPlayer; //Mein eigenes Player Objekt
 	that.gameId; //Id des Spiels
 	that.optionsMenu = new OptionsMenu(that); //Optionsmenue mit Aktionen des Spielers
+	that.fieldList = [];
 	
 	//Selectors:
 	that.otherPlayers = $("#otherPlayers");
@@ -47,11 +48,7 @@ var Monopoly = function(cfg){
 			pl.streetOwnList = [];
 			for(var j = 0; j < data.otherPlayers[i].streetOwnList.length; j++){
 				pl.streetOwnList.push(
-						new Street(
-								data.otherPlayers[i].streetOwnList[j].id,
-								data.otherPlayers[i].streetOwnList[j].name,
-								data.otherPlayers[i]
-								)
+								data.otherPlayers[i].streetOwnList[j].name
 						);
 			}
 
@@ -66,11 +63,7 @@ var Monopoly = function(cfg){
 		
 		for(var i = 0; i < data.player.streetOwnList.length; i++){
 			that.myPlayer.streetOwnList.push(
-					new Street(
-							data.player.streetOwnList[i].id,
-							data.player.streetOwnList[i].name,
-							that.myPlayer
-							)
+							data.player.streetOwnList[i].name
 					);
 		}
 		that.myPlayer.position = data.player.position;
@@ -81,7 +74,17 @@ var Monopoly = function(cfg){
 		
 		that.myTurn = data.myTurn;
 		
-		
+		for(var i = 0; i< data.fields.length; i++){
+			that.fieldList.push(
+					new Field(
+							data.fields[i].id,
+							data.fields[i].typ,
+							data.fields[i].name,
+							data.fields[i].owner,
+							data.fields[i].miete
+							)
+					);
+		}
 		
 		//Spielfeld bzw. GUI aktualisieren
 		that.updateGUI();
@@ -102,7 +105,7 @@ var Monopoly = function(cfg){
 			$(that.guthabenSpan).html(that.myPlayer.guthaben);
 			//Position aktualisieren
 			$(that.myPlayer.getIcon()).detach().appendTo("#field_"+that.myPlayer.position);
-			
+
 			
 			
 			//Eigene Spielfelder aktualisieren
@@ -116,7 +119,7 @@ var Monopoly = function(cfg){
 			for(var i = 0; i< that.myPlayer.streetOwnList.length; i++){
 				$(that.ownedStreetsList).append(
 						"<li>"
-						+that.myPlayer.streetOwnList[i].name
+						+that.myPlayer.streetOwnList[i]
 						+"</li>"
 				);
 			}
@@ -329,10 +332,11 @@ var Player = function(name, guthaben){
 	};
 };
 
-var Street = function(id, name, owner, miete){
+var Field = function(id,typ, name, owner, miete){
 	var that = this;
 	that.name = name;
 	that.id = id;
+	that.typ = typ;
 	that.owner = owner;
 	that.miete = miete;
 	
@@ -345,6 +349,7 @@ var Street = function(id, name, owner, miete){
 		$("#field_"+that.id).data("name", that.name);
 		$("#field_"+that.id).data("owner", that.owner);
 		$("#field_"+that.id).data("miete", that.miete);
+		$("#field_"+that.id).data("typ", that.typ);
 	};
 	
 	

@@ -21,4 +21,6 @@ public class TextKeys {
 	public static String otherPlayers = "otherPlayers";
 	public static String hasLost = "hasLost";
 	public static String hasWon ="hasWon";
+	public static String fields = "fields";
+	public static String streets = "streets";
 }
