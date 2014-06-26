@@ -32,6 +32,14 @@ var Monopoly = function(cfg){
 	 * 
 	 */
 	that.handleUpdates = function(data){
+		if(data.event != undefined){
+			if(data.event == "sessionLost"){
+				alert("Ihre Session ist abgelaufen! Bitte treten Sie einem neuen Spiel bei!");
+				location.href = "/Monopoly";
+				return;
+			}
+		}
+		
 		if(data.player.hasWon == true){
 			alert("Sie haben das Spiel gewonnen!");
 			location.href= "/Monopoly";
@@ -258,9 +266,13 @@ var OptionsMenu = function(monopoly){
 	};
 	
 	that.startGame = function(){
-		var data = {"action":"startGame"};
-		that.request(data);
-		$(that.startGameContainer).remove();
+		if(monopoly.playerList.length == 0){
+			alert("Bitte warten, bis mindestens 1 Spieler beigetreten ist!");
+		}else{
+			var data = {"action":"startGame"};
+			that.request(data);
+			$(that.startGameContainer).remove();
+		}
 	};
 	
 	that.request = function(config){

@@ -7,8 +7,7 @@
 <head>
 <title>Monopoly</title>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="stylealt1.css"
-	title="Standart">
+<link rel="stylesheet" type="text/css" href="/Monopoly/stylealt1.css">
 </head>
 <body>
 	<div id="login">
