@@ -29,7 +29,7 @@ public class BuildAction extends GameBaseAction {
 		
 		
 		Street str = null;
-		boolean buildSuccesfull = false;
+		String message = "";
 		//Typ pruefen und pruefen ob  strasse dem jeweiligen Spieler gehoert
 		if("strasse".equals(f.getTyp()) || monopoly.players.get(playerId).getOwnedStreets().contains(f)){
 			//Feld zu strasse casten
@@ -40,20 +40,21 @@ public class BuildAction extends GameBaseAction {
 				str.setStufe(str.getStufe() + buildAmount);
 				//get player
 				Spieler p = monopoly.players.get(playerId);
-				p.setGuthaben(p.getGuthaben() - str.getPrice());
-				buildSuccesfull = true;
+				if(str.getStufe()< 3){
+					p.setGuthaben(p.getGuthaben() - str.getPreisHaus());
+				}else{
+					p.setGuthaben(p.getGuthaben() - str.getPreisHotel());
+				}
+				
+				message = "Bau erfolgreich abgeschlossen <br> Stra&szlig;e: "+str.getName()+"<br> Neuer Mietpreis: " + str.getCurrentMiete();
+			}else{
+				message = "Stra&szlig;e: "+ str.getName() + " ist schon voll ausgebaut."; 
 			}
-			
-			
 		}
 		
 		Result r = new Result();
 		r.setSuccess(true);
-		if(buildSuccesfull){
-			r.setMessage("Bau erfolgreich abgeschlossen <br> Stra&szlig;e: "+str.getName()+"<br> Neuer Mietpreis: " + str.getCurrentMiete());
-		}else{
-			r.setMessage("Stra&szlig;e: "+ str.getName() + " ist schon voll ausgebaut."); 
-		}
+		r.setMessage(message);
 		r.setEvent("build");
 		request.setAttribute(TextKeys.result,r );
 		return "/json/standard.jsp";
