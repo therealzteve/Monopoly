@@ -23,8 +23,8 @@ public class WuerfelAction extends GameBaseAction {
 		String resultText = "";
 		
 		//Wuerfeln
-		int result = (int) (Math.random() * 12) + 1;
-
+		//int result = (int) (Math.random() * 12) + 1;
+		int result = 1;
 
 		// get Player
 		Spieler p = monopoly.players.get(playerId);
