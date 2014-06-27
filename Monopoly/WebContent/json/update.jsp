@@ -3,7 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
     
-{ 	"player": {
+{ 	
+"isRunning" : ${isRunning},
+"player": {
 		"id" : "${id}",
   		"name": "${name}",
   		"guthaben": "${guthaben}",

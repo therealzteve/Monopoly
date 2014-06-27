@@ -142,6 +142,11 @@ public class Monopoly {
 	public void setFields(ArrayList<Feld> fields) {
 		this.fields = fields;
 	}
+	
+	public boolean getIsRunning(){
+		return isRunning;
+	}
+	
 	public boolean isRunning() {
 		return isRunning;
 	}

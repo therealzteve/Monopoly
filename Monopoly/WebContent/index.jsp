@@ -35,11 +35,13 @@
 					<input type="text" placeholder="Benutzername" name="playerName" class="left">
 					<ul>
 						<c:forEach items="${gameList}" var="game" varStatus="status">
-							<li>
-		  						<span>Spiel ID: <c:out value="${game.value.id}"/> </span>
-		  						<span>Anzahl Spieler:  ${fn:length(game.value.players)} / 4 </span>
-		  						<span><input name="whichgame" value="${game.value.id}" type="radio"/> </span>
-	  						</li>
+							<c:if test="${not game.value.isRunning}">
+								<li>
+			  						<span>Spiel ID: <c:out value="${game.value.id}"/> </span>
+			  						<span>Anzahl Spieler:  ${fn:length(game.value.players)} / 4 </span>
+			  						<span><input name="whichgame" value="${game.value.id}" type="radio"/> </span>
+		  						</li>
+	  						</c:if>
 						</c:forEach> 
 					</ul>
 				<input name="joingame" type="submit"

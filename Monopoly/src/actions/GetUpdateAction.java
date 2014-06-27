@@ -53,6 +53,14 @@ public class GetUpdateAction extends HttpServlet {
 					.getServletContext().getAttribute(TextKeys.gameList);
 			Monopoly monopoly = gameList.get(gameId);
 
+			//If monopoly is null there is a game in the user session which does 
+			//not exist anymore. Clean session and throw exception
+			if(monopoly == null){
+				request.getSession().removeAttribute(TextKeys.userGameId);
+				request.getSession().removeAttribute(TextKeys.playerId);
+				throw new Exception();
+			}
+			
 			Spieler p = monopoly.players.get(playerId);
 
 			// Daten bereitstellen
@@ -67,6 +75,7 @@ public class GetUpdateAction extends HttpServlet {
 			request.setAttribute(TextKeys.isAdmin, p.isAdmin());
 			request.setAttribute(TextKeys.hasLost, p.getHasLost());
 			request.setAttribute(TextKeys.hasWon, p.isHasWon());
+			request.setAttribute(TextKeys.isRunning, monopoly.isRunning);
 
 			ArrayList<Street> streets = new ArrayList<Street>();
 			ArrayList<Feld> fields = new ArrayList<Feld>();
@@ -96,6 +105,8 @@ public class GetUpdateAction extends HttpServlet {
 					response);
 		} catch (Exception e) {
 			System.out.println("Session lost!");
+			request.getSession().removeAttribute(TextKeys.userGameId);
+			request.getSession().removeAttribute(TextKeys.playerId);
 			// Auf JSP weiterleiten
 			response.setContentType("application/json");
 			request.getRequestDispatcher("/json/sessionLost.jsp").forward(

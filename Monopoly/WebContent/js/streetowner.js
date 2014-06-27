@@ -13,17 +13,26 @@ $(".field").click(function(){
 			if($(this).data("playerId") == monopoly.myPlayer.id){
 				var streetId = $(this).data("streetid");
 				
+				var htmlText = $(this).data("name") +
+				" gehört bereits dir!" + 
+				"<br>aktueller Mietpreis:"+ $(this).data("miete")+"<br>";
+				
 				//Add a button to enable build
 				var btn = $("<input type='button' value='Bauen' ></input>");
-				$(btn).click(function(){console.log(streetId);
-					monopoly.optionsMenu.build(streetId);
-				});
+				
+				
+				if(monopoly.myPlayer.userState == -1){
+					htmlText = htmlText + "Bauen ist nur w&auml;hrend des Spielzugs m&ouml;glich <br>"
+					$(btn).attr("disabled","disabled");
+				}else{
+					$(btn).click(function(){
+						monopoly.optionsMenu.build(streetId);
+					});
+				}
 				
 				
 				$(monopoly.optionsMenu.messageField).html(
-						$(this).data("name") +
-						" gehört bereits dir!" + 
-						"<br>aktueller Mietpreis:"+ $(this).data("miete")+"<br>"
+						htmlText
 					).append(btn);
 				
 				

@@ -6,6 +6,7 @@ var Monopoly = function(cfg){
 	that.gameId; //Id des Spiels
 	that.optionsMenu = new OptionsMenu(that); //Optionsmenue mit Aktionen des Spielers
 	that.fieldList = [];
+	that.isRunning = false;
 	
 	//Selectors:
 	that.otherPlayers = $("#otherPlayers");
@@ -39,6 +40,9 @@ var Monopoly = function(cfg){
 				return;
 			}
 		}
+		
+		
+		monopoly.isRunning = data.isRunning;
 		
 		if(data.player.hasWon == true){
 			alert("Sie haben das Spiel gewonnen!");
@@ -199,7 +203,7 @@ var OptionsMenu = function(monopoly){
 	that.startGameContainer = $("#startGame");
 	
 	that.handleOptions = function(){
-		if(monopoly.myPlayer.isAdmin == false){
+		if(monopoly.myPlayer.isAdmin == false || monopoly.isRunning){
 			$(that.startGameContainer).remove();
 		}
 		
@@ -217,6 +221,7 @@ var OptionsMenu = function(monopoly){
 			$(that.buyButton).attr("disabled","disabled");
 			//$(that.buildButton).removeAttr("disabled");
 			$(that.endTurnButton).attr("disabled","disabled");
+			$(that.giveUpButton).show();
 		}
 		
 		//Spieler steht auf einer freien Strasse

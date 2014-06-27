@@ -20,7 +20,7 @@ body{background-image:url(img/background.png);background-attachment:fixed;backgr
 #brettl{clear:left;float:left}
 #dialog{float:left;width:459px;position:relative;}
 #diabg{position:absolute; left:0; top:0;z-index:-100;width:459px; heigth:430px;}
-#dialog #message{text-align:center;margin-top:300px}
+#dialog #message{text-align:center;margin-top:300px; margin-left: auto; margin-right: auto; width: 370px;}
 #brettr{float:left}
 #brettu{clear:both; float:left}
 #menu *, #menuright * {float:none; position:relative;padding-top:10px; padding-left:10px;}

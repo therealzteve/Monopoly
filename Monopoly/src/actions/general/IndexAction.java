@@ -49,24 +49,12 @@ public class IndexAction extends HttpServlet {
 			// Entsprechendes Monopoly holen;
 			Monopoly monopoly = gameList.get(gameId);
 
-			// Get Player
-			Spieler p = monopoly.players.get(playerId);
+			//Spieler aufgeben lassen, da er das Spiel verlassen hat
+			giveUp(request, monopoly, playerId);
 
-			for (Street str : p.getOwnedStreets()) {
-				str.setOwner(null);
-			}
-			p.setGuthaben(0);
-			p.setHasLost(true);
+		
+			handleEmptyGame(monopoly, gameList, gameId);
 			
-			boolean allLeft = true;
-			for(Spieler pl : monopoly.players){
-				if(!pl.getHasLost()){
-					allLeft = false;
-				}
-			}
-			if(allLeft){
-				gameList.remove(gameId);
-			}
 		} catch (Exception e) {
 		}
 
@@ -82,5 +70,47 @@ public class IndexAction extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
+
+	
+	/**
+	 *  Lets the player give up
+	 * 
+	 * @param request
+	 * @param monopoly
+	 * @param playerId
+	 */
+	protected void giveUp(HttpServletRequest request ,Monopoly monopoly, int playerId) {
+		// Get Player
+		Spieler p = monopoly.players.get(playerId);
+
+		for (Street str : p.getOwnedStreets()) {
+			str.setOwner(null);
+		}
+		p.setGuthaben(0);
+		p.setHasLost(true);
+		
+		request.getSession().removeAttribute(TextKeys.userGameId);
+		request.getSession().removeAttribute(TextKeys.playerId);
+	}
+	
+	/**
+	 *  Checks if there is anyone playing in the game and removes it if empty
+	 * 
+	 * @param monopoly
+	 * @param gameList
+	 * @param gameId
+	 */
+	protected void handleEmptyGame(Monopoly monopoly, HashMap<Long, Monopoly> gameList, long gameId){
+		boolean allLeft = true;
+		for (Spieler pl : monopoly.players) {
+			if (!pl.getHasLost()) {
+				allLeft = false;
+			}
+		}
+		if (allLeft) {
+			gameList.remove(gameId);
+		}
+	}
+	
 
 }

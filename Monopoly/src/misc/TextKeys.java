@@ -24,4 +24,5 @@ public class TextKeys {
 	public static String fields = "fields";
 	public static String streets = "streets";
 	public static String id = "id";
+	public static String isRunning = "isRunning";
 }
