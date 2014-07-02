@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/Monopoly/stylealt1.css">
 </head>
 <body>
-	<div id="login">
+	<div id="login"> <!-- Beginn rechte Dialogbox -->
 		<img src="img/logo.png" id="logo">
 			<div id="new" class="textbg">
 			<h1>Herzlich Willkommen!</h1>
@@ -27,9 +27,9 @@
 			<a href="impressum.html" target="_blank">Impressum</a><br>
 			<a href="hilfe.html" target="_blank">Hilfe</a>
 			</div>
-			</div>
+			</div><!-- Ende rechte Dialogbox -->
 			
-			<div id="submit" class="textbg">
+			<div id="submit" class="textbg"><!-- Beginn linke Dialogbox -->
 				<h2 class="left">Spiel beitreten: </h2>
 				<form id="join" method="post" action="joinGameAction">
 					<input type="text" placeholder="Benutzername" name="playerName" class="left">
@@ -47,6 +47,6 @@
 				<input name="joingame" type="submit"
 					value="Spiel beitreten" class="button left"/>
 			</form> 
-			</div>
+			</div><!-- Ende linke Dialogbox -->
 		</body>
 </html>
