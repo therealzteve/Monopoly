@@ -1,5 +1,11 @@
 package monopoly;
 
+/* Enthält Funktionen für die Funktionsweise der Spieler.
+ * Bei Anmeldung wird jedem Spieler ein Budget, eine Id, die von Spieler zu Spieler hochgezählt wird 
+ * und eine leere Liste, die dann die erworbenen Straßen enthalten wird.
+ * Zusätzlich wird dem Spieler der ein Spiel erstellt der Admin Status verliehen.
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 

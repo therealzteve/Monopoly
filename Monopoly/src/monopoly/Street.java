@@ -1,4 +1,9 @@
 package monopoly;
+/*
+ * Enthält zwei Konstruktoren. 
+ * Ein Konstruktor wird benötigt für besondere Straßen, wie die Bahnhöfe oder die Werke.
+ * Ein zweiter Konstruktor, der alle Informationen für die normalen Straßen enthält.
+ */
 
 public class Street extends Feld {
 	Spieler owner;

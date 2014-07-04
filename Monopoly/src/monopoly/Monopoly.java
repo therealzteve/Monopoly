@@ -1,6 +1,10 @@
 package monopoly;
 
 import java.util.ArrayList;
+/*Erzeugt das Monopoly Spielfeld, mit allen Feldern.
+ * Enthält zwei Listen, eine mit Monopolyspielen und eine zweite mit Spielern auf dem jeweiligen Monopolyfeld.
+ * 
+ */
 
 public class Monopoly {
 	int id;

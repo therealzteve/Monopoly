@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
+/*Im Konstruktor werden den jeweiligen Aktionsfeldern id, name und typ zugeordnet.
+ * Außerdem wird der Arraylist aktionen die Ereignis- und Gemeinschaftsfelderaktionen zugeordnet und gemischt.
+ * 
+ * In der Methode "fuehreKarteAus" wird zunächst bestimmt ob die id auf ein Ereignis- und Gemeinschaftsfeld hinweist 
+ * oder auf eine der anderen Aktionsfelder.
+ * Je nachdem wird eine Aktion ausgeführt.
+ * Ereignis- und Gemeinschaftsfeld: Ziehe das 0-te Element und fügt es an letzter Stelle wieder ein.
+ * */
 
 public class Aktionsfeld extends Feld {
 	

@@ -1,5 +1,9 @@
 package monopoly;
 
+/*Bietet Grundfunktionen für alle Monopolyfelder.
+ * Überklasse von Aktionsfeld und Street.
+ */
+
 public class Feld {
 	int id;
 	String name;
